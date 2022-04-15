@@ -1,4 +1,4 @@
-package com.example.proyecto;
+package com.example.proyecto.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -8,20 +8,20 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
-import com.example.proyecto.Controller.PagerController;
+import com.example.proyecto.R;
+import com.example.proyecto.adapter.PagerAdapter;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import android.widget.Button;
-public class TabActivity extends AppCompatActivity {
+
+public class TabActivity extends AppCompatActivity  {
+
     TabLayout tablayout;
     ViewPager viewpager;
     TabItem tab1,tab2,tab3;
 
 
-    PagerController pagerController;
+    PagerAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +72,15 @@ public class TabActivity extends AppCompatActivity {
         tab3=findViewById(R.id.tabWishList);
 
 
-        pagerController=new PagerController(getSupportFragmentManager(),tablayout.getTabCount());
-        viewpager.setAdapter(pagerController);
+        pagerAdapter =new PagerAdapter(getSupportFragmentManager(),tablayout.getTabCount());
+        viewpager.setAdapter(pagerAdapter);
 
         tablayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewpager.setCurrentItem(tab.getPosition());
                 if(tab.getPosition()==0 || tab.getPosition()==1 || tab.getPosition()==2){
-                    pagerController.notifyDataSetChanged();
+                    pagerAdapter.notifyDataSetChanged();
                 }
 
             }

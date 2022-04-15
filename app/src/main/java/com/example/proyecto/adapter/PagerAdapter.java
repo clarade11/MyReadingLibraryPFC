@@ -1,15 +1,19 @@
-package com.example.proyecto.Controller;
+package com.example.proyecto.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-public class PagerController extends FragmentPagerAdapter {
+import com.example.proyecto.fragments.Library;
+import com.example.proyecto.fragments.Memories;
+import com.example.proyecto.fragments.WishList;
+
+public class PagerAdapter extends FragmentPagerAdapter {
 
     int numTabs;
 
-    public PagerController(@NonNull FragmentManager fm, int behavior) {
+    public PagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
         this.numTabs=behavior;
     }

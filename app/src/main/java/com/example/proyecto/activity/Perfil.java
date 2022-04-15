@@ -1,14 +1,16 @@
-package com.example.proyecto;
+package com.example.proyecto.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class VisualizarLibro extends AppCompatActivity {
+import com.example.proyecto.R;
+
+public class Perfil extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_visualizar_libro);
+        setContentView(R.layout.activity_perfil);
     }
 }
