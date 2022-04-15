@@ -50,12 +50,15 @@ public class TabActivity extends AppCompatActivity {
             case R.id.perfil:
                 Intent i  = new Intent( TabActivity.this, Perfil.class); //clase nuestra,clase a la que viajar
                 startActivity(i);
+                return true;
             case R.id.crearLibro:
                 Intent i2  = new Intent( TabActivity.this, CreacionLibro.class); //clase nuestra,clase a la que viajar
                 startActivity(i2);
+                return true;
             case R.id.crearRecuerdo:
                 Intent i3  = new Intent( TabActivity.this, CreacionRecuerdo.class); //clase nuestra,clase a la que viajar
                 startActivity(i3);
+                return true;
         }
         return true;
     }
