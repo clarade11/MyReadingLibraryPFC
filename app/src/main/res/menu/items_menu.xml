@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:id="@+id/nav_memories"
+    android:title="@string/memories"
+    android:enabled="true"
+    android:icon="@drawable/ic_baseline_bookmarks_24"/>
+    <item android:id="@+id/nav_library"
+        android:title="@string/library"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_menu_book_24"/>
+    <item android:id="@+id/nav_wishlist"
+        android:enabled="true"
+        android:title="@string/wishlist"
+        android:icon="@drawable/ic_baseline_favorite_24"/>
+</menu>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_creacion_libro.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_creacion_recuerdo.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_main2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_navigation.xml" value="0.25" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_perfil.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_tab.xml" value="0.3281653746770026" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_visualizar_libro.xml" value="0.29846014492753625" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/fragment_library.xml" value="0.2921875" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/fragment_memories.xml" value="0.2921875" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/fragment_vista_libro.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/fragment_wish_list.xml" value="0.2921875" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/menu/bottom_nav.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/menu/items_menu.xml" value="0.3104166666666667" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/menu/menu_opciones.xml" value="0.36666666666666664" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
