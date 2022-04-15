@@ -61,10 +61,7 @@ public class WishList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -100,9 +97,9 @@ public class WishList extends Fragment {
         listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 4","tu","88888",
                 "micasa",25.90,"quieres mundo",true,0,null,"hola"));
         listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 5",null,"9999",
-                "micasa",null,"hola pepeddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",false,0,null,"aaaaaa"));
+                "micasa",14.23,"hola pepeddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",false,0,null,"aaaaaa"));
         listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 6",null,"00000000001",
-                "micasa",null,"JJJJJJ mundo",true,0,null,"ppppppp"));
+                "micasa",13.15,"JJJJJJ mundo",true,0,null,"ppppppp"));
                     //base de datos
 
 

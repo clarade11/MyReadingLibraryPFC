@@ -22,8 +22,9 @@
             android:name=".activity.Perfil"
             android:exported="false" />
         <activity
-            android:name=".activity.TabActivity"
-            android:exported="false" />
+            android:name=".activity.NavDrawer"
+            android:exported="false"
+            android:theme="@style/Theme.Proyecto.NoActionBar"/>
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">

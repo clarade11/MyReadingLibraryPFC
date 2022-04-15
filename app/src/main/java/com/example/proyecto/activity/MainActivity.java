@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 //finish();
-                Intent i  = new Intent( MainActivity.this, TabActivity.class); //clase nuestra,clase a la que viajar
+                Intent i  = new Intent( MainActivity.this, NavDrawer.class); //clase nuestra,clase a la que viajar
                 startActivity(i);
             }
         });

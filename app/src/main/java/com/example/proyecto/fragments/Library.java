@@ -1,5 +1,6 @@
 package com.example.proyecto.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,8 +8,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.proyecto.R;
+import com.example.proyecto.activity.MainActivity;
+import com.example.proyecto.activity.NavDrawer;
+import com.example.proyecto.activity.VisualizarLibro;
 
 
 /**
@@ -26,6 +31,8 @@ public class Library extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    Button visualizarLibro;
 
 
     public Library() {
@@ -65,8 +72,28 @@ public class Library extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_library, container, false);
+        View view =inflater.inflate(R.layout.fragment_library, container, false);
+
+        navegar(view);
+
+        return view;
     }
+
+    //NAVEGAR A APP
+    public void navegar(View view){
+        visualizarLibro = (Button)view.findViewById(R.id.btLibroSeleccionado);
+
+        visualizarLibro.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //finish();
+                Intent intent = new Intent(getActivity(), VisualizarLibro.class);
+                startActivity(intent);
+
+            }
+        });
+    }
+
 
 
 

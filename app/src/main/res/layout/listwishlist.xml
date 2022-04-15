@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="@color/PrincipalOscuro">
+        android:background="@color/white">
 
         <ImageView
             android:id="@+id/imageWishList"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:src="@drawable/image_default" />
+            android:src="@drawable/negro" />
 
         <LinearLayout
             android:layout_width="match_parent"
