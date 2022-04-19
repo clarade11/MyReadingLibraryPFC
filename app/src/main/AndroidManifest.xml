@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto">
         <activity
+            android:name=".activity.Registrar"
+            android:exported="false" />
+        <activity
             android:name=".activity.VisualizarLibro"
             android:exported="false" />
         <activity
@@ -24,7 +27,7 @@
         <activity
             android:name=".activity.NavDrawer"
             android:exported="false"
-            android:theme="@style/Theme.Proyecto.NoActionBar"/>
+            android:theme="@style/Theme.Proyecto.NoActionBar" />
         <activity
             android:name=".activity.MainActivity"
             android:exported="true">

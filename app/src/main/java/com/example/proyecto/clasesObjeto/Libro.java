@@ -14,11 +14,10 @@ public class Libro {
     Double precio;
     String descripcion;
     Boolean comprado;
-    Integer numRecuerdos;
     Double puntuacion;
     String tienda;
 
-    public Libro(Integer fotoID,String titulo,String autor,String codigoBarras,String editorial,Double precio,String descripcion,Boolean comprado,Integer numRecuerdos,Double puntuacion,String tienda ){
+    public Libro(Integer fotoID,String titulo,String autor,String codigoBarras,String editorial,Double precio,String descripcion,Boolean comprado,Double puntuacion,String tienda ){
         this.fotoID=fotoID;
         this.titulo=titulo;
         this.autor=autor;
@@ -27,7 +26,6 @@ public class Libro {
         this.precio=precio;
         this.descripcion=descripcion;
         this.comprado=comprado;
-        this.numRecuerdos=numRecuerdos;
         this.puntuacion=puntuacion;
         this.tienda=tienda;
     }
@@ -64,9 +62,6 @@ public class Libro {
         return precio;
     }
 
-    public Integer getNumRecuerdos() {
-        return numRecuerdos;
-    }
 
     public String getCodigoBarras() {
         return codigoBarras;
@@ -104,9 +99,6 @@ public class Libro {
         this.editorial = editorial;
     }
 
-    public void setNumRecuerdos(Integer numRecuerdos) {
-        this.numRecuerdos = numRecuerdos;
-    }
 
     public void setPrecio(Double precio) {
         this.precio = precio;
@@ -125,12 +117,12 @@ public class Libro {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Libro libro = (Libro) o;
-        return Objects.equals(fotoID, libro.fotoID) && Objects.equals(titulo, libro.titulo) && Objects.equals(autor, libro.autor) && Objects.equals(codigoBarras, libro.codigoBarras) && Objects.equals(editorial, libro.editorial) && Objects.equals(precio, libro.precio) && Objects.equals(descripcion, libro.descripcion) && Objects.equals(comprado, libro.comprado) && Objects.equals(numRecuerdos, libro.numRecuerdos) && Objects.equals(puntuacion, libro.puntuacion) && Objects.equals(tienda, libro.tienda);
+        return Objects.equals(fotoID, libro.fotoID) && Objects.equals(titulo, libro.titulo) && Objects.equals(autor, libro.autor) && Objects.equals(codigoBarras, libro.codigoBarras) && Objects.equals(editorial, libro.editorial) && Objects.equals(precio, libro.precio) && Objects.equals(descripcion, libro.descripcion) && Objects.equals(comprado, libro.comprado)  && Objects.equals(puntuacion, libro.puntuacion) && Objects.equals(tienda, libro.tienda);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fotoID, titulo, autor, codigoBarras, editorial, precio, descripcion, comprado, numRecuerdos, puntuacion, tienda);
+        return Objects.hash(fotoID, titulo, autor, codigoBarras, editorial, precio, descripcion, comprado, puntuacion, tienda);
     }
 
     @Override
@@ -144,7 +136,6 @@ public class Libro {
                 ", precio=" + precio +
                 ", descripcion='" + descripcion + '\'' +
                 ", comprado=" + comprado +
-                ", numRecuerdos=" + numRecuerdos +
                 ", puntuacion=" + puntuacion +
                 ", tienda='" + tienda + '\'' +
                 '}';
