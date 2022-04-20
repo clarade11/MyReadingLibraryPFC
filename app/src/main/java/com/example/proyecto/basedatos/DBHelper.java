@@ -60,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
     /**
-     * This method is to create user record
+     * Metodo para crear usuario
      *
      * @param usuario
      */
@@ -89,7 +89,7 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @SuppressLint("Range")
     public List<Usuario> getAllUsuarios() {
-        // array of columns to fetch
+
         String[] columnas = {
                 COLUMN_IDUSUARIO,
                 COLUMN_USUARIO,
@@ -98,17 +98,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_APELLIDOS,
                 COLUMN_TELEFONO
         };
-        // sorting orders
+
         String orden =
                 COLUMN_IDUSUARIO + " ASC";
         List<Usuario> listaUsuario = new ArrayList<Usuario>();
         SQLiteDatabase db = this.getReadableDatabase();
-        // query the user table
-        /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id,user_name,user_email,user_password FROM user ORDER BY user_name;
-         */
+
+         //SELECT idusuario,usuario,contraseña,nombre,apellidos,telefono FROM ususuario ORDER BY idusuario;
+
         Cursor cursor = db.query(TABLE_USUARIO, //Table to query
                 columnas,    //columns to return
                 null,        //columns for the WHERE clause
@@ -116,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 null,       //group the rows
                 null,       //filter by row groups
                 orden); //The sort order
-        // Traversing through all rows and adding to list
+        // cogemos todos los datos y los metemos en la lista
         if (cursor.moveToFirst()) {
             do {
                 Usuario usuarioClase = new Usuario();
@@ -132,11 +129,11 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         cursor.close();
         db.close();
-        // return user list
+
         return listaUsuario;
     }
     /**
-     * This method to update user record
+     * Metodo para actualizar usuario
      *
      * @param usuario
      */
@@ -150,13 +147,13 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NOMBRE, usuario.getNombre());
         values.put(COLUMN_APELLIDOS, usuario.getApellidos());
         values.put(COLUMN_TELEFONO, usuario.getTelefono());
-        // updating row
+
         db.update(TABLE_USUARIO, values, COLUMN_IDUSUARIO + " = ?",
                 new String[]{String.valueOf(usuario.getIdUsuario())});
         db.close();
     }
     /**
-     * This method is to delete user record
+     * Metodo para borrar usuario
      *
      * @param usuario
      */
@@ -168,7 +165,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
     /**
-     * This method to check user exist or not
+     * Metodo para ver si usuario existe
      *
      * @param usuario
      * @return true/false
@@ -184,11 +181,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // selection argument
         String[] selectionArgs = {usuario};
         // query user table with condition
-        /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com';
-         */
+
         Cursor cursor = db.query(TABLE_USUARIO, //Table to query
                 columns,                    //columns to return
                 selection,                  //columns for the WHERE clause
@@ -196,6 +189,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 null,                       //group the rows
                 null,                      //filter by row groups
                 null);                      //The sort order
+
         int cursorCount = cursor.getCount();
         cursor.close();
         db.close();
@@ -205,7 +199,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return false;
     }
     /**
-     * This method to check user exist or not
+     * Usuario existe o no
      *
      * @param usuario
      * @param contrasena
@@ -222,11 +216,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // selection arguments
         String[] selectionArgs = {usuario, contrasena};
         // query user table with conditions
-        /**
-         * Here query function is used to fetch records from user table this function works like we use sql query.
-         * SQL query equivalent to this query function is
-         * SELECT user_id FROM user WHERE user_email = 'jack@androidtutorialshub.com' AND user_password = 'qwerty';
-         */
+
         Cursor cursor = db.query(TABLE_USUARIO, //Table to query
                 columns,                    //columns to return
                 selection,                  //columns for the WHERE clause
@@ -234,6 +224,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 null,                       //group the rows
                 null,                       //filter by row groups
                 null);                      //The sort order
+
         int cursorCount = cursor.getCount();
         cursor.close();
         db.close();

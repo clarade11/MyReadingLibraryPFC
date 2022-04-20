@@ -95,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Verificamos que los campos son correctos
+     */
     private void verificar() {
         if (!validacion.isEditTextUsuario(edUsuario,  "ERROR")) {
             return ;
@@ -105,11 +108,12 @@ public class MainActivity extends AppCompatActivity {
         if (DB.existeUsuarioContrasena(edUsuario.getText().toString().trim()
                 , edContrasena.getText().toString().trim())) {
 
-            Intent i = new Intent(MainActivity.this, NavDrawer.class); //clase nuestra,clase a la que viajar
+            Intent i = new Intent(MainActivity.this, NavDrawer.class);
             startActivity(i);
 
             vaciar();
         } else {
+            //hay que poner aviso de error
             List<Usuario>usuarios = DB.getAllUsuarios();
             for(int i =0;i<usuarios.size();i++){
                 System.out.println(usuarios.get(i).getUsuario());
@@ -120,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     /**
-     * This method is to empty all input edit text
+     * Metodo para vaciar los campos de texto
      */
     private void vaciar() {
         edUsuario.setText(null);

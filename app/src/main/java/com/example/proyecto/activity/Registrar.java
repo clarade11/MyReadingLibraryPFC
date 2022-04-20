@@ -48,7 +48,9 @@ public class Registrar extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Verificamos que los campos son correctos
+     */
     public void registrar() {
         if (!validacion.isEditTextUsuario(edRegistrarUsuario,  "ERROR")) {
             return ;
@@ -87,6 +89,9 @@ public class Registrar extends AppCompatActivity {
             }
         });
     }
+    /**
+     * Metodo para vaciar los campos de texto
+     */
     private void vaciar() {
         edRegistrarTelefono.setText(null);
         edRegistrarContrasena.setText(null);
