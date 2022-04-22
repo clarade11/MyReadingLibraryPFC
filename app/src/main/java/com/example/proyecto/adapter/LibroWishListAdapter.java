@@ -33,7 +33,7 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
         holder.tituloWishList.setText(listaLibros.get(position).getTitulo());
         holder.precioWishList.setText(Double.toString(listaLibros.get(position).getPrecio()));
         holder.descripcionWishList.setText(listaLibros.get(position).getDescripcion());
-        holder.imageWishList.setImageResource(listaLibros.get(position).getFotoID());
+        holder.imageWishList.setImageResource(Integer.parseInt(listaLibros.get(position).getFotoID()));
 
     }
 
