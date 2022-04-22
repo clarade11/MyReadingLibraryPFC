@@ -23,6 +23,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    Usuario usuarioObjeto;
+
     Context context;
     //variables locales
     Button btEntrar;
@@ -109,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
                 , edContrasena.getText().toString().trim())) {
 
             Intent i = new Intent(MainActivity.this, NavDrawer.class);
+
+            //crea objeto usuario para luego utilizarlo en otras clases
+            usuarioObjeto= DB.getUsuario(edUsuario.getText().toString().trim());
+
             startActivity(i);
 
             vaciar();

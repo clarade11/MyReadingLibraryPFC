@@ -5,19 +5,20 @@ import android.media.Image;
 import java.util.Objects;
 
 public class Libro {
-
-    Integer fotoID;
+    Integer idLibro;
+    String fotoID;
     String titulo;
     String autor;
     String codigoBarras;
     String editorial;
     Double precio;
     String descripcion;
-    Boolean comprado;
+    Integer comprado;
     Double puntuacion;
     String tienda;
+    Integer idUsuario;
 
-    public Libro(Integer fotoID,String titulo,String autor,String codigoBarras,String editorial,Double precio,String descripcion,Boolean comprado,Double puntuacion,String tienda ){
+    public Libro(String fotoID,String titulo,String autor,String codigoBarras,String editorial,Double precio,String descripcion,Integer comprado,Double puntuacion,String tienda,Integer idUsuario ){
         this.fotoID=fotoID;
         this.titulo=titulo;
         this.autor=autor;
@@ -28,13 +29,33 @@ public class Libro {
         this.comprado=comprado;
         this.puntuacion=puntuacion;
         this.tienda=tienda;
+        this.idUsuario=idUsuario;
+    }
+    public Libro(){
+
     }
 
-    public Integer getFotoID(){
+    public Integer getIdUsuario(){
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Integer idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Integer getIdLibro(){
+        return idLibro;
+    }
+
+    public void setIdLibro(Integer idLibro) {
+        this.idLibro = idLibro;
+    }
+
+    public String getFotoID(){
         return fotoID;
     }
 
-    public void setFotoID(Integer fotoID) {
+    public void setFotoID(String fotoID) {
         this.fotoID = fotoID;
     }
 
@@ -54,7 +75,7 @@ public class Libro {
         this.autor = autor;
     }
 
-    public Boolean getComprado() {
+    public Integer getComprado() {
         return comprado;
     }
 
@@ -83,7 +104,7 @@ public class Libro {
         this.codigoBarras = codigoBarras;
     }
 
-    public void setComprado(Boolean comprado) {
+    public void setComprado(Integer comprado) {
         this.comprado = comprado;
     }
 

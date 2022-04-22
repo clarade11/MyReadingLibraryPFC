@@ -88,18 +88,18 @@ public class WishList extends Fragment {
     //metodo para crear objetos
     private void llenarLista() {
                     //pruebas sin base de datos
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 1","yo","5555555855",
-                "micasa",7.80,"hola mundo",false,null,"teirico"));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 2","yo","666666666",
-                "micasa",5.20,"adios mundo",true,null,"casa del libro"));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 3","tu","777777",
-                "micasa",100.80,"hola antonio",false,null,"jola"));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 4","tu","88888",
-                "micasa",25.90,"quieres mundo",true,null,"hola"));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 5",null,"9999",
-                "micasa",14.23,"hola pepeddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",false,null,"aaaaaa"));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 6",null,"00000000001",
-                "micasa",13.15,"JJJJJJ mundo",true,null,"ppppppp"));
+        //listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 1","yo","5555555855",
+                //"micasa",7.80,"hola mundo",false,null,"teirico"));
+        //listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 2","yo","666666666",
+              //  "micasa",5.20,"adios mundo",true,null,"casa del libro"));
+        //listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 3","tu","777777",
+                //"micasa",100.80,"hola antonio",false,null,"jola"));
+        //listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 4","tu","88888",
+                //"micasa",25.90,"quieres mundo",true,null,"hola"));
+        //listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 5",null,"9999",
+                //"micasa",14.23,"hola pepeddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",false,null,"aaaaaa"));
+        //listaLibros.add(new Libro(R.drawable.pruebas_imagen,"prueba 6",null,"00000000001",
+                //"micasa",13.15,"JJJJJJ mundo",true,null,"ppppppp"));
                     //base de datos
 
 
