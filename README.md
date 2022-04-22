@@ -1,4 +1,8 @@
 # MyReadingLibraryPFC
+MIS TAREAS
+
+https://trello.com/b/7G0u76au/tfg#
+
  ENLACES DE AYUDA VISITADOS
  
 //sqlite en java
