@@ -10,9 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto">
         <activity
-            android:name=".activity.CambiarContrasena"
-            android:exported="false" />
-        <activity
             android:name=".activity.Registrar"
             android:exported="false" />
         <activity
