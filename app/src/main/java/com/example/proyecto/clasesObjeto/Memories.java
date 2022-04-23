@@ -15,9 +15,10 @@ public class Memories {
     private String negativo;
     private String negativoColor;
     private String paginasLeidas;
-    private String idUsuario;
+    private Integer idUsuario;
+    private Integer idLibro;
 
-    public Memories(int idMemories, String frase, String fraseColor, String puntuacion, String puntuacionColor, String imagen, String imagenColor, String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo, String negativoColor, String paginasLeidas,String idUsuario) {
+    public Memories(int idMemories, String frase, String fraseColor, String puntuacion, String puntuacionColor, String imagen, String imagenColor, String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo, String negativoColor, String paginasLeidas,Integer idLibro,Integer idUsuario) {
         this.idMemories = idMemories;
         this.frase = frase;
         this.fraseColor = fraseColor;
@@ -33,6 +34,18 @@ public class Memories {
         this.negativoColor = negativoColor;
         this.paginasLeidas = paginasLeidas;
         this.idUsuario = idUsuario;
+        this.idLibro=idLibro;
+    }
+
+    public Memories(){
+
+    }
+    public int getIdLibro() {
+        return idLibro;
+    }
+
+    public void setIdLibro(int idLibro) {
+        this.idLibro = idLibro;
     }
 
 
@@ -148,10 +161,11 @@ public class Memories {
         this.paginasLeidas = paginasLeidas;
     }
 
-    public String getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
-    public void setIdUsuario(String idUsuario) {
+
+    public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 }
