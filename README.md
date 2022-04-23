@@ -31,5 +31,6 @@ https://www.youtube.com/watch?v=yJ02XTKiuAc&t=609s
 
 //ALERT DIALOG
 https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
+https://www.develou.com/como-crear-dialogos-en-android/
 
 
