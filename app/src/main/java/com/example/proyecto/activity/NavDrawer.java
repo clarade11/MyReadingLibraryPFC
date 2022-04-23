@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.proyecto.R;
+import com.example.proyecto.clasesObjeto.Usuario;
 import com.example.proyecto.fragments.Library;
 import com.example.proyecto.fragments.Memories;
 import com.example.proyecto.fragments.WishList;
