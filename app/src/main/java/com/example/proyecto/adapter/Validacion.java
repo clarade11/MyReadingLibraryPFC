@@ -61,9 +61,9 @@ public class Validacion {
     public boolean isEditTextContrasena(EditText editText1, EditText editText2,  String message) {
         String value1 = editText1.getText().toString().trim();
         String value2 = editText2.getText().toString().trim();
-        if (!value1.contentEquals(value2)) {
-            Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
-            toast.show();
+        if (!value1.equals(value2)) {
+//            Toast toast = Toast.makeText(context, message, Toast.LENGTH_SHORT);
+//            toast.show();
             hideKeyboardFrom(editText2);
             return false;
         } else {

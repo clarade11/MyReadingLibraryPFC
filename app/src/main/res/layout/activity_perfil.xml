@@ -6,20 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".activity.Perfil">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/perfil"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="148dp"
-        android:layout_height="146dp"
+        android:id="@+id/imagePerfil"
+        android:layout_width="match_parent"
+        android:layout_height="179dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.155"
@@ -30,53 +20,53 @@
 
     <TextView
         android:id="@+id/tvPerfilUsuario"
-        android:layout_width="222dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_marginTop="34dp"
         android:gravity="center"
         android:text="Usuario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePerfil"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
         android:id="@+id/tvPerfilNombreApellido"
-        android:layout_width="222dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="Nombre y Apellidos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPerfilUsuario" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="222dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="67dp"
-        android:layout_marginTop="15dp"
+        android:id="@+id/cambiarContrasena"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:text="Cambiar contraseña"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreApellido" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        />
+
+    <TextView
+        android:id="@+id/cambiarTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="Cambiar teléfono de contacto"
+        app:layout_constraintBottom_toTopOf="@+id/cambiarContrasena"
+        tools:layout_editor_absoluteX="-1dp" />
 
     <TextView
         android:id="@+id/tvPerfilTelefono"
-        android:layout_width="222dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Telefono"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreApellido"
+        tools:layout_editor_absoluteX="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

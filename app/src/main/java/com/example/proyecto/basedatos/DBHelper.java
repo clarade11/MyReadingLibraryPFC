@@ -78,8 +78,12 @@ public class DBHelper extends SQLiteOpenHelper {
     // create table sql query
     //HAY QUE PONER FK Y TABLA LIBRO_USUARIO
     private String CREATE_TABLE_USUARIO = "CREATE TABLE " + TABLE_USUARIO + "("
-            + COLUMN_IDUSUARIO + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_USUARIO + " TEXT,"+ COLUMN_CONTRASENA + " TEXT,"
-            + COLUMN_NOMBRE + " TEXT," + COLUMN_APELLIDOS + " TEXT," +COLUMN_TELEFONO + " TEXT" + ");";
+            + COLUMN_IDUSUARIO + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_USUARIO + " TEXT,"
+            + COLUMN_CONTRASENA + " TEXT,"
+            + COLUMN_NOMBRE + " TEXT,"
+            + COLUMN_APELLIDOS + " TEXT,"
+            + COLUMN_TELEFONO + " TEXT" + ");";
 
     private String CREATE_TABLE_MEMORIES = "CREATE TABLE " + TABLE_MEMORIES + "("
             + COLUMN_IDMEMORIES + " INTEGER PRIMARY KEY AUTOINCREMENT,"

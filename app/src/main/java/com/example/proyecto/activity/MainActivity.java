@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Usuario usuarioObjeto;
+    public static Usuario usuarioObjeto;
 
     Context context;
     //variables locales
