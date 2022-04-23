@@ -29,3 +29,7 @@ https://www.tutorialspoint.com/sqlite/sqlite_using_autoincrement.htm
 http://www.androidtutorialshub.com/android-login-and-register-with-sqlite-database-tutorial/
 https://www.youtube.com/watch?v=yJ02XTKiuAc&t=609s
 
+//ALERT DIALOG
+https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
+
+
