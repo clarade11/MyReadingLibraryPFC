@@ -819,11 +819,11 @@ public class DBHelper extends SQLiteOpenHelper {
     /**
      * Devuelve OBJETO Memories
      *
-     * @param moment
+     * @param idMoment
      * @return true/false
      */
     @SuppressLint("Range")
-    public Memories getMemories(Memories moment) {
+    public Memories getMemories(Integer idMoment) {
         // array of columns to fetch
         String[] column = {
                 COLUMN_IDMEMORIES,
@@ -847,7 +847,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // selection criteria
         String selection = COLUMN_IDMEMORIES + " = ?";
         // selection argument
-        String[] selectionArgs = {String.valueOf(moment.getIdMemories())};
+        String[] selectionArgs = {String.valueOf(idMoment)};
         // query user table with condition
 
         Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
@@ -904,6 +904,43 @@ public class DBHelper extends SQLiteOpenHelper {
         db.insert(TABLE_LIBRO_USUARIO, null, values);
         db.close();
         System.out.println("Relacion insertada");
+    }
+
+    @SuppressLint("Range")
+    public RelacionUsuarioLibro obtenerLibrosDeUsuario(Integer idUsuario) {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_ID_LIBRO_USUARIO,
+                COLUMN_USUARIO_FK,
+                COLUMN_LIBRO_FK
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        // selection criteria
+        String selection = COLUMN_USUARIO_FK + " = ?";
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario)};
+        // query user table with conditions
+
+        Cursor cursor = db.query(TABLE_LIBRO_USUARIO, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                       //filter by row groups
+                null);                      //The sort order
+
+        RelacionUsuarioLibro relacion = new RelacionUsuarioLibro();
+        if (cursor.moveToFirst()) {
+            do {
+
+                relacion.setIdLibroUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO_USUARIO))));
+                relacion.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK))));
+                relacion.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_LIBRO_FK))));
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return relacion;
     }
 
 
