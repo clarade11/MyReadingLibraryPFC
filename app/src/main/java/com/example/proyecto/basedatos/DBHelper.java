@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 import com.example.proyecto.clasesObjeto.Libro;
+import com.example.proyecto.clasesObjeto.Memories;
 import com.example.proyecto.clasesObjeto.RelacionUsuarioLibro;
 import com.example.proyecto.clasesObjeto.Usuario;
 
@@ -384,7 +385,7 @@ public class DBHelper extends SQLiteOpenHelper {
      *
      * @param libro
      */
-    public void insertLibro(Libro libro, String idUsuario) {
+    public void insertLibro(Libro libro) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -398,7 +399,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_COMPRADO, libro.getComprado());
         values.put(COLUMN_PUNTUACION_LIBRO, libro.getPuntuacion());
         values.put(COLUMN_TIENDA, libro.getTienda());
-        values.put(COLUMN_USUARIO_FK2, idUsuario);
+        values.put(COLUMN_USUARIO_FK2, libro.getIdUsuario());
 
         // Inserting Row
         db.insert(TABLE_LIBROS, null, values);
@@ -452,9 +453,9 @@ public class DBHelper extends SQLiteOpenHelper {
                 libroClase.setCodigoBarras(cursor.getString(cursor.getColumnIndex(COLUMN_CODIGOBARRAS)));
                 libroClase.setEditorial(cursor.getString(cursor.getColumnIndex(COLUMN_EDITORIAL)));
                 libroClase.setPrecio(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRECIO)));
-                libroClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
+                libroClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_LIBRO)));
                 libroClase.setComprado(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_COMPRADO))));
-                libroClase.setPuntuacion(cursor.getDouble(cursor.getColumnIndex(COLUMN_PUNTUACION)));
+                libroClase.setPuntuacion(cursor.getDouble(cursor.getColumnIndex(COLUMN_PUNTUACION_LIBRO)));
                 libroClase.setTienda(cursor.getString(cursor.getColumnIndex(COLUMN_TIENDA)));
                 libroClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK2))));
 
@@ -639,9 +640,255 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //memories
 
+    /**
+     * Metodo para crear momento
+     *
+     * @param moment
+     */
+    public void insertMemorie(Memories moment) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_FRASE, moment.getFrase());
+        values.put(COLUMN_FRASE_COLOR, moment.getFraseColor());
+        values.put(COLUMN_PUNTUACION, moment.getPuntuacion());
+        values.put(COLUMN_PUNTUACION_COLOR, moment.getPuntuacionColor());
+        values.put(COLUMN_IMAGEN, moment.getImagen());
+        values.put(COLUMN_IMAGEN_COLOR, moment.getImagenColor());
+        values.put(COLUMN_DESCRIPCION, moment.getDescripcion());
+        values.put(COLUMN_DESCRIPCION_COLOR, moment.getDescripcionColor());
+        values.put(COLUMN_POSITIVO, moment.getPositivo());
+        values.put(COLUMN_POSITIVO_COLOR, moment.getPositivoColor());
+        values.put(COLUMN_NEGATIVO, moment.getNegativo());
+        values.put(COLUMN_NEGATIVO_COLOR, moment.getNegativoColor());
+        values.put(COLUMN_PAGINAS_LEIDAS, moment.getPaginasLeidas());
+        values.put(COLUMN_ID_USUARIO, moment.getIdUsuario());
+        values.put(COLUMN_ID_LIBRO, moment.getIdMemories());
+
+        // Inserting Row
+        db.insert(TABLE_MEMORIES, null, values);
+
+        db.close();
+        System.out.println("Recuerdo insertado");
+    }
+    /**
+     * Este método es para buscar a todos los momentos y devolver la lista de registros de memories.
+     *
+     * @return list
+     */
+    @SuppressLint("Range")
+    public List<Memories> getAllMemories() {
+
+        String[] columnas = {
+                COLUMN_IDMEMORIES,
+                COLUMN_FRASE,
+                COLUMN_FRASE_COLOR,
+                COLUMN_PUNTUACION,
+                COLUMN_PUNTUACION_COLOR,
+                COLUMN_IMAGEN,
+                COLUMN_IMAGEN_COLOR,
+                COLUMN_DESCRIPCION,
+                COLUMN_DESCRIPCION_COLOR,
+                COLUMN_POSITIVO,
+                COLUMN_POSITIVO_COLOR,
+                COLUMN_NEGATIVO,
+                COLUMN_NEGATIVO_COLOR,
+                COLUMN_PAGINAS_LEIDAS,
+                COLUMN_ID_USUARIO,
+                COLUMN_ID_LIBRO
+        };
+
+        String orden =
+                COLUMN_IDMEMORIES + " ASC";
+        List<Memories> lista = new ArrayList<Memories>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columnas,    //columns to return
+                null,        //columns for the WHERE clause
+                null,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+            do {
+                Memories momentClase = new Memories();
+                momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+                momentClase.setFrase(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE)));
+                momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
+                momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
+                momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
+                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
+                momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
+                momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
+                momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));
+                momentClase.setPositivo(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO)));
+                momentClase.setPositivoColor(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO_COLOR)));
+                momentClase.setNegativo(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO)));
+                momentClase.setNegativoColor(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO_COLOR)));
+                momentClase.setPaginasLeidas(cursor.getString(cursor.getColumnIndex(COLUMN_PAGINAS_LEIDAS)));
+                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK))));
+                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_LIBRO_FK))));
+                // Adding user record to list
+                lista.add(momentClase);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return lista;
+    }
+    /**
+     * Metodo para actualizar libro
+     *
+     * @param moment
+     */
+    public void actualizarMemorie(Memories moment) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_IDMEMORIES, moment.getIdMemories());
+        values.put(COLUMN_FRASE, moment.getFrase());
+        values.put(COLUMN_FRASE_COLOR, moment.getFraseColor());
+        values.put(COLUMN_PUNTUACION, moment.getPuntuacion());
+        values.put(COLUMN_PUNTUACION_COLOR, moment.getPuntuacionColor());
+        values.put(COLUMN_IMAGEN, moment.getImagen());
+        values.put(COLUMN_IMAGEN_COLOR, moment.getImagenColor());
+        values.put(COLUMN_DESCRIPCION, moment.getDescripcion());
+        values.put(COLUMN_DESCRIPCION_COLOR, moment.getDescripcionColor());
+        values.put(COLUMN_POSITIVO, moment.getPositivo());
+        values.put(COLUMN_POSITIVO_COLOR, moment.getPositivoColor());
+        values.put(COLUMN_NEGATIVO, moment.getNegativo());
+        values.put(COLUMN_NEGATIVO_COLOR, moment.getNegativoColor());
+        values.put(COLUMN_PAGINAS_LEIDAS, moment.getPaginasLeidas());
+        values.put(COLUMN_ID_USUARIO, moment.getIdUsuario());
+        values.put(COLUMN_ID_LIBRO, moment.getIdMemories());
+
+        db.update(TABLE_MEMORIES, values, COLUMN_IDMEMORIES + " = ?",
+                new String[]{String.valueOf(moment.getIdMemories())});
+        db.close();
+    }
+    /**
+     * Metodo para borrar recuerdo
+     *
+     * @param moment
+     */
+    public void borrarMemorie(Memories moment) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.delete(TABLE_MEMORIES, COLUMN_IDMEMORIES + " = ?",
+                new String[]{String.valueOf(moment.getIdMemories())});
+        db.close();
+    }
+    /**
+     * Metodo para ver si memorie existe
+     *
+     * @param moment
+     * @return true/false
+     */
+    public boolean existeMemorie(Memories moment) {
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_IDMEMORIES
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        // selection criteria
+        String selection = COLUMN_IDMEMORIES + " = ?";
+        // selection argument
+        String[] selectionArgs = {String.valueOf(moment.getIdMemories())};
+        // query user table with condition
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                      //filter by row groups
+                null);                      //The sort order
+
+        int cursorCount = cursor.getCount();
+        cursor.close();
+        db.close();
+        if (cursorCount > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Devuelve OBJETO Memories
+     *
+     * @param moment
+     * @return true/false
+     */
+    @SuppressLint("Range")
+    public Memories getMemories(Memories moment) {
+        // array of columns to fetch
+        String[] column = {
+                COLUMN_IDMEMORIES,
+                COLUMN_FRASE,
+                COLUMN_FRASE_COLOR,
+                COLUMN_PUNTUACION,
+                COLUMN_PUNTUACION_COLOR,
+                COLUMN_IMAGEN,
+                COLUMN_IMAGEN_COLOR,
+                COLUMN_DESCRIPCION,
+                COLUMN_DESCRIPCION_COLOR,
+                COLUMN_POSITIVO,
+                COLUMN_POSITIVO_COLOR,
+                COLUMN_NEGATIVO,
+                COLUMN_NEGATIVO_COLOR,
+                COLUMN_PAGINAS_LEIDAS,
+                COLUMN_ID_USUARIO,
+                COLUMN_ID_LIBRO
+        };
+        SQLiteDatabase db = this.getReadableDatabase();
+        // selection criteria
+        String selection = COLUMN_IDMEMORIES + " = ?";
+        // selection argument
+        String[] selectionArgs = {String.valueOf(moment.getIdMemories())};
+        // query user table with condition
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                column,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                      //filter by row groups
+                null);                      //The sort order
+
+        Memories momentClase = new Memories();
+        if (cursor.moveToFirst()) {
+            do {
+
+                momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+                momentClase.setFrase(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE)));
+                momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
+                momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
+                momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
+                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
+                momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
+                momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
+                momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));
+                momentClase.setPositivo(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO)));
+                momentClase.setPositivoColor(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO_COLOR)));
+                momentClase.setNegativo(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO)));
+                momentClase.setNegativoColor(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO_COLOR)));
+                momentClase.setPaginasLeidas(cursor.getString(cursor.getColumnIndex(COLUMN_PAGINAS_LEIDAS)));
+                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK))));
+                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_LIBRO_FK))));
+
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return momentClase;
+    }
+    
+
     //relacion libro y usuario
     /**
-     * Metodo para crear libro
+     * Metodo para crear libro y usuario en relacion
      *
      * @param IDlibro
      *  @param IDusuario
