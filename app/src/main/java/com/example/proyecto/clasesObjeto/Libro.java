@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Libro {
     Integer idLibro;
-    String fotoID;
+    Integer fotoID;
     String titulo;
     String autor;
     String codigoBarras;
@@ -18,7 +18,7 @@ public class Libro {
     String tienda;
     Integer idUsuario;
 
-    public Libro(String fotoID,String titulo,String autor,String codigoBarras,String editorial,Double precio,String descripcion,Integer comprado,Double puntuacion,String tienda,Integer idUsuario ){
+    public Libro(Integer fotoID,String titulo,String autor,String codigoBarras,String editorial,Double precio,String descripcion,Integer comprado,Double puntuacion,String tienda,Integer idUsuario ){
         this.fotoID=fotoID;
         this.titulo=titulo;
         this.autor=autor;
@@ -51,11 +51,11 @@ public class Libro {
         this.idLibro = idLibro;
     }
 
-    public String getFotoID(){
+    public Integer getFotoID(){
         return fotoID;
     }
 
-    public void setFotoID(String fotoID) {
+    public void setFotoID(Integer fotoID) {
         this.fotoID = fotoID;
     }
 

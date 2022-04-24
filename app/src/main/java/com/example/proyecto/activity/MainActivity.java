@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static Usuario usuarioObjeto;
 
-    Context context;
     //variables locales
     Button btEntrar;
     EditText edUsuario, edContrasena;
@@ -47,19 +46,6 @@ public class MainActivity extends AppCompatActivity {
         validacion = new Validacion(MainActivity.this);
 
         asociacion();
-
-        /*Usuario admin = new Usuario();
-
-        admin.setUsuario("admin");
-        admin.setContrasena("admin");
-        admin.setNombre("ola");
-        admin.setApellidos("ola");
-        admin.setTelefono("ola");
-
-        DB.insertUsuario(admin);*/
-
-
-
 
         navegar();
 
