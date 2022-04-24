@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.proyecto.R;
-import com.example.proyecto.activity.MainActivity;
-import com.example.proyecto.activity.NavDrawer;
 import com.example.proyecto.activity.VisualizarLibro;
+import com.example.proyecto.adapter.LibroLibraryAdapter;
+import com.example.proyecto.clasesObjeto.Libro;
+
+import java.util.ArrayList;
 
 
 /**
@@ -33,7 +38,8 @@ public class Library extends Fragment {
     private String mParam2;
 
     Button visualizarLibro;
-
+    RecyclerView recyclerLibraryId;
+    ArrayList<Libro> listaLibros;
 
     public Library() {
         // Required empty public constructor
@@ -60,10 +66,6 @@ public class Library extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
     }
 
@@ -74,9 +76,31 @@ public class Library extends Fragment {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_library, container, false);
 
+        listaLibros=new ArrayList<>();
+        recyclerLibraryId=view.findViewById(R.id.recyclerLibraryId);
+        recyclerLibraryId.setLayoutManager(new GridLayoutManager(getContext(),2));
+
+        llenarLista();
+
+        LibroLibraryAdapter adapter = new LibroLibraryAdapter(listaLibros);//llenamos el adapter con la lista llena
+        recyclerLibraryId.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
+
+
         navegar(view);
 
         return view;
+    }
+
+    //crear objetos o recibir objetos para llenar la lista
+    private void llenarLista() {
+        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 1","yo","5555555855",
+        "micasa",7.80,"hola mundo",0,null,"teirico",0));
+        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 2","yo","5555555855",
+                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 3","yo","5555555855",
+                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 4","yo","5555555855",
+                "micasa",7.80,"hola mundo",0,null,"teirico",0));
     }
 
     //NAVEGAR A APP

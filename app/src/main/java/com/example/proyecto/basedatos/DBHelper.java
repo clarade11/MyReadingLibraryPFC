@@ -451,7 +451,7 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 Libro libroClase = new Libro();
                 libroClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
-                libroClase.setFotoID(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO)));
+                libroClase.setFotoID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO))));
                 libroClase.setTitulo(cursor.getString(cursor.getColumnIndex(COLUMN_TITULO)));
                 libroClase.setAutor(cursor.getString(cursor.getColumnIndex(COLUMN_AUTOR)));
                 libroClase.setCodigoBarras(cursor.getString(cursor.getColumnIndex(COLUMN_CODIGOBARRAS)));
@@ -587,7 +587,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 libroObjeto.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
-                libroObjeto.setFotoID(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO)));
+                libroObjeto.setFotoID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO))));
                 libroObjeto.setTitulo(cursor.getString(cursor.getColumnIndex(COLUMN_TITULO)));
                 libroObjeto.setAutor(cursor.getString(cursor.getColumnIndex(COLUMN_AUTOR)));
                 libroObjeto.setCodigoBarras(cursor.getString(cursor.getColumnIndex(COLUMN_CODIGOBARRAS)));
