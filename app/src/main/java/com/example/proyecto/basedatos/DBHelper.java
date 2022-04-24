@@ -723,7 +723,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
                 momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
                 momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
-                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
+                momentClase.setImagen(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN))));
                 momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
                 momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
                 momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));
@@ -871,7 +871,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
                 momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
                 momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
-                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
+                momentClase.setImagen(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN))));
                 momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
                 momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
                 momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));

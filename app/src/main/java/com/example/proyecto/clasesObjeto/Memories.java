@@ -4,22 +4,21 @@ public class Memories {
     private int idMemories;
     private String frase;
     private String fraseColor;
-    private String puntuacion;
-    private String puntuacionColor;
-    private String imagen;
+    private String puntuacion; //dentro de libro pulsado
+    private String puntuacionColor; //dentro de libro pulsado
+    private Integer imagen;
     private String imagenColor;
     private String descripcion;
     private String descripcionColor;
-    private String positivo;
-    private String positivoColor;
-    private String negativo;
-    private String negativoColor;
-    private String paginasLeidas;
+    private String positivo; //dentro de libro pulsado
+    private String positivoColor; //dentro de libro pulsado
+    private String negativo; //dentro de libro pulsado
+    private String negativoColor; //dentro de libro pulsado
+    private String paginasLeidas; //dentro de libro pulsado
     private Integer idUsuario;
     private Integer idLibro;
 
-    public Memories(int idMemories, String frase, String fraseColor, String puntuacion, String puntuacionColor, String imagen, String imagenColor, String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo, String negativoColor, String paginasLeidas,Integer idLibro,Integer idUsuario) {
-        this.idMemories = idMemories;
+    public Memories(String frase, String fraseColor, String puntuacion, String puntuacionColor, Integer imagen, String imagenColor, String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo, String negativoColor, String paginasLeidas,Integer idLibro,Integer idUsuario) {
         this.frase = frase;
         this.fraseColor = fraseColor;
         this.puntuacion = puntuacion;
@@ -89,11 +88,11 @@ public class Memories {
         this.puntuacionColor = puntuacionColor;
     }
 
-    public String getImagen() {
+    public Integer getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(Integer imagen) {
         this.imagen = imagen;
     }
 

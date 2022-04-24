@@ -9,8 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto.R;
+import com.example.proyecto.adapter.LibroLibraryAdapter;
+import com.example.proyecto.adapter.MemoriesAdapter;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +34,9 @@ public class Memories extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    RecyclerView recyclerMemoriesId;
+    ArrayList<com.example.proyecto.clasesObjeto.Memories> listaMemories;
 
     public Memories() {
         // Required empty public constructor
@@ -53,16 +63,35 @@ public class Memories extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_memories, container, false);
+        View view =inflater.inflate(R.layout.fragment_memories, container, false);
+
+        listaMemories=new ArrayList<>();
+        recyclerMemoriesId=view.findViewById(R.id.recyclerMemoriesId);
+        recyclerMemoriesId.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        llenarLista();
+
+        MemoriesAdapter adapter = new MemoriesAdapter(listaMemories);//llenamos el adapter con la lista llena
+        recyclerMemoriesId.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
+
+
+        return view;
+    }
+
+    private void llenarLista() {
+
+        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 1","azul","5","amarillo",R.drawable.negro,"rosa","descripcion 1"
+                , "rojo","positivo 1","naranja","negativo 1","rojo","45",1,0));
+
+        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul",null,"amarillo",null,"rosa","descripcion 2"
+                , "rojo","positivo 1","naranja","negativo 1","rojo","45",2,0));
+        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 3","azul","5","amarillo",R.drawable.negro,"rosa",null
+                , "rojo","positivo 1","naranja","negativo 1","rojo","45",3,0));
     }
 }

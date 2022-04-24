@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:paddingTop="15dp"
+        android:layout_gravity="center">-->
+
+        <TextView
+            android:id="@+id/imagenMemoriesLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/imagenMemories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:id="@+id/fraseMemoriesLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/fraseMemories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/descripcionMemoriesLibro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/descripcionMemories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_gravity="center"/>
+
+    <!--</LinearLayout>-->
+
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:background="@color/white"-->
+<!--        android:paddingTop="15dp"-->
+<!--        android:gravity="center">-->
+<!--        <TextView-->
+<!--            android:id="@+id/puntuacionMemoriesLibro"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text=""-->
+<!--            android:textSize="25sp"-->
+<!--            android:layout_gravity="center"/>-->
+
+<!--        <RatingBar-->
+<!--            android:id="@+id/puntuacionMemories"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:numStars="5" />-->
+<!--    </LinearLayout>-->
+
+
+
+</LinearLayout>
