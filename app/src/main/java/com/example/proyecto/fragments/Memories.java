@@ -9,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto.R;
-import com.example.proyecto.adapter.LibroLibraryAdapter;
 import com.example.proyecto.adapter.MemoriesAdapter;
 
 import java.util.ArrayList;
@@ -37,6 +35,9 @@ public class Memories extends Fragment {
 
     RecyclerView recyclerMemoriesId;
     ArrayList<com.example.proyecto.clasesObjeto.Memories> listaMemories;
+    ArrayList<com.example.proyecto.clasesObjeto.Memories> listaFrases;
+    ArrayList<com.example.proyecto.clasesObjeto.Memories> listaImagenes;
+    ArrayList<com.example.proyecto.clasesObjeto.Memories> listaDescripciones;
 
     public Memories() {
         // Required empty public constructor
@@ -80,18 +81,58 @@ public class Memories extends Fragment {
         MemoriesAdapter adapter = new MemoriesAdapter(listaMemories);//llenamos el adapter con la lista llena
         recyclerMemoriesId.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 
+//        //creamos un view
+//
+//        //creamos 3 adapter y en vez de meter lista completa, meter lista personalizada segun elemento
+//
+//        listaMemories=new ArrayList<>();
+//        listaDescripciones=new ArrayList<>();
+//        listaFrases=new ArrayList<>();
+//        listaImagenes=new ArrayList<>();
+//
+//        recyclerMemoriesId=view.findViewById(R.id.recyclerMemoriesId);
+//        recyclerMemoriesId.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        llenarLista();
+//
+//        clasificarListas();
+//
+//        MemoriesFrasesAdapter adapterFrase = new MemoriesFrasesAdapter(listaFrases);
+//        recyclerMemoriesId.setAdapter(adapterFrase);
+//        MemoriesImagenAdapter adapterImagen = new MemoriesImagenAdapter(listaImagenes);
+//        recyclerMemoriesId.setAdapter(adapterImagen);
+//        MemoriesDescripcionAdapter adapterDescripcion = new MemoriesDescripcionAdapter(listaDescripciones);
+//        recyclerMemoriesId.setAdapter(adapterDescripcion);
+//
+//
+//        //crear 3 layouts de listas
 
         return view;
     }
 
+    private void clasificarListas() {
+
+        for(int i=0;i<listaMemories.size();i++){
+            if(listaMemories.get(i).getFrase()!=null){
+                listaFrases.add(listaMemories.get(i));
+            } else if(listaMemories.get(i).getDescripcion()!=null){
+                listaDescripciones.add(listaMemories.get(i));
+            } else if(listaMemories.get(i).getImagen()!=null){
+                listaImagenes.add(listaMemories.get(i));
+            }
+        }
+
+
+    }
+
     private void llenarLista() {
 
-        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 1","azul","5","amarillo",R.drawable.negro,"rosa","descripcion 1"
+        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 1","azul","5","amarillo",R.drawable.negro,"rosa",null
                 , "rojo","positivo 1","naranja","negativo 1","rojo","45",1,0));
 
         listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul",null,"amarillo",null,"rosa","descripcion 2"
                 , "rojo","positivo 1","naranja","negativo 1","rojo","45",2,0));
-        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 3","azul","5","amarillo",R.drawable.negro,"rosa",null
+        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul","5","amarillo",R.drawable.negro,"rosa",null
                 , "rojo","positivo 1","naranja","negativo 1","rojo","45",3,0));
     }
 }

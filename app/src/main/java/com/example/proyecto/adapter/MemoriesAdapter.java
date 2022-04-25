@@ -33,23 +33,27 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
     public void onBindViewHolder(@NonNull MemoriesViewHolder holder, int position) {
         //el id libro tiene que ser cambiado por el nombre del libro
 
+
         if(listamemories.get(position).getDescripcion()!=null){
             holder.descripcionMemoriesLibro.setText(String.valueOf(listamemories.get(position).getIdLibro()));
             holder.descripcionMemories.setText(listamemories.get(position).getDescripcion());
-        } else {
-            holder.descripcionMemories.invalidate();
-            holder.descripcionMemoriesLibro.invalidate();
+        } else if(listamemories.get(position).getDescripcion()==null) {
+            holder.descripcionMemories.setVisibility(View.GONE);
+            holder.descripcionMemoriesLibro.setVisibility(View.GONE);
         }
         if(listamemories.get(position).getFrase()!=null) {
             holder.fraseMemoriesLibro.setText(String.valueOf(listamemories.get(position).getIdLibro()));
             holder.fraseMemories.setText(listamemories.get(position).getFrase());
+        }else if(listamemories.get(position).getFrase()==null) {
+            holder.fraseMemories.setVisibility(View.GONE);
+            holder.fraseMemoriesLibro.setVisibility(View.GONE);
         }
         if(listamemories.get(position).getImagen()!= null){
             holder.imagenMemoriesLibro.setText(String.valueOf(listamemories.get(position).getIdLibro()));
             holder.imagenMemories.setImageResource(listamemories.get(position).getImagen());
-        }else {
-            holder.imagenMemoriesLibro.invalidate();
-            holder.imagenMemories.invalidate();
+        }else if(listamemories.get(position).getImagen()==null) {
+            holder.imagenMemories.setVisibility(View.GONE);
+            holder.imagenMemoriesLibro.setVisibility(View.GONE);
         }
 
 
