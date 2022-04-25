@@ -33,4 +33,7 @@ https://www.youtube.com/watch?v=yJ02XTKiuAc&t=609s
 https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
 https://www.develou.com/como-crear-dialogos-en-android/
 
+//VISIBLE/INVISIBLE/GONE
+https://www.flipandroid.com/android-por-qu-setvisibility-view-gone-o-setvisibility-view-invisible-no-funcionan.html
+
 
