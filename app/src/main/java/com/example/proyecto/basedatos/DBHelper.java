@@ -19,7 +19,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
 
     // Database Name
     private static final String DATABASE_NAME = "MyReadingDiary.db";
@@ -514,18 +514,20 @@ public class DBHelper extends SQLiteOpenHelper {
      * Metodo para ver si usuario existe
      *
      * @param libro
+     * @param usuario
      * @return true/false
      */
-    public boolean existeLibro(String libro) {
+    public boolean existeLibro(String libro,Integer usuario) {
         // array of columns to fetch
         String[] columns = {
-                COLUMN_ID_LIBRO
+                COLUMN_TITULO,
+                COLUMN_USUARIO_FK2
         };
         SQLiteDatabase db = this.getReadableDatabase();
         // selection criteria
-        String selection = COLUMN_TITULO + " = ?";
+        String selection = COLUMN_TITULO + " = ?"  + " AND " + COLUMN_USUARIO_FK2 + " = ?";
         // selection argument
-        String[] selectionArgs = {libro};
+        String[] selectionArgs = {libro,String.valueOf(usuario)};
         // query user table with condition
 
         Cursor cursor = db.query(TABLE_LIBROS, //Table to query
