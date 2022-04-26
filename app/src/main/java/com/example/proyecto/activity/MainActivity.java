@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         DB = new DBHelper(MainActivity.this);
         validacion = new Validacion(MainActivity.this);
 
+
+
         asociacion();
 
         navegar();
