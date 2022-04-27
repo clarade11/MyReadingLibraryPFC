@@ -33,6 +33,10 @@ https://www.youtube.com/watch?v=yJ02XTKiuAc&t=609s
 https://developer.android.com/guide/topics/ui/dialogs?hl=es-419
 https://www.develou.com/como-crear-dialogos-en-android/
 
+//SPINNER
+https://codea.app/blog/llenar-un-spinner-con-sqlite-y-un-adaptador
+https://parzibyte.me/blog/2019/05/12/llenar-spinner-android-array-string/
+
 //VISIBLE/INVISIBLE/GONE
 https://www.flipandroid.com/android-por-qu-setvisibility-view-gone-o-setvisibility-view-invisible-no-funcionan.html
 
