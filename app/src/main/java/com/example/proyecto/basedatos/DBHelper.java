@@ -472,6 +472,75 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return lista;
     }
+
+    /**
+     * Este método es para buscar a todos los libros y devolver la lista de registros de libros.
+     *
+     * @return list
+     */
+    @SuppressLint("Range")
+    public List<Libro> getAllLibrosDeUsuario(Integer idUsuario) {
+
+        String[] columnas = {
+                COLUMN_ID_LIBRO,
+                COLUMN_FOTO,
+                COLUMN_TITULO,
+                COLUMN_AUTOR,
+                COLUMN_CODIGOBARRAS,
+                COLUMN_EDITORIAL,
+                COLUMN_PRECIO,
+                COLUMN_DESCRIPCION_LIBRO,
+                COLUMN_COMPRADO,
+                COLUMN_PUNTUACION_LIBRO,
+                COLUMN_TIENDA,
+                COLUMN_USUARIO_FK2
+        };
+
+        String orden =
+                COLUMN_ID_LIBRO + " ASC";
+        List<Libro> lista = new ArrayList<Libro>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COLUMN_USUARIO_FK2 + " = ?" ;
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario)};
+
+
+        Cursor cursor = db.query(TABLE_LIBROS, //Table to query
+                columnas,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+            do {
+                Libro libroClase = new Libro();
+                libroClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
+                libroClase.setFotoID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO))));
+                libroClase.setTitulo(cursor.getString(cursor.getColumnIndex(COLUMN_TITULO)));
+                libroClase.setAutor(cursor.getString(cursor.getColumnIndex(COLUMN_AUTOR)));
+                libroClase.setCodigoBarras(cursor.getString(cursor.getColumnIndex(COLUMN_CODIGOBARRAS)));
+                libroClase.setEditorial(cursor.getString(cursor.getColumnIndex(COLUMN_EDITORIAL)));
+                libroClase.setPrecio(cursor.getDouble(cursor.getColumnIndex(COLUMN_PRECIO)));
+                libroClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_LIBRO)));
+                libroClase.setComprado(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_COMPRADO))));
+                libroClase.setPuntuacion(cursor.getDouble(cursor.getColumnIndex(COLUMN_PUNTUACION_LIBRO)));
+                libroClase.setTienda(cursor.getString(cursor.getColumnIndex(COLUMN_TIENDA)));
+                libroClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK2))));
+
+                // Adding user record to list
+                lista.add(libroClase);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return lista;
+    }
+
     /**
      * Metodo para actualizar libro
      *

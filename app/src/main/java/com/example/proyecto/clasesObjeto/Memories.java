@@ -18,7 +18,9 @@ public class Memories {
     private Integer idUsuario;
     private Integer idLibro;
 
-    public Memories(String frase, String fraseColor, String puntuacion, String puntuacionColor, Integer imagen, String imagenColor, String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo, String negativoColor, String paginasLeidas,Integer idLibro,Integer idUsuario) {
+    public Memories(String frase, String fraseColor, String puntuacion, String puntuacionColor, Integer imagen, String imagenColor,
+                    String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo,
+                    String negativoColor, String paginasLeidas,Integer idLibro,Integer idUsuario) {
         this.frase = frase;
         this.fraseColor = fraseColor;
         this.puntuacion = puntuacion;

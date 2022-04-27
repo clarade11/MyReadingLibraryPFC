@@ -4,11 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/drawable-v24/formabackground3.xml" value="0.2" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/drawable/crearrecuerdo.xml" value="0.1" />
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/drawable/formabackground.xml" value="0.2385" />
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/drawable/formabackground2.xml" value="0.2385" />
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_cambiar_contrasena.xml" value="0.1037037037037037" />
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_creacion_libro.xml" value="0.1" />
-        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_creacion_recuerdo.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_creacion_recuerdo.xml" value="0.33" />
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_main2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/delac/AndroidStudioProjects/Proyecto/app/src/main/res/layout/activity_navdrawer.xml" value="0.20380434782608695" />
