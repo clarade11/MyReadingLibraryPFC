@@ -5,71 +5,107 @@
     android:id="@+id/spLibros"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CreacionRecuerdo">
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="156dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="Creación de momento"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".activity.CreacionRecuerdo"
+    android:background="@color/ColorPrincipal"
+    >
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="37dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="31dp"
-        android:text="Libro:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="211dp"
-        android:layout_height="18dp"
-        android:layout_marginTop="31dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="212dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
-
-    <TextView
-        android:id="@+id/tvTipoMomento"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Tipo de momento:"
-        app:layout_constraintEnd_toStartOf="@+id/spinner2"
-        app:layout_constraintHorizontal_bias="0.432"
+        android:layout_marginTop="72dp"
+        android:textColor="@color/white"
+        android:text="Libro:"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerLibro"
+        android:layout_width="208dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCrearMomento"
-        android:layout_width="388dp"
-        android:layout_height="375dp"
-        android:layout_marginTop="111dp"
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="208dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipoMomento" />
+
+    <TextView
+        android:id="@+id/tvTipoMomento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="Tipo de momento:"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLibro"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="254dp"
+        android:layout_height="244dp"
+        android:layout_marginTop="68dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner2"
-        app:layout_constraintVertical_bias="0.009"
-        tools:layout_editor_absoluteX="11dp" />
+        app:layout_constraintVertical_bias="0.112"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <EditText
+        android:id="@+id/textRecuerdo"
+        android:layout_width="256dp"
+        android:layout_height="246dp"
+        android:layout_marginTop="81dp"
+        android:background="@drawable/formabackground"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2">
+
+    </EditText>
+
+    <Button
+        android:id="@+id/buttonCrearRecuerdo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Crear"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/ColorPrincipal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonLapiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:backgroundTint="@color/ColorPrincipal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner2"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipoMomento"
+        app:srcCompat="@drawable/lapiz" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
