@@ -1,14 +1,19 @@
 package com.example.proyecto.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -23,12 +28,13 @@ import java.util.List;
 
 public class CreacionRecuerdo extends AppCompatActivity {
     Spinner spinnerLibro, spinnerTipo;
-    ImageButton imagen;
+    ImageView imagen,imageView2;
     EditText textRecuerdo;
     Button btCrear;
     ImageButton lapiz;
 
-    List<String> listaTitulos;
+    ArrayList uri;
+
 
     DBHelper DB;
     Validacion validacion;
@@ -54,6 +60,7 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 if(spinnerTipo.getSelectedItem().equals("Imagen")){
                     imagen.setVisibility(View.VISIBLE);
                     textRecuerdo.setVisibility(View.GONE);
+                    cargarImagen();
                 } else {
                     textRecuerdo.setVisibility(View.VISIBLE);
                     imagen.setVisibility(View.GONE);
@@ -61,10 +68,51 @@ public class CreacionRecuerdo extends AppCompatActivity {
             }
         });
 
+        btCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tituloLibro = spinnerLibro.getSelectedItem().toString();
+                String tipoRecuerdo = spinnerTipo.getSelectedItem().toString();
+
+                String frase = null;
+                String descripcion =null;
+                String imagenBBDD = null;
+                String positivo = null;
+                String negativo ="";
 
 
+                if(tipoRecuerdo.equals("Frase")){
+                    frase = textRecuerdo.getText().toString().trim();
+                } else if(tipoRecuerdo.equals("Texto")){
+                    descripcion = textRecuerdo.getText().toString().trim();
+                } else if(tipoRecuerdo.equals("Imagen")){
+                    //bitmap
+                    //https://androidstudiofaqs.com/tutoriales/guardar-una-imagen-android-studio
+                    if(imagen.getResources()!=null){
+                        System.out.println(imagenBBDD);
+                    }
 
+                }
+            }
+        });
+    }
 
+    private void cargarImagen() {
+
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent, "Seleccione una"),10);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode==RESULT_OK){
+            Uri path = data.getData();
+            imagen.setImageURI(path);
+        }
     }
 
     private void listener() {
@@ -129,7 +177,8 @@ public class CreacionRecuerdo extends AppCompatActivity {
     private void asociacion() {
         spinnerLibro = (Spinner) findViewById(R.id.spinnerLibro);
         spinnerTipo = (Spinner) findViewById(R.id.spinner2);
-        imagen = (ImageButton) findViewById(R.id.imageButton2);
+        imagen = (ImageView) findViewById(R.id.imageButton2);
+        imageView2 = (ImageView) findViewById(R.id.imageView2);
         textRecuerdo = (EditText) findViewById(R.id.textRecuerdo);
         btCrear = (Button) findViewById(R.id.buttonCrearRecuerdo);
         lapiz = (ImageButton) findViewById(R.id.imageButtonLapiz);

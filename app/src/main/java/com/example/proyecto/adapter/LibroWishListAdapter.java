@@ -1,5 +1,6 @@
 package com.example.proyecto.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
         holder.tituloWishList.setText(listaLibros.get(position).getTitulo());
         holder.precioWishList.setText(Double.toString(listaLibros.get(position).getPrecio()));
         holder.descripcionWishList.setText(listaLibros.get(position).getDescripcion());
-        holder.imageWishList.setImageResource(listaLibros.get(position).getFotoID());
+        holder.imageWishList.setImageURI(Uri.parse(listaLibros.get(position).getFotoID()));
 
     }
 

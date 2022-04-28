@@ -1,5 +1,6 @@
 package com.example.proyecto.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
         }
         if(listamemories.get(position).getImagen()!= null){
             holder.imagenMemoriesLibro.setText(String.valueOf(listamemories.get(position).getIdLibro()));
-            holder.imagenMemories.setImageResource(listamemories.get(position).getImagen());
+            holder.imagenMemories.setImageURI(Uri.parse(listamemories.get(position).getImagen()));
         }else if(listamemories.get(position).getImagen()==null) {
             holder.imagenMemories.setVisibility(View.GONE);
             holder.imagenMemoriesLibro.setVisibility(View.GONE);

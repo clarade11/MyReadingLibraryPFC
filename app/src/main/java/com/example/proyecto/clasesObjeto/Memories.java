@@ -6,7 +6,7 @@ public class Memories {
     private String fraseColor;
     private String puntuacion; //dentro de libro pulsado
     private String puntuacionColor; //dentro de libro pulsado
-    private Integer imagen;
+    private String imagen;
     private String imagenColor;
     private String descripcion;
     private String descripcionColor;
@@ -18,7 +18,7 @@ public class Memories {
     private Integer idUsuario;
     private Integer idLibro;
 
-    public Memories(String frase, String fraseColor, String puntuacion, String puntuacionColor, Integer imagen, String imagenColor,
+    public Memories(String frase, String fraseColor, String puntuacion, String puntuacionColor, String imagen, String imagenColor,
                     String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo,
                     String negativoColor, String paginasLeidas,Integer idLibro,Integer idUsuario) {
         this.frase = frase;
@@ -90,11 +90,11 @@ public class Memories {
         this.puntuacionColor = puntuacionColor;
     }
 
-    public Integer getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(Integer imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
