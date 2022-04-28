@@ -40,4 +40,5 @@ https://parzibyte.me/blog/2019/05/12/llenar-spinner-android-array-string/
 //VISIBLE/INVISIBLE/GONE
 https://www.flipandroid.com/android-por-qu-setvisibility-view-gone-o-setvisibility-view-invisible-no-funcionan.html
 
-
+//AÑADIR IMAGEN DE GALERÍA A UN IMAGEVIEW
+https://www.youtube.com/watch?v=dA_T1IHxcMg
