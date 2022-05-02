@@ -42,3 +42,6 @@ https://www.flipandroid.com/android-por-qu-setvisibility-view-gone-o-setvisibili
 
 //AÑADIR IMAGEN DE GALERÍA A UN IMAGEVIEW
 https://www.youtube.com/watch?v=dA_T1IHxcMg
+
+//SHAREDPREFERENCES
+https://es.stackoverflow.com/questions/108382/c%C3%B3mo-mantengo-la-sesi%C3%B3n-activa-al-cerrar-mi-aplicaci%C3%B3n
