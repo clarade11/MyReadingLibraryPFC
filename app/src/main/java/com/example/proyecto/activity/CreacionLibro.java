@@ -2,6 +2,7 @@ package com.example.proyecto.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -53,8 +54,7 @@ public class CreacionLibro extends AppCompatActivity {
         btCrearLibro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent i = new Intent(MainActivity.this, NavDrawer.class); //clase nuestra,clase a la que viajar
-                startActivity(i);*/
+
                 creacion();
             }
         });
@@ -66,6 +66,11 @@ public class CreacionLibro extends AppCompatActivity {
         usuario = MainActivity.usuarioObjeto;
         if(edTitulo.getText().toString().trim()!=null){
             if(!DB.existeLibro(edTitulo.getText().toString().trim(),usuario.getIdUsuario())){
+                Integer comprado=1;
+                if(checkBox.isChecked()){
+                    comprado=0;
+                }
+
                 Libro libro = new Libro( null,
                         edTitulo.getText().toString().trim(),
                         edAutor.getText().toString().trim(),
@@ -74,7 +79,7 @@ public class CreacionLibro extends AppCompatActivity {
                         //Double.parseDouble(edPrecio.getText().toString().trim()),
                         1.5,
                         edDescripcion.getText().toString().trim(),
-                        0,
+                        comprado,
                         0.0,
                         edTienda.getText().toString().trim(),
                         usuario.getIdUsuario());
@@ -87,6 +92,9 @@ public class CreacionLibro extends AppCompatActivity {
             System.out.println(libros.get(i).getTitulo());
             ;            }
 
+        Intent i = new Intent(CreacionLibro.this, NavDrawer.class); //clase nuestra,clase a la que viajar
+        startActivity(i);
+        finish();
 
     }
 
