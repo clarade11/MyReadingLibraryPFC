@@ -20,6 +20,7 @@ https://www.youtube.com/watch?v=Bb8SgfI4Cm4
 https://tinchicus.com/2019/09/26/android-modificar-el-contenido-de-un-fragment-desde-otro-mis-lugares/
 https://stackoverflow.com/questions/34562117/how-do-i-change-the-color-of-icon-of-the-selected-tab-of-tablayout
 https://stackoverflow.com/questions/43050714/navigate-to-activity-from-fragment-on-button-onclick 
+https://www.flipandroid.com/android-impedir-volver-a-la-actividad-anterior.html
 
 //recyclerview
 https://www.youtube.com/watch?v=wG2l0DdTEAk
