@@ -66,7 +66,7 @@ public class CreacionLibro extends AppCompatActivity {
         usuario = MainActivity.usuarioObjeto;
         if(edTitulo.getText().toString().trim()!=null){
             if(!DB.existeLibro(edTitulo.getText().toString().trim(),usuario.getIdUsuario())){
-                Libro libro = new Libro( R.drawable.negro,
+                Libro libro = new Libro( null,
                         edTitulo.getText().toString().trim(),
                         edAutor.getText().toString().trim(),
                         edCodigoBarras.getText().toString().trim(),

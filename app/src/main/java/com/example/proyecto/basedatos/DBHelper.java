@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 
 import androidx.annotation.Nullable;
 
@@ -451,7 +452,7 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 Libro libroClase = new Libro();
                 libroClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
-                libroClase.setFotoID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO))));
+                libroClase.setFotoID(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO)));
                 libroClase.setTitulo(cursor.getString(cursor.getColumnIndex(COLUMN_TITULO)));
                 libroClase.setAutor(cursor.getString(cursor.getColumnIndex(COLUMN_AUTOR)));
                 libroClase.setCodigoBarras(cursor.getString(cursor.getColumnIndex(COLUMN_CODIGOBARRAS)));
@@ -519,7 +520,7 @@ public class DBHelper extends SQLiteOpenHelper {
             do {
                 Libro libroClase = new Libro();
                 libroClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
-                libroClase.setFotoID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO))));
+                libroClase.setFotoID(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO)));
                 libroClase.setTitulo(cursor.getString(cursor.getColumnIndex(COLUMN_TITULO)));
                 libroClase.setAutor(cursor.getString(cursor.getColumnIndex(COLUMN_AUTOR)));
                 libroClase.setCodigoBarras(cursor.getString(cursor.getColumnIndex(COLUMN_CODIGOBARRAS)));
@@ -658,7 +659,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 libroObjeto.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
-                libroObjeto.setFotoID(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO))));
+                libroObjeto.setFotoID(cursor.getString(cursor.getColumnIndex(COLUMN_FOTO)));
                 libroObjeto.setTitulo(cursor.getString(cursor.getColumnIndex(COLUMN_TITULO)));
                 libroObjeto.setAutor(cursor.getString(cursor.getColumnIndex(COLUMN_AUTOR)));
                 libroObjeto.setCodigoBarras(cursor.getString(cursor.getColumnIndex(COLUMN_CODIGOBARRAS)));
@@ -794,7 +795,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
                 momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
                 momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
-                momentClase.setImagen(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN))));
+                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
                 momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
                 momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
                 momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));
@@ -942,7 +943,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
                 momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
                 momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
-                momentClase.setImagen(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN))));
+                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
                 momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
                 momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
                 momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));

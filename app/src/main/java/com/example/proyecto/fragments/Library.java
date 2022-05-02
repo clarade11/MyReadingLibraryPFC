@@ -93,13 +93,13 @@ public class Library extends Fragment {
 
     //crear objetos o recibir objetos para llenar la lista
     private void llenarLista() {
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 1","yo","5555555855",
+        listaLibros.add(new Libro(null,"libro 1","yo","5555555855",
         "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 2","yo","5555555855",
+        listaLibros.add(new Libro(null,"libro 2","yo","5555555855",
                 "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 3","yo","5555555855",
+        listaLibros.add(new Libro(null,"libro 3","yo","5555555855",
                 "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(R.drawable.pruebas_imagen,"libro 4","yo","5555555855",
+        listaLibros.add(new Libro(null,"libro 4","yo","5555555855",
                 "micasa",7.80,"hola mundo",0,null,"teirico",0));
     }
 

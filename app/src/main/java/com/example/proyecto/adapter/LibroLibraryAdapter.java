@@ -1,5 +1,6 @@
 package com.example.proyecto.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +32,13 @@ public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapte
     @Override
     public void onBindViewHolder(@NonNull LibroLibraryAdapter.LibroViewHolder holder, int position) {
         holder.tituloLibrary.setText(listaLibros.get(position).getTitulo());
-        holder.imageLibrary.setImageResource(listaLibros.get(position).getFotoID());
+
+        if (listaLibros.get(position).getFotoID() == null) {
+            holder.imageLibrary.setImageResource(R.drawable.negro);
+        } else{
+            holder.imageLibrary.setImageURI(Uri.parse(listaLibros.get(position).getFotoID()));
+        }
+
 
     }
 
