@@ -11,10 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.proyecto.R;
+import com.example.proyecto.activity.MainActivity;
 import com.example.proyecto.adapter.LibroWishListAdapter;
+import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
+import com.example.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +39,9 @@ public class WishList extends Fragment {
     //mis parametros
     RecyclerView recyclerLibros;
     ArrayList<Libro> listaLibros;
+    ArrayList<Libro> lista;
+    DBHelper DB;
+    Usuario usuario;
 
     public WishList() {
         // Required empty public constructor
@@ -71,7 +78,11 @@ public class WishList extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_wish_list, container, false);
 
-        listaLibros=new ArrayList<>();
+        DB = new DBHelper(getContext());
+        usuario= MainActivity.usuarioObjeto;
+
+
+        lista=new ArrayList<Libro>();
         recyclerLibros=view.findViewById(R.id.recyclerId);
         recyclerLibros.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -79,7 +90,7 @@ public class WishList extends Fragment {
 
         //hacer filtro de que si comprado true no puede pasar, pasaria en la libreria
 
-        LibroWishListAdapter adapter = new LibroWishListAdapter(listaLibros);//llenamos el adapter con la lista llena
+        LibroWishListAdapter adapter = new LibroWishListAdapter(lista);//llenamos el adapter con la lista llena
         recyclerLibros.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 
         return view;
@@ -88,16 +99,22 @@ public class WishList extends Fragment {
     //metodo para crear objetos
     private void llenarLista() {
                     //pruebas sin base de datos
-        listaLibros.add(new Libro(null,"libro 1","yo","5555555855",
-                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(null,"libro 2","yo","5555555855",
-                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(null,"libro 3","yo","5555555855",
-                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(null,"libro 4","yo","5555555855",
-                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-                    //base de datos
+//        listaLibros.add(new Libro(null,"libro 1","yo","5555555855",
+//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//        listaLibros.add(new Libro(null,"libro 2","yo","5555555855",
+//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//        listaLibros.add(new Libro(null,"libro 3","yo","5555555855",
+//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//        listaLibros.add(new Libro(null,"libro 4","yo","5555555855",
+//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//                    //base de datos
+        List<Libro> listabbdd =  DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
 
+        for(int i = 0; i<listabbdd.size();i++){
+            if(listabbdd.get(i).getComprado()==0) {
+                lista.add(listabbdd.get(i));
+            }
+        }
 
 
     }

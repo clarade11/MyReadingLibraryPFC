@@ -29,6 +29,7 @@ public class Perfil extends AppCompatActivity {
     TextView tvPerfilNombreApellido;
     TextView cambiarContrasena;
     TextView cambiarTelefono;
+    TextView cerrarSesion;
     TextView tvPerfilTelefono;
 
     String telefono;
@@ -58,10 +59,17 @@ public class Perfil extends AppCompatActivity {
         cambiarContrasena.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(Perfil.this, CambiarContrasena.class); //clase nuestra,clase a la que viajar
-//                startActivity(i);
+
 
                 alertCambioContrasena();
+            }
+        });
+        cerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Perfil.this, MainActivity.class); //clase nuestra,clase a la que viajar
+                startActivity(i);
+                finish();
             }
         });
     }
@@ -113,6 +121,7 @@ public class Perfil extends AppCompatActivity {
         tvPerfilNombreApellido = (TextView) findViewById(R.id.tvPerfilNombreApellido);
         cambiarContrasena = (TextView) findViewById(R.id.cambiarContrasena);
         cambiarTelefono = (TextView) findViewById(R.id.cambiarTelefono);
+        cerrarSesion = (TextView) findViewById(R.id.cerrarSesion);
         tvPerfilTelefono = (TextView) findViewById(R.id.tvPerfilTelefono);
     }
 

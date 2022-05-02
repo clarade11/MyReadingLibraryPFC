@@ -34,7 +34,7 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
         holder.tituloWishList.setText(listaLibros.get(position).getTitulo());
         holder.precioWishList.setText(Double.toString(listaLibros.get(position).getPrecio()));
         holder.descripcionWishList.setText(listaLibros.get(position).getDescripcion());
-        holder.imageWishList.setImageURI(Uri.parse(listaLibros.get(position).getFotoID()));
+        //holder.imageWishList.setImageURI(Uri.parse(listaLibros.get(position).getFotoID()));
 
     }
 
@@ -46,14 +46,14 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
     public class LibroViewHolder extends RecyclerView.ViewHolder {
 
         TextView tituloWishList,precioWishList,descripcionWishList;
-        ImageView imageWishList;
+        //ImageView imageWishList;
 
         public LibroViewHolder(@NonNull View itemView) {
             super(itemView);
             tituloWishList=(TextView) itemView.findViewById(R.id.tituloWishList);
             precioWishList=(TextView) itemView.findViewById(R.id.precioWishList);
             descripcionWishList=(TextView) itemView.findViewById(R.id.descripcionWishList);
-            imageWishList=(ImageView) itemView.findViewById(R.id.imageWishList);
+            //imageWishList=(ImageView) itemView.findViewById(R.id.imageWishList);
         }
 
 
