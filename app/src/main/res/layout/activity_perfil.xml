@@ -51,6 +51,17 @@
         />
 
     <TextView
+        android:id="@+id/cerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:textColor="@color/red"
+        android:text="Cerrar sesión"
+        app:layout_constraintBottom_toTopOf="@+id/cambiarTelefono"
+        tools:layout_editor_absoluteX="-1dp" />
+
+    <TextView
         android:id="@+id/cambiarTelefono"
         android:layout_width="match_parent"
         android:layout_height="31dp"

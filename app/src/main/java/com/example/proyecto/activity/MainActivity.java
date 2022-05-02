@@ -90,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 //finish();
                 Intent i = new Intent(MainActivity.this, Registrar.class); //clase nuestra,clase a la que viajar
                 startActivity(i);
+                finish();
             }
         });
 
@@ -134,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Sesión iniciada", Toast.LENGTH_SHORT).show();
 
             startActivity(i);
+            finish();
 
             vaciar();
         } else {
