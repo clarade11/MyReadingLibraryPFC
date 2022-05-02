@@ -41,7 +41,7 @@
         android:background="@drawable/formabackground2"
         android:hint="Contraseña"
         android:textStyle="bold"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:paddingLeft="15dp"
         android:textColorHint="@color/ColorPrincipal"
         android:textSize="20dp"

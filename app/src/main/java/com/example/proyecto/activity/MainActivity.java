@@ -5,6 +5,7 @@ import androidx.core.widget.NestedScrollView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -35,7 +36,12 @@ public class MainActivity extends AppCompatActivity {
     DBHelper DB;
     Validacion validacion;
 
-    private NestedScrollView nestedScrollView;
+    //SHARED PREFERENCES
+    public static  final String MyPREFERENCES = "MyPrefs";
+    public static final String Usuario = "usuario";
+    public static final String Contrasena = "contrasena";
+
+    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +50,22 @@ public class MainActivity extends AppCompatActivity {
 
         DB = new DBHelper(MainActivity.this);
         validacion = new Validacion(MainActivity.this);
-
+        sharedpreferences = getSharedPreferences(MyPREFERENCES,Context.MODE_PRIVATE);
 
 
         asociacion();
+
+
+        //¿Hay ya información?
+        String sharedUsuario =sharedpreferences.getString(Usuario, "");
+        System.out.println(sharedUsuario);
+
+        if(sharedUsuario!=null){
+            String sharedContrasena =sharedpreferences.getString(Contrasena, "");
+            System.out.println(sharedContrasena);
+            edUsuario.setText(sharedUsuario);
+            edContrasena.setText(sharedContrasena);
+        }
 
         navegar();
 
@@ -102,6 +120,18 @@ public class MainActivity extends AppCompatActivity {
 
             //crea objeto usuario para luego utilizarlo en otras clases
             usuarioObjeto= DB.getUsuario(edUsuario.getText().toString().trim());
+
+            //sharedPreferences para tener iniciado sesion siempre desde el mismo dispositivo
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(Usuario,edUsuario.getText().toString().trim());
+            editor.putString(Contrasena,edContrasena.getText().toString().trim());
+            editor.commit();
+
+
+
+
+            //mensaje para aclarar
+            Toast.makeText(this, "Sesión iniciada", Toast.LENGTH_SHORT).show();
 
             startActivity(i);
 
