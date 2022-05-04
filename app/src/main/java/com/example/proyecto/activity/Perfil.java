@@ -74,6 +74,8 @@ public class Perfil extends AppCompatActivity {
         });
     }
 
+    //alert para cambiar el telefono de perfil
+
     private void alertCambioTelefono() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(Perfil.this);
         dialogo.setTitle("Cambio de teléfono");
@@ -82,6 +84,7 @@ public class Perfil extends AppCompatActivity {
         telefonoNuevo.setInputType(InputType.TYPE_CLASS_TEXT);
         dialogo.setView(telefonoNuevo);
 
+        //botones del alert
         dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
@@ -125,9 +128,10 @@ public class Perfil extends AppCompatActivity {
         tvPerfilTelefono = (TextView) findViewById(R.id.tvPerfilTelefono);
     }
 
+    //alert del cambio de contraseña del perfil
     private void alertCambioContrasena() {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(Perfil.this);
-        dialogo.setTitle("Cambio de conrtaseña");
+        dialogo.setTitle("Cambio de contraseña");
 
         final EditText password1 = new EditText(Perfil.this);
         password1.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);

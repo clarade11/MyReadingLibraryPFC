@@ -892,6 +892,102 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Este método es para buscarel id memories por su descripcion.
+     *
+     * @return list
+     */
+    @SuppressLint("Range")
+    public Integer getIDMemorieDescripcion(Integer idUsuario, String descripcion) {
+
+        String[] columnas = {
+                COLUMN_IDMEMORIES,
+                COLUMN_DESCRIPCION,
+                COLUMN_ID_USUARIO,
+        };
+
+        String orden =
+                COLUMN_IDMEMORIES + " ASC";
+        List<Memories> lista = new ArrayList<Memories>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COLUMN_ID_USUARIO + " = ?" +" AND "+ COLUMN_DESCRIPCION+ " = ?" ;
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario), descripcion};
+
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columnas,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+
+            Memories momentClase = new Memories();
+            momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+            momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
+            momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+
+            lista.add(momentClase);
+        }
+        cursor.close();
+        db.close();
+
+        return lista.get(0).getIdMemories();
+    }
+
+    /**
+     * Este método es para buscar a todos los momentos DEL USUARIO y devolver la lista de registros de memories.
+     *
+     * @return list
+     */
+    @SuppressLint("Range")
+    public Integer getIDMemorieFrase(Integer idUsuario, String frase) {
+
+        String[] columnas = {
+                COLUMN_IDMEMORIES,
+                COLUMN_FRASE,
+                COLUMN_ID_USUARIO,
+        };
+
+        String orden =
+                COLUMN_IDMEMORIES + " ASC";
+        List<Memories> lista = new ArrayList<Memories>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COLUMN_ID_USUARIO + " = ?" +" AND "+ COLUMN_FRASE+ " = ?" ;
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario), frase};
+
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columnas,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+
+                Memories momentClase = new Memories();
+                momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+                momentClase.setFrase(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE)));
+                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+
+                lista.add(momentClase);
+        }
+        cursor.close();
+        db.close();
+
+        return lista.get(0).getIdMemories();
+    }
+
+    /**
      * Metodo para actualizar libro
      *
      * @param moment
