@@ -1,6 +1,7 @@
 package com.example.proyecto.adapter;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto.R;
 import com.example.proyecto.activity.MainActivity;
+import com.example.proyecto.activity.VisualizarLibro;
 import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
@@ -27,6 +29,7 @@ import java.util.List;
 public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapter.LibroViewHolder> {
 
     ArrayList<Libro> listaLibros;
+    public static Libro libro;
 
 
     public LibroLibraryAdapter(ArrayList<Libro> listaLibros){
@@ -72,6 +75,7 @@ public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapte
         }
 
         private void pulsarLibro(View itemView) {
+            DB = new DBHelper(itemView.getContext());
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -114,12 +118,31 @@ public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapte
                         }
                     });
 
+                    dialogo.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
                     dialogo.show();
 
                 }
             });
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                Usuario usuario = MainActivity.usuarioObjeto;
+                @Override
+                public void onClick(View v) {
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(),VisualizarLibro.class));
 
+                    //hacer objeto libro para recogerlo en pantalla visualizar libro
+                    Integer idLibro = DB.getIDLibro(tituloLibrary.getText().toString().trim(), usuario.getIdUsuario());
+
+                    libro = DB.getLibro(idLibro);
+
+                }
+            });
 
 
         }
