@@ -46,3 +46,6 @@ https://www.youtube.com/watch?v=dA_T1IHxcMg
 
 //SHAREDPREFERENCES
 https://es.stackoverflow.com/questions/108382/c%C3%B3mo-mantengo-la-sesi%C3%B3n-activa-al-cerrar-mi-aplicaci%C3%B3n
+
+//LONG CLICK PARA BORRAR
+https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
