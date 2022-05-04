@@ -693,6 +693,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_TITULO,
                 COLUMN_USUARIO_FK2
         };
+        List<Libro> lista = new ArrayList<Libro>();
         SQLiteDatabase db = this.getReadableDatabase();
         // selection criteria
         String selection = COLUMN_USUARIO_FK2 + " = ?" + " AND " + COLUMN_TITULO + " = ?";
@@ -708,10 +709,12 @@ public class DBHelper extends SQLiteOpenHelper {
                 null,                      //filter by row groups
                 null);                      //The sort order
 
-
-        Integer id=Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO)));
-
-        return id;
+        if (cursor.moveToFirst()) {
+            Libro libroClase = new Libro();
+            libroClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
+            lista.add(libroClase);
+        }
+        return lista.get(0).getIdLibro();
     }
 
     //memories
@@ -852,6 +855,81 @@ public class DBHelper extends SQLiteOpenHelper {
         String selection = COLUMN_ID_USUARIO + " = ?" ;
         // selection arguments
         String[] selectionArgs = {String.valueOf(idUsuario)};
+
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columnas,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+            do {
+                Memories momentClase = new Memories();
+                momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+                momentClase.setFrase(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE)));
+                momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
+                momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
+                momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
+                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
+                momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
+                momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
+                momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));
+                momentClase.setPositivo(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO)));
+                momentClase.setPositivoColor(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO_COLOR)));
+                momentClase.setNegativo(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO)));
+                momentClase.setNegativoColor(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO_COLOR)));
+                momentClase.setPaginasLeidas(cursor.getString(cursor.getColumnIndex(COLUMN_PAGINAS_LEIDAS)));
+                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
+                // Adding user record to list
+                lista.add(momentClase);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return lista;
+    }
+
+    /**
+     * Este método es para buscar a todos los momentos DEL USUARIO y devolver la lista de registros de memories.
+     *
+     * @return list
+     */
+    @SuppressLint("Range")
+    public List<Memories> getAllMemoriesDeUsuarioLibro(Integer idUsuario, Integer idLibro) {
+
+        String[] columnas = {
+                COLUMN_IDMEMORIES,
+                COLUMN_FRASE,
+                COLUMN_FRASE_COLOR,
+                COLUMN_PUNTUACION,
+                COLUMN_PUNTUACION_COLOR,
+                COLUMN_IMAGEN,
+                COLUMN_IMAGEN_COLOR,
+                COLUMN_DESCRIPCION,
+                COLUMN_DESCRIPCION_COLOR,
+                COLUMN_POSITIVO,
+                COLUMN_POSITIVO_COLOR,
+                COLUMN_NEGATIVO,
+                COLUMN_NEGATIVO_COLOR,
+                COLUMN_PAGINAS_LEIDAS,
+                COLUMN_ID_USUARIO,
+                COLUMN_ID_LIBRO
+        };
+
+        String orden =
+                COLUMN_IDMEMORIES + " ASC";
+        List<Memories> lista = new ArrayList<Memories>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COLUMN_ID_USUARIO + " = ?" + " AND "+COLUMN_ID_LIBRO + " = ?" ;
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario), String.valueOf(idLibro)};
 
 
         Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
