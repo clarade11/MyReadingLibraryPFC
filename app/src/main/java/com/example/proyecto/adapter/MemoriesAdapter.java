@@ -3,9 +3,11 @@ package com.example.proyecto.adapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -96,26 +98,23 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             descripcionMemories=(TextView) itemView.findViewById(R.id.descripcionMemories);
             imagenMemories=(ImageView) itemView.findViewById(R.id.imagenMemories);
 
-            borradoDeItem(itemView);
+            pulsarItem(itemView);
         }
 
         //borrar elemento pulsando largo
-        private void borradoDeItem(View itemView) {
+        private void pulsarItem(View itemView) {
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View view) {
 
-
                     alertBorrado();
 
-
-                    //Toast.makeText(itemView.getContext(), descripcionMemories.getText().toString().trim()+" tiene que poner null", Toast.LENGTH_SHORT).show();
-
-                    return true;// returning true instead of false, works for me
+                    return true;
                 }
 
                 private void alertBorrado() {
+                    //CREAMOS DIALOGO, BBDD Y USUARIO
                     DB = new DBHelper(itemView.getContext());
                     Usuario usuario = MainActivity.usuarioObjeto;
                     AlertDialog.Builder dialogo = new AlertDialog.Builder(itemView.getContext());
@@ -206,6 +205,82 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                 }
             });
 
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertModificar();
+                }
+
+                private void alertModificar() {
+                    //Toast.makeText(itemView.getContext(), "Pulsado", Toast.LENGTH_SHORT).show();
+
+                    Usuario usuario = MainActivity.usuarioObjeto;
+                    DB = new DBHelper(itemView.getContext());
+
+                    //cogemos string del elemento pulsado
+                    String fraseParaEditar = fraseMemories.getText().toString().trim();
+                    String descripcionParaEditar = descripcionMemories.getText().toString().trim();
+
+                    if(fraseParaEditar!=null || descripcionParaEditar!=null){
+
+                        //Creamos dialogo
+                        AlertDialog.Builder dialogo = new AlertDialog.Builder(itemView.getContext());
+                        dialogo.setTitle("Modificar recuerdo");
+
+                        final EditText edTextoModificado = new EditText(itemView.getContext());
+                        edTextoModificado.setInputType(InputType.TYPE_CLASS_TEXT);
+                        if(fraseParaEditar!=null){
+                            edTextoModificado.setText(fraseParaEditar);
+                        } else if(descripcionParaEditar!=null){
+                            edTextoModificado.setText(descripcionParaEditar);
+                        }
+                        dialogo.setView(edTextoModificado);
+
+                        //botones del alert
+                        dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                if(fraseParaEditar!=null){
+                                    System.out.println("FRASE ANTGUA --"+fraseParaEditar);
+                                    String frase = edTextoModificado.getText().toString().trim();
+                                    Integer id = DB.getIDMemorieFrase(usuario.getIdUsuario(),fraseParaEditar);
+                                    Memories moment = DB.getMemories(id);
+                                    moment.setFrase(frase);
+                                    DB.actualizarMemorie(moment);
+                                    fraseMemories.setText(frase);
+                                } else if(descripcionParaEditar!=null){
+                                    String descripcion = edTextoModificado.getText().toString().trim();
+                                    Integer id = DB.getIDMemorieDescripcion(usuario.getIdUsuario(),descripcionParaEditar);
+                                    Memories moment = DB.getMemories(id);
+                                    moment.setDescripcion(descripcion);
+                                    DB.actualizarMemorie(moment);
+                                    descripcionMemories.setText(descripcion);
+                                }
+
+                            }
+                        });
+
+                        dialogo.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        dialogo.show();
+
+
+
+                    }
+
+
+
+
+
+
+
+
+                }
+            });
         }
 
 
