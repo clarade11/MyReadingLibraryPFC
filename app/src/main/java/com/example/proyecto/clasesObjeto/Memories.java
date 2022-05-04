@@ -1,5 +1,7 @@
 package com.example.proyecto.clasesObjeto;
 
+import java.util.ArrayList;
+
 public class Memories {
     private int idMemories;
     private String frase;
@@ -34,6 +36,18 @@ public class Memories {
         this.negativo = negativo;
         this.negativoColor = negativoColor;
         this.paginasLeidas = paginasLeidas;
+        this.idUsuario = idUsuario;
+        this.idLibro=idLibro;
+    }
+
+    public Memories(String frase, String descripcion,
+                    String positivo, String negativo,
+                    String imagen, Integer idLibro, Integer idUsuario){
+        this.frase = frase;
+        this.imagen = imagen;
+        this.descripcion = descripcion;
+        this.positivo = positivo;
+        this.negativo = negativo;
         this.idUsuario = idUsuario;
         this.idLibro=idLibro;
     }

@@ -88,8 +88,6 @@ public class WishList extends Fragment {
 
         llenarLista();
 
-        //hacer filtro de que si comprado true no puede pasar, pasaria en la libreria
-
         LibroWishListAdapter adapter = new LibroWishListAdapter(lista);//llenamos el adapter con la lista llena
         recyclerLibros.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 

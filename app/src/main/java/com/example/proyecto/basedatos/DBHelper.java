@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
 
     // Database Name
     private static final String DATABASE_NAME = "MyReadingDiary.db";
@@ -739,7 +739,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NEGATIVO_COLOR, moment.getNegativoColor());
         values.put(COLUMN_PAGINAS_LEIDAS, moment.getPaginasLeidas());
         values.put(COLUMN_ID_USUARIO, moment.getIdUsuario());
-        values.put(COLUMN_ID_LIBRO, moment.getIdMemories());
+        values.put(COLUMN_ID_LIBRO, moment.getIdLibro());
 
         // Inserting Row
         db.insert(TABLE_MEMORIES, null, values);
@@ -804,8 +804,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 momentClase.setNegativo(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO)));
                 momentClase.setNegativoColor(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO_COLOR)));
                 momentClase.setPaginasLeidas(cursor.getString(cursor.getColumnIndex(COLUMN_PAGINAS_LEIDAS)));
-                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK))));
-                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_LIBRO_FK))));
+                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
                 // Adding user record to list
                 lista.add(momentClase);
             } while (cursor.moveToNext());
@@ -815,6 +815,82 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return lista;
     }
+
+    /**
+     * Este método es para buscar a todos los momentos DEL USUARIO y devolver la lista de registros de memories.
+     *
+     * @return list
+     */
+    @SuppressLint("Range")
+    public List<Memories> getAllMemoriesDeUsuario(Integer idUsuario) {
+
+        String[] columnas = {
+                COLUMN_IDMEMORIES,
+                COLUMN_FRASE,
+                COLUMN_FRASE_COLOR,
+                COLUMN_PUNTUACION,
+                COLUMN_PUNTUACION_COLOR,
+                COLUMN_IMAGEN,
+                COLUMN_IMAGEN_COLOR,
+                COLUMN_DESCRIPCION,
+                COLUMN_DESCRIPCION_COLOR,
+                COLUMN_POSITIVO,
+                COLUMN_POSITIVO_COLOR,
+                COLUMN_NEGATIVO,
+                COLUMN_NEGATIVO_COLOR,
+                COLUMN_PAGINAS_LEIDAS,
+                COLUMN_ID_USUARIO,
+                COLUMN_ID_LIBRO
+        };
+
+        String orden =
+                COLUMN_IDMEMORIES + " ASC";
+        List<Memories> lista = new ArrayList<Memories>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COLUMN_ID_USUARIO + " = ?" ;
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario)};
+
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columnas,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+            do {
+                Memories momentClase = new Memories();
+                momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+                momentClase.setFrase(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE)));
+                momentClase.setFraseColor(cursor.getString(cursor.getColumnIndex(COLUMN_FRASE_COLOR)));
+                momentClase.setPuntuacion(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION)));
+                momentClase.setPuntuacionColor(cursor.getString(cursor.getColumnIndex(COLUMN_PUNTUACION_COLOR)));
+                momentClase.setImagen(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN)));
+                momentClase.setImagenColor(cursor.getString(cursor.getColumnIndex(COLUMN_IMAGEN_COLOR)));
+                momentClase.setDescripcion(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION)));
+                momentClase.setDescripcionColor(cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPCION_COLOR)));
+                momentClase.setPositivo(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO)));
+                momentClase.setPositivoColor(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO_COLOR)));
+                momentClase.setNegativo(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO)));
+                momentClase.setNegativoColor(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO_COLOR)));
+                momentClase.setPaginasLeidas(cursor.getString(cursor.getColumnIndex(COLUMN_PAGINAS_LEIDAS)));
+                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
+                // Adding user record to list
+                lista.add(momentClase);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        return lista;
+    }
+
     /**
      * Metodo para actualizar libro
      *
@@ -952,8 +1028,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 momentClase.setNegativo(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO)));
                 momentClase.setNegativoColor(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO_COLOR)));
                 momentClase.setPaginasLeidas(cursor.getString(cursor.getColumnIndex(COLUMN_PAGINAS_LEIDAS)));
-                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK))));
-                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_LIBRO_FK))));
+                momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+                momentClase.setIdLibro(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_LIBRO))));
 
             } while (cursor.moveToNext());
         }

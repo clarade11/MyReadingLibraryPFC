@@ -16,11 +16,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.Validacion;
 import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
+import com.example.proyecto.clasesObjeto.Memories;
 import com.example.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
@@ -53,6 +55,10 @@ public class CreacionRecuerdo extends AppCompatActivity {
 
         rellenarSpinners();
 
+        navegar();
+    }
+
+    private void navegar() {
         lapiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,27 +81,56 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 String tipoRecuerdo = spinnerTipo.getSelectedItem().toString();
 
                 String frase = null;
-                String descripcion =null;
+                String descripcion = null;
                 String imagenBBDD = null;
                 String positivo = null;
-                String negativo ="";
+                String negativo = null;
 
+                //recogemos los datos de la pantalla
 
-                if(tipoRecuerdo.equals("Frase")){
+                if (tipoRecuerdo.equals("Frase")) {
                     frase = textRecuerdo.getText().toString().trim();
-                } else if(tipoRecuerdo.equals("Texto")){
+                } else if (tipoRecuerdo.equals("Texto")) {
                     descripcion = textRecuerdo.getText().toString().trim();
-                } else if(tipoRecuerdo.equals("Imagen")){
+                } else if (tipoRecuerdo.equals("Imagen")) {
                     //bitmap
                     //https://androidstudiofaqs.com/tutoriales/guardar-una-imagen-android-studio
-                    if(imagen.getResources()!=null){
+                    if (imagen.getResources() != null) {
                         System.out.println(imagenBBDD);
                     }
 
                 }
+
+                //Integer idLibro = DB.getIDLibro(tituloLibro, usuario.getIdUsuario());
+
+                //cogemos el id del libro
+                Integer idLibro = 100000;
+                List<Libro> libros = DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
+                for (int i = 0; i < libros.size(); i++) {
+                    System.out.println(tituloLibro);
+                    if (libros.get(i).getTitulo().toString().trim().equals(tituloLibro.toString().trim()) ) {
+                        idLibro = libros.get(i).getIdLibro();
+                        System.out.println("ID LIBRO DEL RECUERDO CREADO------>"+idLibro);
+                    }
+                }
+
+                //creamos recuerdo
+                System.out.println("ID LIBRO DEL RECUERDO CREADO IBSERTADO EN BBDD------>"+idLibro);
+                Memories memo = new Memories(frase, imagenBBDD, descripcion, positivo, negativo, idLibro, usuario.getIdUsuario());
+                DB.insertMemorie(memo);
+
+                //mensaje correcto
+                Toast.makeText(CreacionRecuerdo.this, "Recuerdo creado", Toast.LENGTH_SHORT).show();
+
+                //cerramos pestaña
+                Intent i = new Intent(CreacionRecuerdo.this, NavDrawer.class); //clase nuestra,clase a la que viajar
+                startActivity(i);
+                finish();
+
             }
         });
-    }
+
+        }
 
     private void cargarImagen() {
 
