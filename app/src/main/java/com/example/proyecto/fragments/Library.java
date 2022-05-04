@@ -14,11 +14,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.proyecto.R;
+import com.example.proyecto.activity.MainActivity;
 import com.example.proyecto.activity.VisualizarLibro;
 import com.example.proyecto.adapter.LibroLibraryAdapter;
+import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
+import com.example.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -40,6 +44,8 @@ public class Library extends Fragment {
     Button visualizarLibro;
     RecyclerView recyclerLibraryId;
     ArrayList<Libro> listaLibros;
+    Usuario usuario;
+    DBHelper DB;
 
     public Library() {
         // Required empty public constructor
@@ -75,7 +81,9 @@ public class Library extends Fragment {
 
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_library, container, false);
+        DB = new DBHelper(getContext());
 
+        usuario = MainActivity.usuarioObjeto;
         listaLibros=new ArrayList<>();
         recyclerLibraryId=view.findViewById(R.id.recyclerLibraryId);
         recyclerLibraryId.setLayoutManager(new GridLayoutManager(getContext(),2));
@@ -93,14 +101,18 @@ public class Library extends Fragment {
 
     //crear objetos o recibir objetos para llenar la lista
     private void llenarLista() {
-        listaLibros.add(new Libro(null,"libro 1","yo","5555555855",
-        "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(null,"libro 2","yo","5555555855",
-                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(null,"libro 3","yo","5555555855",
-                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-        listaLibros.add(new Libro(null,"libro 4","yo","5555555855",
-                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//        listaLibros.add(new Libro(null,"libro 1","yo","5555555855",
+//        "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//        listaLibros.add(new Libro(null,"libro 2","yo","5555555855",
+//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//        listaLibros.add(new Libro(null,"libro 3","yo","5555555855",
+//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+//        listaLibros.add(new Libro(null,"libro 4","yo","5555555855",
+//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
+        //bbdd
+        List<Libro> lista= DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
+        listaLibros=(ArrayList<Libro>) lista;
+
     }
 
     //NAVEGAR A APP

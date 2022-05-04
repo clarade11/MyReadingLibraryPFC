@@ -3,7 +3,6 @@ package com.example.proyecto.fragments;
 import android.os.Bundle;
 
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,9 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyecto.R;
+import com.example.proyecto.activity.MainActivity;
 import com.example.proyecto.adapter.MemoriesAdapter;
+import com.example.proyecto.basedatos.DBHelper;
+import com.example.proyecto.clasesObjeto.Libro;
+import com.example.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,15 +33,18 @@ public class Memories extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    //ARRAYLIST DE OTRAS CLASES
+    public static ArrayList<String> nombreLibros = new ArrayList<String>();
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     RecyclerView recyclerMemoriesId;
     ArrayList<com.example.proyecto.clasesObjeto.Memories> listaMemories;
-    ArrayList<com.example.proyecto.clasesObjeto.Memories> listaFrases;
-    ArrayList<com.example.proyecto.clasesObjeto.Memories> listaImagenes;
-    ArrayList<com.example.proyecto.clasesObjeto.Memories> listaDescripciones;
+
+    DBHelper DB;
+    Usuario usuario;
 
     public Memories() {
         // Required empty public constructor
@@ -70,10 +77,13 @@ public class Memories extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =inflater.inflate(R.layout.fragment_memories, container, false);
+        View view = inflater.inflate(R.layout.fragment_memories, container, false);
 
-        listaMemories=new ArrayList<>();
-        recyclerMemoriesId=view.findViewById(R.id.recyclerMemoriesId);
+        DB = new DBHelper(getContext());
+        usuario = MainActivity.usuarioObjeto;
+
+        listaMemories = new ArrayList<com.example.proyecto.clasesObjeto.Memories>();
+        recyclerMemoriesId = view.findViewById(R.id.recyclerMemoriesId);
         recyclerMemoriesId.setLayoutManager(new LinearLayoutManager(getContext()));
 
         llenarLista();
@@ -81,58 +91,39 @@ public class Memories extends Fragment {
         MemoriesAdapter adapter = new MemoriesAdapter(listaMemories);//llenamos el adapter con la lista llena
         recyclerMemoriesId.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 
-//        //creamos un view
-//
-//        //creamos 3 adapter y en vez de meter lista completa, meter lista personalizada segun elemento
-//
-//        listaMemories=new ArrayList<>();
-//        listaDescripciones=new ArrayList<>();
-//        listaFrases=new ArrayList<>();
-//        listaImagenes=new ArrayList<>();
-//
-//        recyclerMemoriesId=view.findViewById(R.id.recyclerMemoriesId);
-//        recyclerMemoriesId.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//        llenarLista();
-//
-//        clasificarListas();
-//
-//        MemoriesFrasesAdapter adapterFrase = new MemoriesFrasesAdapter(listaFrases);
-//        recyclerMemoriesId.setAdapter(adapterFrase);
-//        MemoriesImagenAdapter adapterImagen = new MemoriesImagenAdapter(listaImagenes);
-//        recyclerMemoriesId.setAdapter(adapterImagen);
-//        MemoriesDescripcionAdapter adapterDescripcion = new MemoriesDescripcionAdapter(listaDescripciones);
-//        recyclerMemoriesId.setAdapter(adapterDescripcion);
-//
-//
-//        //crear 3 layouts de listas
 
         return view;
     }
 
-    private void clasificarListas() {
-
-        for(int i=0;i<listaMemories.size();i++){
-            if(listaMemories.get(i).getFrase()!=null){
-                listaFrases.add(listaMemories.get(i));
-            } else if(listaMemories.get(i).getDescripcion()!=null){
-                listaDescripciones.add(listaMemories.get(i));
-            } else if(listaMemories.get(i).getImagen()!=null){
-                listaImagenes.add(listaMemories.get(i));
-            }
-        }
-
-
-    }
 
     private void llenarLista() {
 
-        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 1","azul","5","amarillo",null,"rosa",null
-                , "rojo","positivo 1","naranja","negativo 1","rojo","45",1,0));
+//        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 1","azul","5","amarillo",null,"rosa",null
+//                , "rojo","positivo 1","naranja","negativo 1","rojo","45",1,0));
+//
+//        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul",null,"amarillo",null,"rosa","descripcion 2"
+//                , "rojo","positivo 1","naranja","negativo 1","rojo","45",2,0));
+//        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul","5","amarillo",null,"rosa",null
+//                , "rojo","positivo 1","naranja","negativo 1","rojo","45",3,0));
+//
 
-        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul",null,"amarillo",null,"rosa","descripcion 2"
-                , "rojo","positivo 1","naranja","negativo 1","rojo","45",2,0));
-        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul","5","amarillo",null,"rosa",null
-                , "rojo","positivo 1","naranja","negativo 1","rojo","45",3,0));
+        List<com.example.proyecto.clasesObjeto.Memories> lista = DB.getAllMemoriesDeUsuario(usuario.getIdUsuario());
+
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("IDLIBRO DE LA LISTA DE PANTALLA MEMORIES --- " + lista.get(i).getIdLibro());
+
+            listaMemories.add(lista.get(i));
+
+
+            //RECUPERAMOS EL TITULO A PARTIR DEL ID DEL LIBRO
+            Integer id = lista.get(i).getIdLibro();
+            System.out.println(id);
+            Libro libro = DB.getLibro(id);
+            System.out.println("Titulo libro del recuerdo : " + libro.getTitulo());
+            String titulo = libro.getTitulo().toString().trim();
+            System.out.println("VARIABLE TITULO: " + titulo);
+            nombreLibros.add(titulo);
+
+        }
     }
 }
