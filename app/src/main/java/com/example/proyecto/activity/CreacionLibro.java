@@ -24,7 +24,7 @@ public class CreacionLibro extends AppCompatActivity {
     Button btCrearLibro;
     CheckBox checkBox;
     EditText edTienda, edDescripcion, edCodigoBarras, edPrecio, edEditorial, edAutor, edTitulo;
-    ImageView imagenLibro;
+    EditText imagenLibro;
 
     Usuario usuario;
 
@@ -71,7 +71,8 @@ public class CreacionLibro extends AppCompatActivity {
                     comprado=0;
                 }
 
-                Libro libro = new Libro( null,
+                Libro libro = new Libro(
+                        imagenLibro.getText().toString().trim(),
                         edTitulo.getText().toString().trim(),
                         edAutor.getText().toString().trim(),
                         edCodigoBarras.getText().toString().trim(),
@@ -109,6 +110,6 @@ public class CreacionLibro extends AppCompatActivity {
         edEditorial=(EditText) findViewById(R.id.edEditorial);
         edAutor=(EditText) findViewById(R.id.edAutor);
         edTitulo=(EditText) findViewById(R.id.edTitulo);
-        imagenLibro=(ImageView) findViewById(R.id.imagenLibro);
+        imagenLibro=(EditText) findViewById(R.id.imagenLibro);
     }
 }

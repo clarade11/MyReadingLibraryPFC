@@ -2,8 +2,11 @@ package com.example.proyecto.adapter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.text.InputType;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +28,8 @@ import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
 import com.example.proyecto.clasesObjeto.Usuario;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +69,11 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             holder.fraseMemoriesLibro.setVisibility(View.GONE);
         }
         if(listamemories.get(position).getImagen()!= null){
-           // holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
-            //holder.imagenMemories.setImageURI(Uri.parse(listamemories.get(position).getImagen()));
+            //holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+            //byte[] blob = listamemories.get(position).getImagen().getBytes();
+            //ByteArrayInputStream bais = new ByteArrayInputStream(blob);
+            //Bitmap bitmap = BitmapFactory.decodeStream(bais);
+            //holder.imagenMemories.setImageBitmap(bitmap);
             holder.imagenMemories.setVisibility(View.GONE);
             holder.imagenMemoriesLibro.setVisibility(View.GONE);
         }else if(listamemories.get(position).getImagen()==null) {

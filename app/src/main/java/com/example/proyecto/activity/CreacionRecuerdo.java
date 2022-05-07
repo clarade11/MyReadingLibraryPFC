@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -25,6 +26,7 @@ import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
 import com.example.proyecto.clasesObjeto.Usuario;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +37,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
     Button btCrear;
     ImageButton lapiz;
 
-    ArrayList uri;
 
 
     DBHelper DB;
@@ -96,7 +97,16 @@ public class CreacionRecuerdo extends AppCompatActivity {
                     //bitmap
                     //https://androidstudiofaqs.com/tutoriales/guardar-una-imagen-android-studio
                     if (imagen.getResources() != null) {
-                        System.out.println(imagenBBDD);
+                        //System.out.println(imagenBBDD);
+                        imagen.buildDrawingCache();
+                        Bitmap bitmap = imagen.getDrawingCache(); //bitmap de la imagen
+
+
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream(20480);
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos);
+                        byte[] blob = baos.toByteArray();
+                        imagenBBDD = new String(blob, java.nio.charset.StandardCharsets.UTF_8);
+
                     }
 
                 }
@@ -190,7 +200,7 @@ public class CreacionRecuerdo extends AppCompatActivity {
         spinnerLibro.setAdapter(new ArrayAdapter<String>(CreacionRecuerdo.this,
                 android.R.layout.simple_spinner_dropdown_item, array));
 
-        String[] arrayTipo = {"Frase", "Texto","Imagen", "Comentario positivo", "Comentario negativo", "Imagen"};
+        String[] arrayTipo = {"Frase", "Texto", "Comentario positivo", "Comentario negativo"};
 
         spinnerTipo.setAdapter(new ArrayAdapter<String>(CreacionRecuerdo.this,
                 android.R.layout.simple_spinner_dropdown_item, arrayTipo));

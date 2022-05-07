@@ -90,7 +90,7 @@ public class Library extends Fragment {
 
         llenarLista();
 
-        LibroLibraryAdapter adapter = new LibroLibraryAdapter(listaLibros);//llenamos el adapter con la lista llena
+        LibroLibraryAdapter adapter = new LibroLibraryAdapter(listaLibros,getContext());//llenamos el adapter con la lista llena
         recyclerLibraryId.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 
 
@@ -111,7 +111,9 @@ public class Library extends Fragment {
 //                "micasa",7.80,"hola mundo",0,null,"teirico",0));
         //bbdd
         List<Libro> lista= DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
-        listaLibros=(ArrayList<Libro>) lista;
+         listaLibros=(ArrayList<Libro>) lista;
+        //listaLibros.add(new Libro("https://academiaandroid.com/wp-content/uploads/2016/10/SQLite_Android.jpg","libro 1","yo","5555555855",
+        //"micasa",7.80,"hola mundo",0,null,"teirico",0));
 
     }
 

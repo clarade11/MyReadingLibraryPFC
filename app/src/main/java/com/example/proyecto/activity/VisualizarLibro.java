@@ -1,14 +1,21 @@
 package com.example.proyecto.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.LibroLibraryAdapter;
 import com.example.proyecto.basedatos.DBHelper;
@@ -82,6 +89,23 @@ public class VisualizarLibro extends AppCompatActivity {
             ratingBar.setRating((float) puntuacion );
         } else {
             ratingBar.setRating(0);
+        }
+        if(libro.getFotoID()!=null){
+            Glide.with(VisualizarLibro.this)
+                    .load(libro.getFotoID())
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            return false;
+                        }
+
+                    })
+                    .into(imageVisualizarLibro);
         }
 
 
