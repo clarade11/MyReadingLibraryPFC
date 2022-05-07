@@ -52,3 +52,6 @@ https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perfo
 
 //IMAGEN DESDE URL 
 https://www.youtube.com/watch?v=PUTs7-pNDJg
+
+//GLIDE
+https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library
