@@ -49,3 +49,6 @@ https://es.stackoverflow.com/questions/108382/c%C3%B3mo-mantengo-la-sesi%C3%B3n-
 
 //LONG CLICK PARA BORRAR
 https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
+
+//IMAGEN DESDE URL 
+https://www.youtube.com/watch?v=PUTs7-pNDJg
