@@ -6,15 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".activity.CreacionLibro">
 
-    <ImageView
+    <EditText
         android:id="@+id/imagenLibro"
-        android:layout_width="187dp"
-        android:layout_height="205dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/negro" />
+        android:background="@drawable/formabackground3"
+        android:hint="Url de la imagen del libro"
+        android:inputType="text"
+        android:paddingLeft="15dp"
+        android:textColorHint="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/edTitulo"

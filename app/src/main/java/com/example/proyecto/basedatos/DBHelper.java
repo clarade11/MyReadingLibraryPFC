@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 7;
 
     // Database Name
     private static final String DATABASE_NAME = "MyReadingDiary.db";
@@ -108,7 +108,9 @@ public class DBHelper extends SQLiteOpenHelper {
             + ");";
 
     private String CREATE_TABLE_LIBROS = "CREATE TABLE " + TABLE_LIBROS + "("
-            + COLUMN_IDLIBRO + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_FOTO + " TEXT,"+COLUMN_FRASE_COLOR + " TEXT,"
+            + COLUMN_IDLIBRO + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_FOTO + " TEXT,"
+            + COLUMN_FRASE_COLOR + " TEXT,"
             + COLUMN_TITULO + " TEXT,"
             + COLUMN_AUTOR + " TEXT,"
             + COLUMN_CODIGOBARRAS + " TEXT,"

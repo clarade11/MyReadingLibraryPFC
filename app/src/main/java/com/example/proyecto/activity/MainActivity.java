@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         DB = new DBHelper(MainActivity.this);
         validacion = new Validacion(MainActivity.this);
         sharedpreferences = getSharedPreferences(MyPREFERENCES,Context.MODE_PRIVATE);
