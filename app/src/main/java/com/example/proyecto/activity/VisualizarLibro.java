@@ -18,6 +18,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.LibroLibraryAdapter;
+import com.example.proyecto.adapter.LibroLibraryGeneralAdapter;
 import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
@@ -57,6 +58,10 @@ public class VisualizarLibro extends AppCompatActivity {
 
         llenarCampos();
         llenarLista();
+
+        LibroLibraryGeneralAdapter adapter = new LibroLibraryGeneralAdapter(listaMemories,VisualizarLibro.this);//llenamos el adapter con la lista llena
+        recyclerVisualizarLibroID.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
+
 
     }
 
