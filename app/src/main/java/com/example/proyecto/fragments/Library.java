@@ -111,7 +111,11 @@ public class Library extends Fragment {
 //                "micasa",7.80,"hola mundo",0,null,"teirico",0));
         //bbdd
         List<Libro> lista= DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
-         listaLibros=(ArrayList<Libro>) lista;
+        for(int i=0;i<lista.size();i++){
+            if(lista.get(i).getComprado()==1){
+                listaLibros.add(lista.get(i));
+            }
+        }
         //listaLibros.add(new Libro("https://academiaandroid.com/wp-content/uploads/2016/10/SQLite_Android.jpg","libro 1","yo","5555555855",
         //"micasa",7.80,"hola mundo",0,null,"teirico",0));
 
