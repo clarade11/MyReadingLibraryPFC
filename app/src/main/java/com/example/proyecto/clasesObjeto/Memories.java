@@ -22,7 +22,7 @@ public class Memories {
 
     public Memories(String frase, String fraseColor, String puntuacion, String puntuacionColor, String imagen, String imagenColor,
                     String descripcion, String descripcionColor, String positivo, String positivoColor, String negativo,
-                    String negativoColor, String paginasLeidas,Integer idLibro,Integer idUsuario) {
+                    String negativoColor, String paginasLeidas,Integer idUsuario,Integer idLibro) {
         this.frase = frase;
         this.fraseColor = fraseColor;
         this.puntuacion = puntuacion;

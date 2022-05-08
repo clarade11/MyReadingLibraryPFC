@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,6 +20,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.Validacion;
 import com.example.proyecto.basedatos.DBHelper;
@@ -32,8 +38,8 @@ import java.util.List;
 
 public class CreacionRecuerdo extends AppCompatActivity {
     Spinner spinnerLibro, spinnerTipo;
-    ImageView imagen,imageView2;
-    EditText textRecuerdo;
+    ImageView imageview;
+    EditText textRecuerdo,imagen;
     Button btCrear;
     ImageButton lapiz;
 
@@ -64,14 +70,14 @@ public class CreacionRecuerdo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 listener();
-                if(spinnerTipo.getSelectedItem().equals("Imagen")){
-                    imagen.setVisibility(View.VISIBLE);
-                    textRecuerdo.setVisibility(View.GONE);
-                    cargarImagen();
-                } else {
+//                if(spinnerTipo.getSelectedItem().equals("Imagen")){
+                   // imagen.setVisibility(View.VISIBLE);
+                   // textRecuerdo.setVisibility(View.GONE);
+                    //cargarImagen();
+//                } else {
                     textRecuerdo.setVisibility(View.VISIBLE);
-                    imagen.setVisibility(View.GONE);
-                }
+                   // imagen.setVisibility(View.GONE);
+                //}
             }
         });
 
@@ -93,21 +99,37 @@ public class CreacionRecuerdo extends AppCompatActivity {
                     frase = textRecuerdo.getText().toString().trim();
                 } else if (tipoRecuerdo.equals("Texto")) {
                     descripcion = textRecuerdo.getText().toString().trim();
-                } else if (tipoRecuerdo.equals("Imagen")) {
+                } else if (tipoRecuerdo.equals("Url de imagen")) {
                     //bitmap
                     //https://androidstudiofaqs.com/tutoriales/guardar-una-imagen-android-studio
-                    if (imagen.getResources() != null) {
+//                    if (imagen.getResources() != null) {
                         //System.out.println(imagenBBDD);
-                        imagen.buildDrawingCache();
-                        Bitmap bitmap = imagen.getDrawingCache(); //bitmap de la imagen
+//                        imagen.buildDrawingCache();
+//                        Bitmap bitmap = imagen.getDrawingCache(); //bitmap de la imagen
+//
+//
+//                        ByteArrayOutputStream baos = new ByteArrayOutputStream(20480);
+//                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos);
+//                        byte[] blob = baos.toByteArray();
+//                        imagenBBDD = new String(blob, java.nio.charset.StandardCharsets.UTF_8);
 
+                        Glide.with(CreacionRecuerdo.this)
+                                .load(textRecuerdo.getText().toString().trim())
+                                .listener(new RequestListener<Drawable>() {
+                                    @Override
+                                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                        return false;
+                                    }
 
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream(20480);
-                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos);
-                        byte[] blob = baos.toByteArray();
-                        imagenBBDD = new String(blob, java.nio.charset.StandardCharsets.UTF_8);
+                                    @Override
+                                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                        return false;
+                                    }
 
-                    }
+                                })
+                                .into(imageview);
+                        imagenBBDD=textRecuerdo.getText().toString().trim();
+//                    }
 
                 }
 
@@ -126,7 +148,10 @@ public class CreacionRecuerdo extends AppCompatActivity {
 
                 //creamos recuerdo
                 System.out.println("ID LIBRO DEL RECUERDO CREADO IBSERTADO EN BBDD------>"+idLibro);
-                Memories memo = new Memories(frase, imagenBBDD, descripcion, positivo, negativo, idLibro, usuario.getIdUsuario());
+                Memories memo =
+                        new Memories(frase,null,null,null, imagenBBDD,null
+                                , descripcion,null, positivo,null, negativo,null,null,
+                                 usuario.getIdUsuario(),idLibro);
                 DB.insertMemorie(memo);
 
                 //mensaje correcto
@@ -142,23 +167,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
 
         }
 
-    private void cargarImagen() {
-
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/");
-        startActivityForResult(intent.createChooser(intent, "Seleccione una"),10);
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode==RESULT_OK){
-            Uri path = data.getData();
-            imagen.setImageURI(path);
-        }
-    }
 
     private void listener() {
 
@@ -200,7 +208,7 @@ public class CreacionRecuerdo extends AppCompatActivity {
         spinnerLibro.setAdapter(new ArrayAdapter<String>(CreacionRecuerdo.this,
                 android.R.layout.simple_spinner_dropdown_item, array));
 
-        String[] arrayTipo = {"Frase", "Texto", "Comentario positivo", "Comentario negativo"};
+        String[] arrayTipo = {"Frase", "Texto", "Comentario positivo", "Comentario negativo", "Url de imagen"};
 
         spinnerTipo.setAdapter(new ArrayAdapter<String>(CreacionRecuerdo.this,
                 android.R.layout.simple_spinner_dropdown_item, arrayTipo));
@@ -222,10 +230,11 @@ public class CreacionRecuerdo extends AppCompatActivity {
     private void asociacion() {
         spinnerLibro = (Spinner) findViewById(R.id.spinnerLibro);
         spinnerTipo = (Spinner) findViewById(R.id.spinner2);
-        imagen = (ImageView) findViewById(R.id.imageButton2);
-        imageView2 = (ImageView) findViewById(R.id.imageView2);
+
+        //imageView2 = (ImageView) findViewById(R.id.imageView2);
         textRecuerdo = (EditText) findViewById(R.id.textRecuerdo);
         btCrear = (Button) findViewById(R.id.buttonCrearRecuerdo);
         lapiz = (ImageButton) findViewById(R.id.imageButtonLapiz);
+        imageview= (ImageView) findViewById(R.id.imageViewRecuerdo);
     }
 }

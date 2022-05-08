@@ -111,6 +111,7 @@ public class Memories extends Fragment {
 
         for (int i = 0; i < lista.size(); i++) {
             System.out.println("IDLIBRO DE LA LISTA DE PANTALLA MEMORIES --- " + lista.get(i).getIdLibro());
+            System.out.println("IMAGENNNNNN DE LA LISTA DE PANTALLA MEMORIES --- " + lista.get(i).getImagen());
 
             listaMemories.add(lista.get(i));
 
