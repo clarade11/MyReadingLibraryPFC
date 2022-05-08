@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.InputType;
 import android.util.Base64;
@@ -16,9 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.activity.CreacionRecuerdo;
 import com.example.proyecto.activity.MainActivity;
@@ -74,8 +81,25 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             //ByteArrayInputStream bais = new ByteArrayInputStream(blob);
             //Bitmap bitmap = BitmapFactory.decodeStream(bais);
             //holder.imagenMemories.setImageBitmap(bitmap);
-            holder.imagenMemories.setVisibility(View.GONE);
-            holder.imagenMemoriesLibro.setVisibility(View.GONE);
+            System.out.println(listamemories.get(position).getImagen()+"------------IMAGEN");
+
+
+            Glide.with(holder.itemView.getContext())
+                    .load(listamemories.get(position).getImagen().trim())
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            return false;
+                        }
+
+                    })
+                    .into(holder.imagenMemories);
+            holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
         }else if(listamemories.get(position).getImagen()==null) {
             holder.imagenMemories.setVisibility(View.GONE);
             holder.imagenMemoriesLibro.setVisibility(View.GONE);
@@ -134,7 +158,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             //Toast.makeText(itemView.getContext(), "Pulsado", Toast.LENGTH_SHORT).show();
                             String frase=fraseMemories.getText().toString().trim();
                             String tituloLibroFrase=fraseMemoriesLibro.getText().toString().trim();
-                            //imagen
+                            //String imagen = imagenMemories.getText
                             String tituloImagen = imagenMemoriesLibro.getText().toString().trim();
                             String descripcion = descripcionMemories.getText().toString().trim();
                             String tituloDescripcion = descripcionMemoriesLibro.getText().toString().trim();
