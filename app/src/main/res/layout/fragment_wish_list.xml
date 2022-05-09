@@ -14,6 +14,7 @@
         android:text="Elección aleatoria"
         android:layout_gravity="bottom|right"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerId"
         android:layout_width="match_parent"
