@@ -131,6 +131,10 @@ public class CreacionRecuerdo extends AppCompatActivity {
                         imagenBBDD=textRecuerdo.getText().toString().trim();
 //                    }
 
+                } else if(tipoRecuerdo.equals("Comentario positivo")){
+                    positivo=textRecuerdo.getText().toString().trim();
+                }else if(tipoRecuerdo.equals("Comentario negativo")){
+                    negativo=textRecuerdo.getText().toString().trim();
                 }
 
                 //Integer idLibro = DB.getIDLibro(tituloLibro, usuario.getIdUsuario());
