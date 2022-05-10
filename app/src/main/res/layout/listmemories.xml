@@ -31,6 +31,16 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/imagenID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="0sp"
+                android:visibility="gone"
+                />
+
         </LinearLayout>
 
 

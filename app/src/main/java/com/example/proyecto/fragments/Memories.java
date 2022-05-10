@@ -121,7 +121,7 @@ public class Memories extends Fragment {
             System.out.println(id);
             Libro libro = DB.getLibro(id);
             System.out.println("Titulo libro del recuerdo : " + libro.getTitulo());
-            String titulo = libro.getTitulo().toString().trim();
+            String titulo = libro.getTitulo();
             System.out.println("VARIABLE TITULO: " + titulo);
             nombreLibros.add(titulo);
 

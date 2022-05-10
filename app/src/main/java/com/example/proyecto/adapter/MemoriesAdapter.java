@@ -1,13 +1,8 @@
 package com.example.proyecto.adapter;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.text.InputType;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,61 +22,62 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
-import com.example.proyecto.activity.CreacionRecuerdo;
 import com.example.proyecto.activity.MainActivity;
-import com.example.proyecto.activity.Perfil;
 import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
 import com.example.proyecto.clasesObjeto.Usuario;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.MemoriesViewHolder>{
+public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.MemoriesViewHolder> {
 
     ArrayList<Memories> listamemories;
+    Integer id = 0;
+    public static ArrayList<String> urlID = new ArrayList<>();
 
 
-    public MemoriesAdapter(ArrayList<Memories> listamemories){
-        this.listamemories=listamemories;
+    public MemoriesAdapter(ArrayList<Memories> listamemories) {
+        this.listamemories = listamemories;
     }
 
     @Override
-    public MemoriesAdapter.MemoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listmemories,null,false);
+    public MemoriesAdapter.MemoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listmemories, null, false);
         return new MemoriesAdapter.MemoriesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MemoriesViewHolder holder, int position) {
         //el id libro tiene que ser cambiado por el nombre del libro
-       ArrayList<String> nombresLibros=com.example.proyecto.fragments.Memories.nombreLibros;
+        ArrayList<String> nombresLibros = com.example.proyecto.fragments.Memories.nombreLibros;
 
 
-        if(listamemories.get(position).getDescripcion()!=null){
+        if (listamemories.get(position).getDescripcion() != null) {
             holder.descripcionMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
             holder.descripcionMemories.setText(listamemories.get(position).getDescripcion());
-        } else if(listamemories.get(position).getDescripcion()==null) {
+        } else if (listamemories.get(position).getDescripcion() == null) {
             holder.descripcionMemories.setVisibility(View.GONE);
             holder.descripcionMemoriesLibro.setVisibility(View.GONE);
         }
-        if(listamemories.get(position).getFrase()!=null) {
+        if (listamemories.get(position).getFrase() != null) {
             holder.fraseMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
             holder.fraseMemories.setText(listamemories.get(position).getFrase());
-        }else if(listamemories.get(position).getFrase()==null) {
+        } else if (listamemories.get(position).getFrase() == null) {
             holder.fraseMemories.setVisibility(View.GONE);
             holder.fraseMemoriesLibro.setVisibility(View.GONE);
         }
-        if(listamemories.get(position).getImagen()!= null){
+        if (listamemories.get(position).getImagen() != null) {
             //holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
             //byte[] blob = listamemories.get(position).getImagen().getBytes();
             //ByteArrayInputStream bais = new ByteArrayInputStream(blob);
             //Bitmap bitmap = BitmapFactory.decodeStream(bais);
             //holder.imagenMemories.setImageBitmap(bitmap);
-            System.out.println(listamemories.get(position).getImagen()+"------------IMAGEN");
+            System.out.println(listamemories.get(position).getImagen() + "------------IMAGEN");
+
+            holder.idImagen.setText(String.valueOf(id).trim());
+            urlID.add(listamemories.get(position).getImagen().trim());
+            id++;
 
 
             Glide.with(holder.itemView.getContext())
@@ -100,11 +96,12 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                     })
                     .into(holder.imagenMemories);
             holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
-        }else if(listamemories.get(position).getImagen()==null) {
+
+        } else if (listamemories.get(position).getImagen() == null) {
             holder.imagenMemories.setVisibility(View.GONE);
             holder.imagenMemoriesLibro.setVisibility(View.GONE);
+            holder.idImagen.setVisibility(View.GONE);
         }
-
 
 
     }
@@ -117,18 +114,20 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
 
     public static class MemoriesViewHolder extends RecyclerView.ViewHolder {
 
-        TextView imagenMemoriesLibro,fraseMemoriesLibro,fraseMemories,descripcionMemoriesLibro,descripcionMemories;
+        TextView imagenMemoriesLibro, fraseMemoriesLibro, fraseMemories, descripcionMemoriesLibro, descripcionMemories, idImagen;
         ImageView imagenMemories;
         DBHelper DB;
+        ArrayList<String> url = MemoriesAdapter.urlID;
 
         public MemoriesViewHolder(@NonNull View itemView) {
             super(itemView);
-            imagenMemoriesLibro=(TextView) itemView.findViewById(R.id.imagenMemoriesLibro);
-            fraseMemoriesLibro=(TextView) itemView.findViewById(R.id.fraseMemoriesLibro);
-            fraseMemories=(TextView) itemView.findViewById(R.id.fraseMemories);
-            descripcionMemoriesLibro=(TextView) itemView.findViewById(R.id.descripcionMemoriesLibro);
-            descripcionMemories=(TextView) itemView.findViewById(R.id.descripcionMemories);
-            imagenMemories=(ImageView) itemView.findViewById(R.id.imagenMemories);
+            imagenMemoriesLibro = (TextView) itemView.findViewById(R.id.imagenMemoriesLibro);
+            fraseMemoriesLibro = (TextView) itemView.findViewById(R.id.fraseMemoriesLibro);
+            fraseMemories = (TextView) itemView.findViewById(R.id.fraseMemories);
+            descripcionMemoriesLibro = (TextView) itemView.findViewById(R.id.descripcionMemoriesLibro);
+            descripcionMemories = (TextView) itemView.findViewById(R.id.descripcionMemories);
+            idImagen = (TextView) itemView.findViewById(R.id.imagenID);
+            imagenMemories = (ImageView) itemView.findViewById(R.id.imagenMemories);
 
             pulsarItem(itemView);
         }
@@ -156,9 +155,9 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
                             //Toast.makeText(itemView.getContext(), "Pulsado", Toast.LENGTH_SHORT).show();
-                            String frase=fraseMemories.getText().toString().trim();
-                            String tituloLibroFrase=fraseMemoriesLibro.getText().toString().trim();
-                            //String imagen = imagenMemories.getText
+                            String frase = fraseMemories.getText().toString().trim();
+                            String tituloLibroFrase = fraseMemoriesLibro.getText().toString().trim();
+                            String foto = idImagen.getText().toString().trim();
                             String tituloImagen = imagenMemoriesLibro.getText().toString().trim();
                             String descripcion = descripcionMemories.getText().toString().trim();
                             String tituloDescripcion = descripcionMemoriesLibro.getText().toString().trim();
@@ -168,48 +167,71 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             //creamos objeto con los campos pulsados
                             //System.out.println(frase+" "+tituloLibroFrase+" "+tituloImagen+" "+descripcion+" "+tituloDescripcion);
                             Integer idLibro = 0;
-                            for(int x=0;x< lista.size();x++) {
-                                if (tituloDescripcion != null && tituloDescripcion.equals(lista.get(x).getTitulo())) {
+                            for (int x = 0; x < lista.size(); x++) {
+                                if (tituloDescripcion != null && (!tituloDescripcion.equals("")) && tituloDescripcion.equals(lista.get(x).getTitulo())) {
                                     idLibro = lista.get(x).getIdLibro();
 
-                                } else if (tituloImagen != null && tituloImagen.equals(lista.get(x).getTitulo())) {
+                                } else if (tituloImagen != null&& (!tituloImagen.equals("")) && tituloImagen.equals(lista.get(x).getTitulo())) {
                                     idLibro = lista.get(x).getIdLibro();
-                                } else if (tituloLibroFrase != null && tituloLibroFrase.equals(lista.get(x).getTitulo())) {
+                                } else if (tituloLibroFrase != null && (!tituloLibroFrase.equals("")) && tituloLibroFrase.equals(lista.get(x).getTitulo())) {
                                     idLibro = lista.get(x).getIdLibro();
-                                    System.out.println("ID LIBRO INSERTADO "+lista.get(x).getIdLibro());
+                                    System.out.println("ID LIBRO INSERTADO " + lista.get(x).getIdLibro());
                                 }
                             }
                             //System.out.println("IDLIBRO PULSADO"+idLibro);
 
-                            Memories memo=new Memories(frase,descripcion,null,null,null,idLibro,usuario.getIdUsuario());
+                            //url de la foto seleccionada SEGURIDAD
+                            String imagenURL=null;
+                            if(foto.equals("")){
+                                imagenURL=null;
+                            }else if(foto.isEmpty()){
+                                imagenURL=null;
+                            }else if (foto != null) {
+                                imagenURL = url.get(Integer.parseInt(foto));
+                            } else {
+                                imagenURL=null;
+                            }
+
+                            //SEGURIDAD STRINGS
+                            String fraseBBDD=null;
+                            String descripcionBBDD=null;
+
+                            fraseBBDD = seguridad(fraseBBDD, frase);
+                            descripcionBBDD=seguridad(descripcionBBDD,descripcion);
+
+
+                            Memories memo = new Memories(fraseBBDD, descripcionBBDD, null, null, imagenURL, idLibro, usuario.getIdUsuario());
 
 
                             //comparamos los recuerdos de la bbdd con el pulsado para borrarlo
                             List<Memories> listamemoriesdeusuario = DB.getAllMemoriesDeUsuario(usuario.getIdUsuario());
-                            Memories moment=new Memories();
-                            Integer idRecuerdo=0;
+                            Memories moment ;
+                            Integer idRecuerdo = 0;
 
-                            for(int a=0; a<listamemoriesdeusuario.size();a++){
-                                System.out.println("DENTRO DEL FOR ID DEL MOMENTO RECORRIDO"+listamemoriesdeusuario.get(a).getIdMemories());
+                            for (int a = 0; a < listamemoriesdeusuario.size(); a++) {
+                                System.out.println("DENTRO DEL FOR ID DEL MOMENTO RECORRIDO" + listamemoriesdeusuario.get(a).getIdMemories());
 
-                                if(memo.getIdLibro()== listamemoriesdeusuario.get(a).getIdLibro()){
+                                if (memo.getIdLibro() == listamemoriesdeusuario.get(a).getIdLibro()) {
                                     System.out.println("IDLIBRO COINCIDE");
                                     //arreglar esto
 
-                                    if(memo.getFrase()!=null && listamemoriesdeusuario.get(a).getFrase()!=null) {
+                                    if (memo.getFrase() != null && listamemoriesdeusuario.get(a).getFrase() != null && (!memo.getFrase().equals(""))) {
                                         idRecuerdo = DB.getIDMemorieFrase(usuario.getIdUsuario(), memo.getFrase().trim());
 
-                                    } else if(memo.getDescripcion()!=null && listamemoriesdeusuario.get(a).getDescripcion()!=null){
+                                    } else if (memo.getDescripcion() != null && listamemoriesdeusuario.get(a).getDescripcion() != null && (!memo.getDescripcion().equals(""))) {
                                         idRecuerdo = DB.getIDMemorieDescripcion(usuario.getIdUsuario(), memo.getDescripcion().trim());
+
+                                    } else if (memo.getImagen() != null && listamemoriesdeusuario.get(a).getImagen() != null && (!memo.getImagen().equals(""))) {
+                                        idRecuerdo = DB.getIDMemorieImagen(usuario.getIdUsuario(), memo.getImagen().trim());
 
                                     }
                                 }
 
                             }
                             System.out.println(idRecuerdo + "----> ID RECUERDO");
-                            moment= DB.getMemories(idRecuerdo);
+                            moment = DB.getMemories(idRecuerdo);
 
-                            System.out.println("ID DEL MEMORIE DE LA BASE DE DATOS"+moment.getIdMemories());
+                            System.out.println("ID DEL MEMORIE DE LA BASE DE DATOS" + moment.getIdMemories());
                             DB.borrarMemorie(moment);
 
                             Toast.makeText(itemView.getContext(), "Recuerdo borrado", Toast.LENGTH_SHORT).show();
@@ -221,8 +243,21 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             descripcionMemoriesLibro.setVisibility(View.GONE);
                             descripcionMemories.setVisibility(View.GONE);
                             imagenMemories.setVisibility(View.GONE);
+                            idImagen.setVisibility(View.GONE);
 
+                        }
 
+                        private String seguridad(String bbdd, String comprobar) {
+
+                            if(comprobar.isEmpty()){
+                                bbdd=null;
+                            } else if(comprobar.equals("")){
+                                bbdd=null;
+                            } else if(comprobar!=null){
+                                bbdd=comprobar;
+                            }
+
+                            return bbdd;
                         }
                     });
 
@@ -242,7 +277,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                 public void onClick(View v) {
                     alertModificar();
                 }
-
+                String imagenParaEditar=null;
                 private void alertModificar() {
                     //Toast.makeText(itemView.getContext(), "Pulsado", Toast.LENGTH_SHORT).show();
 
@@ -253,7 +288,16 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                     String fraseParaEditar = fraseMemories.getText().toString().trim();
                     String descripcionParaEditar = descripcionMemories.getText().toString().trim();
 
-                    if(fraseParaEditar!=null || descripcionParaEditar!=null){
+                    String id=idImagen.getText().toString().trim();
+
+
+                    if(id!=null && (!id.isEmpty()) && (!id.equals(""))){
+                        imagenParaEditar=url.get(Integer.parseInt(id));
+                    }
+
+
+
+                    if (fraseParaEditar != null || descripcionParaEditar != null || imagenParaEditar!=null) {
 
                         //Creamos dialogo
                         AlertDialog.Builder dialogo = new AlertDialog.Builder(itemView.getContext());
@@ -261,10 +305,12 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
 
                         final EditText edTextoModificado = new EditText(itemView.getContext());
                         edTextoModificado.setInputType(InputType.TYPE_CLASS_TEXT);
-                        if(fraseParaEditar!=null){
+                        if (fraseParaEditar != null && (!fraseParaEditar.equals(""))) {
                             edTextoModificado.setText(fraseParaEditar);
-                        } else if(descripcionParaEditar!=null){
+                        } else if (descripcionParaEditar != null && (!descripcionParaEditar.equals(""))) {
                             edTextoModificado.setText(descripcionParaEditar);
+                        } else if(imagenParaEditar != null && (!imagenParaEditar.equals(""))){
+                            edTextoModificado.setText(imagenParaEditar);
                         }
                         dialogo.setView(edTextoModificado);
 
@@ -272,21 +318,31 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                         dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
-                                if(fraseParaEditar!=null){
-                                    System.out.println("FRASE ANTGUA --"+fraseParaEditar);
+                                if (fraseParaEditar != null && (!fraseParaEditar.equals("")) ) {
+                                    System.out.println("FRASE ANTGUA --" + fraseParaEditar);
                                     String frase = edTextoModificado.getText().toString().trim();
-                                    Integer id = DB.getIDMemorieFrase(usuario.getIdUsuario(),fraseParaEditar);
+                                    Integer id = DB.getIDMemorieFrase(usuario.getIdUsuario(), fraseParaEditar);
                                     Memories moment = DB.getMemories(id);
                                     moment.setFrase(frase);
                                     DB.actualizarMemorie(moment);
                                     fraseMemories.setText(frase);
-                                } else if(descripcionParaEditar!=null){
+                                } else if (descripcionParaEditar != null && (!descripcionParaEditar.equals(""))) {
+                                    System.out.println("DESCRIPCION ANTGUA --" + descripcionParaEditar);
                                     String descripcion = edTextoModificado.getText().toString().trim();
-                                    Integer id = DB.getIDMemorieDescripcion(usuario.getIdUsuario(),descripcionParaEditar);
-                                    Memories moment = DB.getMemories(id);
-                                    moment.setDescripcion(descripcion);
-                                    DB.actualizarMemorie(moment);
+                                    Integer id = DB.getIDMemorieDescripcion(usuario.getIdUsuario(), descripcionParaEditar);
+                                    Memories moment2 = DB.getMemories(id);
+                                    moment2.setDescripcion(descripcion);
+                                    DB.actualizarMemorie(moment2);
                                     descripcionMemories.setText(descripcion);
+                                } else if (imagenParaEditar != null && (!imagenParaEditar.equals("")) ) {
+                                    System.out.println("IMAGEN ANTGUA --" + imagenParaEditar);
+                                    String imagen = edTextoModificado.getText().toString().trim();
+                                    Integer id = DB.getIDMemorieImagen(usuario.getIdUsuario(), imagenParaEditar);
+                                    Memories moment3 = DB.getMemories(id);
+                                    moment3.setImagen(imagen);
+                                    DB.actualizarMemorie(moment3);
+                                    Toast.makeText(itemView.getContext(), "Actualizado con éxito, entre y salga de los recuerdos", Toast.LENGTH_SHORT).show();
+
                                 }
 
                             }
@@ -299,18 +355,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             }
                         });
                         dialogo.show();
-
-
-
                     }
-
-
-
-
-
-
-
-
                 }
             });
         }

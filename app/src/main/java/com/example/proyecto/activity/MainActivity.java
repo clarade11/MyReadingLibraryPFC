@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     DBHelper DB;
     Validacion validacion;
 
+
     //SHARED PREFERENCES
     public static  final String MyPREFERENCES = "MyPrefs";
     public static final String Usuario = "usuario";

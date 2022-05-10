@@ -4,11 +4,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -32,18 +28,17 @@ import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
 import com.example.proyecto.clasesObjeto.Usuario;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class CreacionRecuerdo extends AppCompatActivity {
     Spinner spinnerLibro, spinnerTipo;
     ImageView imageview;
-    EditText textRecuerdo,imagen;
+    EditText textRecuerdo;
     Button btCrear;
     ImageButton lapiz;
 
-
+    List<String> librosSpinner;
 
     DBHelper DB;
     Validacion validacion;
@@ -144,7 +139,7 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 List<Libro> libros = DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
                 for (int i = 0; i < libros.size(); i++) {
                     System.out.println(tituloLibro);
-                    if (libros.get(i).getTitulo().toString().trim().equals(tituloLibro.toString().trim()) ) {
+                    if (libros.get(i).getTitulo().trim().equals(tituloLibro.trim()) ) {
                         idLibro = libros.get(i).getIdLibro();
                         System.out.println("ID LIBRO DEL RECUERDO CREADO------>"+idLibro);
                     }
@@ -220,12 +215,31 @@ public class CreacionRecuerdo extends AppCompatActivity {
     }
 
     private String[] llenar(List<Libro> listaLibros) {
-        String[] array = new String[listaLibros.size()];
+
+        int z=0;
 
         for (int i = 0; i < listaLibros.size(); i++) {
-            array[i] = (listaLibros.get(i).getTitulo());
-        }
+            //System.out.println(listaLibros.get(i).getTitulo());
+            if(listaLibros.get(i).getComprado()==1 && listaLibros.get(i).getTitulo()!=null){
 
+                    z++;
+            }
+
+        }
+        String[] array = new String[z];
+        z=0;
+        for (int i = 0; i < listaLibros.size(); i++) {
+            //System.out.println(listaLibros.get(i).getTitulo());
+            if(listaLibros.get(i).getComprado()==1 && listaLibros.get(i).getTitulo()!=null){
+                System.out.println(listaLibros.get(i).getTitulo());
+
+                array[z] = listaLibros.get(i).getTitulo();
+                z++;
+
+
+            }
+
+        }
         return array;
 
     }
