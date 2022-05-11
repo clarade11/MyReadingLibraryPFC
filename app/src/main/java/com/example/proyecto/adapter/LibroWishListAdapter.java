@@ -39,6 +39,8 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
 
     ArrayList<Libro> listaLibros;
     DBHelper DB;
+    public static Libro libroWishlist;
+    Usuario usuario = MainActivity.usuarioObjeto;
 
     public LibroWishListAdapter(ArrayList<Libro> listaLibros) {
         this.listaLibros = listaLibros;
@@ -101,6 +103,8 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
                 public void onClick(View v) {
                     itemView.getContext().startActivity(new Intent(itemView.getContext(), VerWishList.class));
 
+                    Integer idLibro = DB.getIDLibro(tituloWishList.getText().toString().trim(), usuario.getIdUsuario());
+                    libroWishlist = DB.getLibro(idLibro);
                 }
             });
 
