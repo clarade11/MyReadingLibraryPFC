@@ -3,6 +3,10 @@ MIS TAREAS
 
 https://trello.com/b/7G0u76au/tfg#
 
+MEMORIA DOC
+
+https://cesurformacion0-my.sharepoint.com/personal/clara_ma42269_cesurformacion_com/_layouts/15/doc.aspx?sourcedoc={a3de7d01-c657-4065-bd71-67fea0bda15d}&action=edit
+
  ENLACES DE AYUDA VISITADOS
  
 //sqlite en java
