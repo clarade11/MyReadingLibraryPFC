@@ -18,19 +18,26 @@ import android.widget.TextView;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.Validacion;
 import com.example.proyecto.basedatos.DBHelper;
+import com.example.proyecto.clasesObjeto.Libro;
+import com.example.proyecto.clasesObjeto.Memories;
 import com.example.proyecto.clasesObjeto.Usuario;
+
+import java.util.List;
 
 public class Perfil extends AppCompatActivity {
 
     DBHelper DB;
     Usuario usuario;
-    ImageView imagePerfil;
+    //ImageView imagePerfil;
     TextView tvPerfilUsuario;
     TextView tvPerfilNombreApellido;
     TextView cambiarContrasena;
     TextView cambiarTelefono;
     TextView cerrarSesion;
     TextView tvPerfilTelefono;
+    TextView nlibros;
+    TextView nrecuerdos;
+    TextView novedades;
 
     String telefono;
     String ps1;
@@ -109,23 +116,43 @@ public class Perfil extends AppCompatActivity {
     //ponemos los datos en pantalla
     private void colocarDatos() {
         usuario = MainActivity.usuarioObjeto;
-        imagePerfil.setImageResource(R.drawable.negro);
+        //imagePerfil.setImageResource(R.drawable.negro);
         tvPerfilUsuario.setText(usuario.getUsuario());
         tvPerfilNombreApellido.setText(usuario.getNombre() + " " + usuario.getApellidos());
         tvPerfilTelefono.setText(usuario.getTelefono());
+
+        contarlibrosyrecuerdos();
+
+    }
+
+    //contar libros y recuerdos del usuario en la bbdd
+    private void contarlibrosyrecuerdos() {
+
+        List<Libro> libros = DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
+        Integer numeroLibros = libros.size();
+
+        List<Memories> recuerdos=DB.getAllMemoriesDeUsuario(usuario.getIdUsuario());
+        Integer numeroRecuerdos = recuerdos.size();
+
+        nlibros.setText(String.valueOf(numeroLibros));
+        nrecuerdos.setText(String.valueOf(numeroRecuerdos));
+
 
     }
 
     //asociamos diseño con variables
     private void asociacion() {
 
-        imagePerfil = (ImageView) findViewById(R.id.imagePerfil);
+        //imagePerfil = (ImageView) findViewById(R.id.imagePerfil);
         tvPerfilUsuario = (TextView) findViewById(R.id.tvPerfilUsuario);
         tvPerfilNombreApellido = (TextView) findViewById(R.id.tvPerfilNombreApellido);
         cambiarContrasena = (TextView) findViewById(R.id.cambiarContrasena);
         cambiarTelefono = (TextView) findViewById(R.id.cambiarTelefono);
         cerrarSesion = (TextView) findViewById(R.id.cerrarSesion);
         tvPerfilTelefono = (TextView) findViewById(R.id.tvPerfilTelefono);
+        nrecuerdos = (TextView) findViewById(R.id.nrecuerdos);
+        novedades = (TextView) findViewById(R.id.novedades);
+        nlibros = (TextView) findViewById(R.id.nlibros);
     }
 
     //alert del cambio de contraseña del perfil
