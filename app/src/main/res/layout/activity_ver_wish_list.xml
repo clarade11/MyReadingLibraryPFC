@@ -1,9 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.VerWishList">
+    android:orientation="vertical"
+    tools:context=".activity.VerWishList"
+    android:gravity="top|center"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/negro" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/w1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título:"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/tituloW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/w2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sipnopsis:"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/sipnopsisW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sipnopsis no indicado"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/w6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editorial :"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/editorialW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Editorial no indicada"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/w7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Autor :"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/autorW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Autor no indicado"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/w3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disponible en :"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/tiendaW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Tienda donde está disponible no indicado" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/w5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio :"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/precioW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Precio no indicado"
+            android:textSize="15dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/w4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Código de barras :"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/codigoBarrasW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Codigo de barras no indicado"
+            android:textSize="15dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp" >
+
+        <CheckBox
+            android:id="@+id/checkboxW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lista de deseos"
+            android:textSize="15dp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btGuardarCambios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Guardar cambios" />
+
+
+</LinearLayout>
