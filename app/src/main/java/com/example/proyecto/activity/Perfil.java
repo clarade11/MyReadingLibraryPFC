@@ -56,6 +56,7 @@ public class Perfil extends AppCompatActivity {
         //colocar datos en los textview
         colocarDatos();
 
+        //navegar en pantallas
         navegar();
 
     }
