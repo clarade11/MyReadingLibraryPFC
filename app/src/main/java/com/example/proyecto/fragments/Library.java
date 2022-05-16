@@ -94,6 +94,7 @@ public class Library extends Fragment {
         recyclerLibraryId.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 
 
+
         navegar(view);
 
         return view;

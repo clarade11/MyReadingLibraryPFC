@@ -9,10 +9,11 @@
 
     <ImageView
         android:id="@+id/imageViewInicio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_marginTop="160dp"/>
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        android:tint="@color/ColorPrincipal"
+        android:layout_marginTop="90dp"/>
 
     <EditText
         android:id="@+id/edUsuario"
