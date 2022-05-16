@@ -40,6 +40,7 @@ public class VerWishList extends AppCompatActivity {
     ImageView imageView2;
     CheckBox comprado;
 
+
     Libro libro;
 
     Usuario usuario = MainActivity.usuarioObjeto;

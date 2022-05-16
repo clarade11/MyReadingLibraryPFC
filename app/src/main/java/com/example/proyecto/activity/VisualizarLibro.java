@@ -1,12 +1,19 @@
 package com.example.proyecto.activity;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -31,14 +38,17 @@ import java.util.List;
 public class VisualizarLibro extends AppCompatActivity {
 
     ImageView imageVisualizarLibro;
-    TextView tvTituloLibro,tvSipnopsis,tvISBN,tvPrecio, tvPaginasLeidas;
+    TextView tvTituloLibro;
+    EditText tvSipnopsis,tvISBN,tvPrecio, tvPaginasLeidas;
     RecyclerView recyclerVisualizarLibroID;
     RatingBar ratingBar;
-
+    ImageButton btGuardarCambios;
     DBHelper DB;
     Usuario usuario;
     ArrayList<Memories> listaMemories;
     Libro libro;
+
+    String foto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +57,14 @@ public class VisualizarLibro extends AppCompatActivity {
 
         asociacion();
 
+        escuchaPulsaciones();
+
         vista();
 
     }
 
+
+    //llenar la vista con los recuerdos
     private void vista() {
 
         listaMemories = new ArrayList<com.example.proyecto.clasesObjeto.Memories>();
@@ -127,17 +141,101 @@ public class VisualizarLibro extends AppCompatActivity {
         listaMemories = (ArrayList<Memories>) lista;
     }
 
+    //si se realizan cambios en el libro
+    private void escuchaPulsaciones() {
+        imageVisualizarLibro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(VisualizarLibro.this);
+                dialogo.setTitle("Cambiar portada de libro");
 
+                final EditText fotoNueva = new EditText(VisualizarLibro.this);
+                fotoNueva.setInputType(InputType.TYPE_CLASS_TEXT);
+                dialogo.setView(fotoNueva);
+
+                //botones del alert
+                dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        foto = fotoNueva.getText().toString().trim();
+                        libro.setFotoID(foto);
+                        DB.actualizarLibro(libro);
+                        if(libro.getFotoID()!=null && (!libro.getFotoID().equals(""))){
+                            Glide.with(VisualizarLibro.this)
+                                    .load(libro.getFotoID())
+                                    .listener(new RequestListener<Drawable>() {
+                                        @Override
+                                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                            return false;
+                                        }
+
+                                        @Override
+                                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                            return false;
+                                        }
+
+                                    })
+                                    .into(imageVisualizarLibro);
+                        } else{
+                            imageVisualizarLibro.setVisibility(View.INVISIBLE);
+                        }
+                    }
+                });
+
+                dialogo.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialogo.show();
+            }
+        });
+
+
+        btGuardarCambios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                Libro libroModificado = new Libro();
+
+                libroModificado.setComprado(libro.getComprado());
+                libroModificado.setIdUsuario(usuario.getIdUsuario());
+                libroModificado.setTienda(libro.getTienda());
+                libroModificado.setPuntuacion(Double.parseDouble(String.valueOf(ratingBar.getRating())));
+                libroModificado.setDescripcion(tvSipnopsis.getText().toString().trim());
+                libroModificado.setEditorial(libro.getEditorial());
+                libroModificado.setPrecio(Double.valueOf(tvPrecio.getText().toString().trim()));
+                libroModificado.setIdLibro(libro.getIdLibro());
+                libroModificado.setCodigoBarras(tvISBN.getText().toString().trim());
+                libroModificado.setFotoID(libro.getFotoID());
+                libroModificado.setTitulo(tvTituloLibro.getText().toString().trim());
+                libroModificado.setAutor(libro.getAutor());
+
+
+                DB.actualizarLibro(libroModificado);
+
+                Intent i = new Intent(VisualizarLibro.this, NavDrawer.class); //clase nuestra,clase a la que viajar
+                startActivity(i);
+                finish();
+
+
+            }
+        });
+    }
     private void asociacion() {
 
         imageVisualizarLibro = (ImageView) findViewById(R.id.imageVisualizarLibro);
         tvTituloLibro = (TextView) findViewById(R.id.tvTituloLibro);
-        tvSipnopsis = (TextView) findViewById(R.id.tvSipnopsis);
-        tvISBN = (TextView) findViewById(R.id.tvISBN);
-        tvPrecio = (TextView) findViewById(R.id.tvPrecio);
-        tvPaginasLeidas = (TextView) findViewById(R.id.tvPaginasLeidas);
+        tvSipnopsis = (EditText) findViewById(R.id.tvSipnopsis);
+        tvISBN = (EditText) findViewById(R.id.tvISBN);
+        tvPrecio = (EditText) findViewById(R.id.tvPrecio);
+        tvPaginasLeidas = (EditText) findViewById(R.id.tvPaginasLeidas);
         recyclerVisualizarLibroID = (RecyclerView) findViewById(R.id.recyclerVisualizarLibroID);
         ratingBar=(RatingBar) findViewById(R.id.ratingBar);
+        btGuardarCambios = (ImageButton) findViewById(R.id.btGuardarCambiosLibro);
 
         DB = new DBHelper(VisualizarLibro.this);
         usuario = MainActivity.usuarioObjeto;
