@@ -53,6 +53,7 @@ public class Perfil extends AppCompatActivity {
         DB = new DBHelper(Perfil.this);
         asociacion();
 
+        //colocar datos en los textview
         colocarDatos();
 
         navegar();
