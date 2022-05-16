@@ -1,5 +1,6 @@
 package com.example.proyecto.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
@@ -7,13 +8,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.Validacion;
 import com.example.proyecto.basedatos.DBHelper;
@@ -30,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     Button btEntrar;
     EditText edUsuario, edContrasena;
     TextView enlaceRegistrar, enlaceRecuperarContrasena;
+    ImageView logo;
     //Cursor
     private Cursor cursor;
     //base dato
@@ -57,6 +66,22 @@ public class MainActivity extends AppCompatActivity {
 
         asociacion();
 
+        Glide.with(MainActivity.this)
+                .load(R.drawable.azul_transparente)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        return false;
+                    }
+
+                })
+                .into(logo);
+
 
         //¿Hay ya información?
         String sharedUsuario =sharedpreferences.getString(Usuario, "");
@@ -80,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
         edUsuario = (EditText) findViewById(R.id.edUsuario);
         edContrasena = (EditText) findViewById(R.id.edContrasena);
         enlaceRegistrar = (TextView) findViewById(R.id.enlaceRegistrar);
+        logo=(ImageView) findViewById(R.id.imageViewInicio) ;
+
         enlaceRecuperarContrasena = (TextView) findViewById(R.id.enlaceRecuperarContrasena);
     }
 

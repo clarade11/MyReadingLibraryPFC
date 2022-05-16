@@ -9,11 +9,11 @@
     android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_marginTop="120dp"/>
+        android:id="@+id/imageViewRegistrar"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"/>
 
     <EditText
         android:id="@+id/edRegistrarUsuario"

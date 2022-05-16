@@ -1,12 +1,15 @@
 package com.example.proyecto.activity;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,6 +44,8 @@ public class VerWishList extends AppCompatActivity {
 
     Usuario usuario = MainActivity.usuarioObjeto;
 
+    String foto;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,70 @@ public class VerWishList extends AppCompatActivity {
 
         llenarCampos();
 
+        editarImagen();
+
         guardar();
+
+    }
+
+    //alerta para cambiar la foto
+    private void alertCambioFoto() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(VerWishList.this);
+        dialogo.setTitle("Cambiar portada de libro");
+
+        final EditText fotoNueva = new EditText(VerWishList.this);
+        fotoNueva.setInputType(InputType.TYPE_CLASS_TEXT);
+        dialogo.setView(fotoNueva);
+
+        //botones del alert
+        dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                foto = fotoNueva.getText().toString().trim();
+                libro.setFotoID(foto);
+                DB.actualizarLibro(libro);
+                if(libro.getFotoID()!=null && (!libro.getFotoID().equals(""))){
+                    Glide.with(VerWishList.this)
+                            .load(libro.getFotoID())
+                            .listener(new RequestListener<Drawable>() {
+                                @Override
+                                public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                    return false;
+                                }
+
+                                @Override
+                                public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                    return false;
+                                }
+
+                            })
+                            .into(imageView2);
+                } else{
+                    imageView2.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        dialogo.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialogo.show();
+
+
+    }
+
+    //metodo para editar la imagen del libro
+    private void editarImagen() {
+
+        imageView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertCambioFoto();
+            }
+        });
 
     }
 

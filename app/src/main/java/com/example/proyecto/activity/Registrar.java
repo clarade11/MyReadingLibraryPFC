@@ -1,18 +1,27 @@
 package com.example.proyecto.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.Validacion;
 import com.example.proyecto.basedatos.DBHelper;
@@ -23,7 +32,7 @@ public class Registrar extends AppCompatActivity {
     //variables locales
     Button btRegistrar;
     EditText edRegistrarUsuario, edRegistrarContrasena, edRegistrarContrasenaRepetida, edRegistrarTelefono;
-
+    ImageView logo;
     DBHelper DB;
     Validacion validacion;
 
@@ -45,7 +54,25 @@ public class Registrar extends AppCompatActivity {
         edRegistrarContrasena = (EditText) findViewById(R.id.edRegistrarContrasena);
         edRegistrarContrasenaRepetida = (EditText) findViewById(R.id.edRegistrarContrasenaRepetida);
         edRegistrarTelefono = (EditText) findViewById(R.id.edRegistrarTelefono);
+        logo = (ImageView) findViewById(R.id.imageViewRegistrar);
 
+
+
+        Glide.with(Registrar.this)
+                .load(R.drawable.blanco_transparente)
+                .listener(new RequestListener<Drawable>() {
+                    @Override
+                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                        return false;
+                    }
+
+                })
+                .into(logo);
     }
 
     /**
