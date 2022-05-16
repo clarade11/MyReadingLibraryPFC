@@ -95,8 +95,6 @@ public class Library extends Fragment {
 
 
 
-        navegar(view);
-
         return view;
     }
 
@@ -123,19 +121,7 @@ public class Library extends Fragment {
     }
 
     //NAVEGAR A APP
-    public void navegar(View view){
-        visualizarLibro = (Button)view.findViewById(R.id.btLibroSeleccionado);
 
-        visualizarLibro.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //finish();
-                Intent intent = new Intent(getActivity(), VisualizarLibro.class);
-                startActivity(intent);
-
-            }
-        });
-    }
 
 
 
