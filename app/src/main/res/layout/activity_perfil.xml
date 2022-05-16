@@ -16,17 +16,37 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/ed"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilUsuario">
     <TextView
-        android:id="@+id/tvPerfilNombreApellido"
+        android:id="@+id/tvPerfilNombre"
         android:layout_width="match_parent"
         android:layout_height="31dp"
         android:layout_marginTop="24dp"
+        android:layout_marginRight="10dp"
         android:gravity="center"
-        android:text="Nombre y Apellidos"
+        android:text="Nombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPerfilUsuario" />
 
+    <TextView
+        android:id="@+id/tvPerfilApellido"
+        android:layout_width="match_parent"
+        android:layout_height="31dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="Apellidos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPerfilUsuario" />
+    </LinearLayout>
     <TextView
         android:id="@+id/cambiarContrasena"
         android:layout_width="match_parent"
@@ -66,7 +86,7 @@
         android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Telefono"
-        app:layout_constraintTop_toBottomOf="@+id/tvPerfilNombreApellido"
+        app:layout_constraintTop_toBottomOf="@+id/ed"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView

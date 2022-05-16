@@ -30,7 +30,8 @@ public class Perfil extends AppCompatActivity {
     Usuario usuario;
     //ImageView imagePerfil;
     TextView tvPerfilUsuario;
-    TextView tvPerfilNombreApellido;
+    TextView tvPerfilNombre;
+    TextView tvPerfilApellido;
     TextView cambiarContrasena;
     TextView cambiarTelefono;
     TextView cerrarSesion;
@@ -41,6 +42,8 @@ public class Perfil extends AppCompatActivity {
 
     String telefono;
     String ps1;
+    String nombre;
+    String apellido;
 
 
     @Override
@@ -79,7 +82,83 @@ public class Perfil extends AppCompatActivity {
                 finish();
             }
         });
+        tvPerfilApellido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertCambioApellido();
+            }
+        });
+        tvPerfilNombre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertCambioNombre();
+            }
+        });
     }
+
+
+    //alerta para cambiar el nombre
+    private void alertCambioNombre() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(Perfil.this);
+        dialogo.setTitle("Cambio de nombre");
+
+        final EditText nombreNuevo = new EditText(Perfil.this);
+        nombreNuevo.setInputType(InputType.TYPE_CLASS_TEXT);
+        dialogo.setView(nombreNuevo);
+
+        //botones del alert
+        dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                nombre = nombreNuevo.getText().toString().trim();
+                usuario.setNombre(nombre);
+                DB.actualizarUsuario(usuario);
+                tvPerfilNombre.setText(nombre);
+            }
+        });
+
+        dialogo.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialogo.show();
+
+
+    }
+
+    //alerta para cambiar el nombre
+    private void alertCambioApellido() {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(Perfil.this);
+        dialogo.setTitle("Cambio de apellido");
+
+        final EditText apellidoNuevo = new EditText(Perfil.this);
+        apellidoNuevo.setInputType(InputType.TYPE_CLASS_TEXT);
+        dialogo.setView(apellidoNuevo);
+
+        //botones del alert
+        dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                apellido = apellidoNuevo.getText().toString().trim();
+                usuario.setApellidos(apellido);
+                DB.actualizarUsuario(usuario);
+                tvPerfilApellido.setText(apellido);
+            }
+        });
+
+        dialogo.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        dialogo.show();
+
+
+    }
+
 
     //alert para cambiar el telefono de perfil
 
@@ -118,7 +197,8 @@ public class Perfil extends AppCompatActivity {
         usuario = MainActivity.usuarioObjeto;
         //imagePerfil.setImageResource(R.drawable.negro);
         tvPerfilUsuario.setText(usuario.getUsuario());
-        tvPerfilNombreApellido.setText(usuario.getNombre() + " " + usuario.getApellidos());
+        tvPerfilNombre.setText(usuario.getNombre());
+        tvPerfilApellido.setText(usuario.getApellidos());
         tvPerfilTelefono.setText(usuario.getTelefono());
 
         contarlibrosyrecuerdos();
@@ -145,7 +225,8 @@ public class Perfil extends AppCompatActivity {
 
         //imagePerfil = (ImageView) findViewById(R.id.imagePerfil);
         tvPerfilUsuario = (TextView) findViewById(R.id.tvPerfilUsuario);
-        tvPerfilNombreApellido = (TextView) findViewById(R.id.tvPerfilNombreApellido);
+        tvPerfilNombre = (TextView) findViewById(R.id.tvPerfilNombre);
+        tvPerfilApellido = (TextView) findViewById(R.id.tvPerfilApellido);
         cambiarContrasena = (TextView) findViewById(R.id.cambiarContrasena);
         cambiarTelefono = (TextView) findViewById(R.id.cambiarTelefono);
         cerrarSesion = (TextView) findViewById(R.id.cerrarSesion);
