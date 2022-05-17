@@ -1,7 +1,9 @@
 package com.example.proyecto.fragments;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.proyecto.R;
 import com.example.proyecto.activity.MainActivity;
@@ -19,6 +23,7 @@ import com.example.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,6 +47,7 @@ public class WishList extends Fragment {
     ArrayList<Libro> lista;
     DBHelper DB;
     Usuario usuario;
+    Button btAleatorio;
 
     public WishList() {
         // Required empty public constructor
@@ -91,7 +97,57 @@ public class WishList extends Fragment {
         LibroWishListAdapter adapter = new LibroWishListAdapter(lista);//llenamos el adapter con la lista llena
         recyclerLibros.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 
+        pulsarAleatorio(view);
+
         return view;
+    }
+
+    //pulsamos botón aleatoria
+    private void pulsarAleatorio(View view) {
+
+        btAleatorio= (Button) view.findViewById(R.id.btAleatorio);
+
+
+        btAleatorio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(getContext());
+                dialogo.setTitle("¡Libro aleatorio que debes comprar!");
+
+                Random random = new Random();
+                int n = random.nextInt(lista.size()+0) ;
+
+                int idlibroaleatorio=lista.get(n).getIdLibro();
+                Libro aleatorio = DB.getLibro(idlibroaleatorio);
+
+                String tienda = aleatorio.getTienda();
+
+                if(tienda.equals("Tienda donde está disponible no indicado") || tienda.equals("")){
+                    tienda="No indicado";
+                }
+
+
+                final TextView tv = new TextView(getContext());
+                tv.setText("El libro aleatorio escogido es: "+aleatorio.getTitulo()+" disponible en: "+tienda);
+                tv.setPadding(15, 15,
+                        15, 15);
+
+                dialogo.setView(tv);
+
+                dialogo.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+
+                    }
+                });
+                dialogo.show();
+            }
+        });
+
+
+
+
     }
 
     //metodo para crear objetos

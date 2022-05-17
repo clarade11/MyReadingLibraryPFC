@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.activity.CreacionRecuerdo;
 import com.example.proyecto.activity.MainActivity;
+import com.example.proyecto.activity.Perfil;
 import com.example.proyecto.activity.Registrar;
 import com.example.proyecto.activity.VerWishList;
 import com.example.proyecto.activity.VisualizarLibro;
@@ -34,6 +36,7 @@ import com.example.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdapter.LibroViewHolder> {
 
@@ -85,6 +88,7 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
 
         TextView tituloWishList, precioWishList, descripcionWishList;
         ImageView imageWishList;
+        Button btAleatorio;
 
         public LibroViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,10 +96,15 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
             precioWishList = (TextView) itemView.findViewById(R.id.precioWishList);
             descripcionWishList = (TextView) itemView.findViewById(R.id.descripcionWishList);
             imageWishList = (ImageView) itemView.findViewById(R.id.imageWishList);
+            btAleatorio = (Button) itemView.findViewById(R.id.btAleatorio);
 
             pulsarLibro();
+
         }
 
+
+
+        //cualquier pulsación a libro
         private void pulsarLibro() {
             DB = new DBHelper(itemView.getContext());
             itemView.setOnClickListener(new View.OnClickListener() {
