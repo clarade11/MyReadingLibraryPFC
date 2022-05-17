@@ -68,12 +68,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             holder.fraseMemoriesLibro.setVisibility(View.GONE);
         }
         if (listamemories.get(position).getImagen() != null) {
-            //holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
-            //byte[] blob = listamemories.get(position).getImagen().getBytes();
-            //ByteArrayInputStream bais = new ByteArrayInputStream(blob);
-            //Bitmap bitmap = BitmapFactory.decodeStream(bais);
-            //holder.imagenMemories.setImageBitmap(bitmap);
-            System.out.println(listamemories.get(position).getImagen() + "------------IMAGEN");
+            //System.out.println(listamemories.get(position).getImagen() + "------------IMAGEN");
 
             holder.idImagen.setText(String.valueOf(id).trim());
             urlID.add(listamemories.get(position).getImagen().trim());

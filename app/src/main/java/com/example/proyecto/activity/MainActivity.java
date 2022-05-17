@@ -126,8 +126,6 @@ public class MainActivity extends AppCompatActivity {
         btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent i = new Intent(MainActivity.this, NavDrawer.class); //clase nuestra,clase a la que viajar
-                startActivity(i);*/
                 verificar();
             }
         });

@@ -100,14 +100,6 @@ public class Library extends Fragment {
 
     //crear objetos o recibir objetos para llenar la lista
     private void llenarLista() {
-//        listaLibros.add(new Libro(null,"libro 1","yo","5555555855",
-//        "micasa",7.80,"hola mundo",0,null,"teirico",0));
-//        listaLibros.add(new Libro(null,"libro 2","yo","5555555855",
-//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-//        listaLibros.add(new Libro(null,"libro 3","yo","5555555855",
-//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-//        listaLibros.add(new Libro(null,"libro 4","yo","5555555855",
-//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
         //bbdd
         List<Libro> lista= DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
         for(int i=0;i<lista.size();i++){
@@ -115,12 +107,8 @@ public class Library extends Fragment {
                 listaLibros.add(lista.get(i));
             }
         }
-        //listaLibros.add(new Libro("https://academiaandroid.com/wp-content/uploads/2016/10/SQLite_Android.jpg","libro 1","yo","5555555855",
-        //"micasa",7.80,"hola mundo",0,null,"teirico",0));
 
     }
-
-    //NAVEGAR A APP
 
 
 

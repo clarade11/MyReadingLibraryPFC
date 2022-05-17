@@ -101,7 +101,6 @@ public class VisualizarLibro extends AppCompatActivity {
         }
         tvPaginasLeidas.setText("No comenzado");
 
-        //tvPaginasLeidas.setText(String.valueOf(listaMemories.get));
 
         if(libro.getPuntuacion()!=0.0){
             double puntuacion = (double)libro.getPuntuacion();

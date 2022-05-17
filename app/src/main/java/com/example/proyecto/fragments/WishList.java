@@ -152,15 +152,6 @@ public class WishList extends Fragment {
 
     //metodo para crear objetos
     private void llenarLista() {
-                    //pruebas sin base de datos
-//        listaLibros.add(new Libro(null,"libro 1","yo","5555555855",
-//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-//        listaLibros.add(new Libro(null,"libro 2","yo","5555555855",
-//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-//        listaLibros.add(new Libro(null,"libro 3","yo","5555555855",
-//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
-//        listaLibros.add(new Libro(null,"libro 4","yo","5555555855",
-//                "micasa",7.80,"hola mundo",0,null,"teirico",0));
 //                    //base de datos
         List<Libro> listabbdd =  DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
 

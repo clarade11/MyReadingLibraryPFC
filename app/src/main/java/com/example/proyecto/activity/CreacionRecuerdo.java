@@ -37,7 +37,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
     EditText textRecuerdo;
     Button btCrear;
 
-    List<String> librosSpinner;
 
     DBHelper DB;
     Validacion validacion;
@@ -62,14 +61,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
     private void navegar() {
 
                 listener();
-//                if(spinnerTipo.getSelectedItem().equals("Imagen")){
-                   // imagen.setVisibility(View.VISIBLE);
-                   // textRecuerdo.setVisibility(View.GONE);
-                    //cargarImagen();
-//                } else {
-
-                   // imagen.setVisibility(View.GONE);
-                //}
 
         textRecuerdo.setVisibility(View.VISIBLE);
 
@@ -94,19 +85,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 } else if (tipoRecuerdo.equals("Texto")) {
                     descripcion = textRecuerdo.getText().toString().trim();
                 } else if (tipoRecuerdo.equals("Url de imagen")) {
-                    //bitmap
-                    //https://androidstudiofaqs.com/tutoriales/guardar-una-imagen-android-studio
-//                    if (imagen.getResources() != null) {
-                        //System.out.println(imagenBBDD);
-//                        imagen.buildDrawingCache();
-//                        Bitmap bitmap = imagen.getDrawingCache(); //bitmap de la imagen
-//
-//
-//                        ByteArrayOutputStream baos = new ByteArrayOutputStream(20480);
-//                        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos);
-//                        byte[] blob = baos.toByteArray();
-//                        imagenBBDD = new String(blob, java.nio.charset.StandardCharsets.UTF_8);
-
                         Glide.with(CreacionRecuerdo.this)
                                 .load(textRecuerdo.getText().toString().trim())
                                 .listener(new RequestListener<Drawable>() {
@@ -131,18 +109,8 @@ public class CreacionRecuerdo extends AppCompatActivity {
                     negativo=textRecuerdo.getText().toString().trim();
                 }
 
-                //Integer idLibro = DB.getIDLibro(tituloLibro, usuario.getIdUsuario());
+                Integer idLibro = DB.getIDLibro(tituloLibro, usuario.getIdUsuario());
 
-                //cogemos el id del libro
-                Integer idLibro = 100000;
-                List<Libro> libros = DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
-                for (int i = 0; i < libros.size(); i++) {
-                    System.out.println(tituloLibro);
-                    if (libros.get(i).getTitulo().trim().equals(tituloLibro.trim()) ) {
-                        idLibro = libros.get(i).getIdLibro();
-                        System.out.println("ID LIBRO DEL RECUERDO CREADO------>"+idLibro);
-                    }
-                }
 
                 //creamos recuerdo
                 System.out.println("ID LIBRO DEL RECUERDO CREADO IBSERTADO EN BBDD------>"+idLibro);
@@ -248,7 +216,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
         spinnerLibro = (Spinner) findViewById(R.id.spinnerLibro);
         spinnerTipo = (Spinner) findViewById(R.id.spinner2);
 
-        //imageView2 = (ImageView) findViewById(R.id.imageView2);
         textRecuerdo = (EditText) findViewById(R.id.textRecuerdo);
         btCrear = (Button) findViewById(R.id.buttonCrearRecuerdo);
         imageview= (ImageView) findViewById(R.id.imageViewRecuerdo);
