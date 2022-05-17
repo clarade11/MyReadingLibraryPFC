@@ -36,7 +36,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
     ImageView imageview;
     EditText textRecuerdo;
     Button btCrear;
-    ImageButton lapiz;
 
     List<String> librosSpinner;
 
@@ -61,24 +60,24 @@ public class CreacionRecuerdo extends AppCompatActivity {
     }
 
     private void navegar() {
-        lapiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 listener();
 //                if(spinnerTipo.getSelectedItem().equals("Imagen")){
                    // imagen.setVisibility(View.VISIBLE);
                    // textRecuerdo.setVisibility(View.GONE);
                     //cargarImagen();
 //                } else {
-                    textRecuerdo.setVisibility(View.VISIBLE);
+
                    // imagen.setVisibility(View.GONE);
                 //}
-            }
-        });
+
+        textRecuerdo.setVisibility(View.VISIBLE);
 
         btCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 String tituloLibro = spinnerLibro.getSelectedItem().toString();
                 String tipoRecuerdo = spinnerTipo.getSelectedItem().toString();
 
@@ -252,7 +251,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
         //imageView2 = (ImageView) findViewById(R.id.imageView2);
         textRecuerdo = (EditText) findViewById(R.id.textRecuerdo);
         btCrear = (Button) findViewById(R.id.buttonCrearRecuerdo);
-        lapiz = (ImageButton) findViewById(R.id.imageButtonLapiz);
         imageview= (ImageView) findViewById(R.id.imageViewRecuerdo);
     }
 }
