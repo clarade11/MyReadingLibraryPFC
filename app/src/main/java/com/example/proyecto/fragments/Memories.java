@@ -98,14 +98,6 @@ public class Memories extends Fragment {
 
     private void llenarLista() {
 
-//        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories("frase 1","azul","5","amarillo",null,"rosa",null
-//                , "rojo","positivo 1","naranja","negativo 1","rojo","45",1,0));
-//
-//        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul",null,"amarillo",null,"rosa","descripcion 2"
-//                , "rojo","positivo 1","naranja","negativo 1","rojo","45",2,0));
-//        listaMemories.add(new com.example.proyecto.clasesObjeto.Memories(null,"azul","5","amarillo",null,"rosa",null
-//                , "rojo","positivo 1","naranja","negativo 1","rojo","45",3,0));
-//
 
         List<com.example.proyecto.clasesObjeto.Memories> lista = DB.getAllMemoriesDeUsuario(usuario.getIdUsuario());
 
