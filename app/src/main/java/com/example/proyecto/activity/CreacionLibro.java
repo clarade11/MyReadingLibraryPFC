@@ -70,6 +70,12 @@ public class CreacionLibro extends AppCompatActivity {
                 if(checkBox.isChecked()){
                     comprado=0;
                 }
+                Double precio=0.0;
+                if(edPrecio.getText().toString().trim()==null || edPrecio.getText().toString().trim().equals("")){
+                    precio=0.0;
+                } else if(edPrecio.getText().toString().trim().contains(",")){
+                    precio = Double.parseDouble(edPrecio.getText().toString().trim().replace(",","."));
+                }
 
                 Libro libro = new Libro(
                         imagenLibro.getText().toString().trim(),
@@ -77,7 +83,7 @@ public class CreacionLibro extends AppCompatActivity {
                         edAutor.getText().toString().trim(),
                         edCodigoBarras.getText().toString().trim(),
                         edEditorial.getText().toString().trim(),
-                        Double.parseDouble(edPrecio.getText().toString().trim()),
+                        precio,
                         edDescripcion.getText().toString().trim(),
                         comprado,
                         0.0,
