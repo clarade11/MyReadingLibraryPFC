@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -59,6 +60,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
         } else if (listamemories.get(position).getDescripcion() == null) {
             holder.descripcionMemories.setVisibility(View.GONE);
             holder.descripcionMemoriesLibro.setVisibility(View.GONE);
+            holder.cv3.setVisibility(View.GONE);
         }
         if (listamemories.get(position).getFrase() != null) {
             holder.fraseMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
@@ -66,6 +68,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
         } else if (listamemories.get(position).getFrase() == null) {
             holder.fraseMemories.setVisibility(View.GONE);
             holder.fraseMemoriesLibro.setVisibility(View.GONE);
+            holder.cv2.setVisibility(View.GONE);
         }
         if (listamemories.get(position).getImagen() != null) {
             //System.out.println(listamemories.get(position).getImagen() + "------------IMAGEN");
@@ -96,6 +99,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             holder.imagenMemories.setVisibility(View.GONE);
             holder.imagenMemoriesLibro.setVisibility(View.GONE);
             holder.idImagen.setVisibility(View.GONE);
+            holder.cv1.setVisibility(View.GONE);
         }
 
 
@@ -111,6 +115,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
 
         TextView imagenMemoriesLibro, fraseMemoriesLibro, fraseMemories, descripcionMemoriesLibro, descripcionMemories, idImagen;
         ImageView imagenMemories;
+        CardView cv1, cv2, cv3;
         DBHelper DB;
         ArrayList<String> url = MemoriesAdapter.urlID;
 
@@ -123,6 +128,10 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             descripcionMemories = (TextView) itemView.findViewById(R.id.descripcionMemories);
             idImagen = (TextView) itemView.findViewById(R.id.imagenID);
             imagenMemories = (ImageView) itemView.findViewById(R.id.imagenMemories);
+            cv1=(CardView) itemView.findViewById(R.id.card_view);
+            cv2=(CardView) itemView.findViewById(R.id.card_view2);
+            cv3=(CardView) itemView.findViewById(R.id.card_view3);
+
 
             pulsarItem(itemView);
         }
@@ -239,6 +248,9 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             descripcionMemories.setVisibility(View.GONE);
                             imagenMemories.setVisibility(View.GONE);
                             idImagen.setVisibility(View.GONE);
+                            cv1.setVisibility(View.GONE);
+                            cv2.setVisibility(View.GONE);
+                            cv3.setVisibility(View.GONE);
 
                         }
 

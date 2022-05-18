@@ -13,6 +13,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tabSelectedIconColor">#E7F373</color>
 
+    <color name="fonfolibro">#AAB6FD</color>
     <color name="recuerdoFrase">#D75AFA</color>
     <color name="recuerdoPuntuacion">#EDFA75</color>
     <color name="recuerdoImagen">#ADFA83</color>

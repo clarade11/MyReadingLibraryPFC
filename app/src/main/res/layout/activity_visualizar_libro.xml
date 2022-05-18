@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.VisualizarLibro"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +25,7 @@
                 android:id="@+id/btGuardarCambiosLibro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="@color/ColorPrincipal"
+                android:backgroundTint="@color/ColorPrincipal"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="right"
                 android:layout_marginRight="10dp"
