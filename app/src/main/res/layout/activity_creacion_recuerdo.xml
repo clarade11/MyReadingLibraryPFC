@@ -27,6 +27,7 @@
         android:layout_width="208dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
+
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -39,6 +40,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:textAlignment="center"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,11 +72,15 @@
 
     <EditText
         android:id="@+id/textRecuerdo"
-        android:layout_width="256dp"
-        android:layout_height="246dp"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/ColorPrincipal"
         android:layout_marginTop="81dp"
         android:background="@drawable/formabackground"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"

@@ -24,6 +24,7 @@ import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.LibroLibraryGeneralAdapter;
 import com.example.proyecto.adapter.LibroWishListAdapter;
+import com.example.proyecto.adapter.Seguridad;
 import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
@@ -189,7 +190,8 @@ public class VerWishList extends AppCompatActivity {
                 libroModificado.setPuntuacion(0.0);
                 libroModificado.setDescripcion(sipnopsisW.getText().toString().trim());
                 libroModificado.setEditorial(editorialW.getText().toString().trim());
-                libroModificado.setPrecio(Double.valueOf(precioW.getText().toString().trim()));
+                Double seguridadPrecio = Seguridad.introduccionPrecio(precioW.getText().toString().trim());
+                libroModificado.setPrecio(seguridadPrecio);
                 libroModificado.setIdLibro(libro.getIdLibro());
                 libroModificado.setCodigoBarras(codigoBarrasW.getText().toString().trim());
                 libroModificado.setFotoID(libro.getFotoID());

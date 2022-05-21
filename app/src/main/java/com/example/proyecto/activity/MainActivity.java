@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     //variables locales
     Button btEntrar;
     EditText edUsuario, edContrasena;
-    TextView enlaceRegistrar, enlaceRecuperarContrasena;
+    TextView enlaceRegistrar, errorInicio;
     ImageView logo;
     //Cursor
     private Cursor cursor;
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         enlaceRegistrar = (TextView) findViewById(R.id.enlaceRegistrar);
         logo=(ImageView) findViewById(R.id.imageViewInicio) ;
 
-        enlaceRecuperarContrasena = (TextView) findViewById(R.id.enlaceRecuperarContrasena);
+        errorInicio = (TextView) findViewById(R.id.errorInicio);
     }
 
     //NAVEGAR A APP
@@ -156,8 +156,6 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
 
 
-
-
             //mensaje para aclarar
             Toast.makeText(this, "Sesión iniciada", Toast.LENGTH_SHORT).show();
 
@@ -166,14 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
             vaciar();
         } else {
-            //hay que poner aviso de error
-            List<Usuario>usuarios = DB.getAllUsuarios();
-            for(int i =0;i<usuarios.size();i++){
-                System.out.println(usuarios.get(i).getUsuario());
-;            }
-            System.out.println("Usuario login:"+edUsuario.getText().toString().trim());
-            System.out.println("contrasena login:"+edContrasena.getText().toString().trim());
-            System.out.println("error btentrar");
+            errorInicio.setVisibility(View.VISIBLE);
         }
     }
     /**

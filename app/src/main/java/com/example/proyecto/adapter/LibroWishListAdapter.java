@@ -60,22 +60,39 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
         holder.tituloWishList.setText(listaLibros.get(position).getTitulo());
         holder.precioWishList.setText(Double.toString(listaLibros.get(position).getPrecio()));
         holder.descripcionWishList.setText(listaLibros.get(position).getDescripcion());
-        //holder.imageWishList.setImageURI(Uri.parse(listaLibros.get(position).getFotoID()));
-        Glide.with(holder.itemView.getContext())
-                .load(listaLibros.get(position).getFotoID().trim())
-                .listener(new RequestListener<Drawable>() {
-                    @Override
-                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                        return false;
-                    }
+        if(listaLibros.get(position).getFotoID().trim().equals("")){
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.no_photo)
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                     }
 
-                    @Override
-                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        return false;
-                    }
+                        @Override
+                         public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                             return false; }
 
-                })
-                .into(holder.imageWishList);
+            })
+            .into(holder.imageWishList);
+        } else{
+            Glide.with(holder.itemView.getContext())
+                    .load(listaLibros.get(position).getFotoID().trim())
+                    .listener(new RequestListener<Drawable>() {
+                        @Override
+                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                            return false;
+                        }
+
+                     })
+                    .into(holder.imageWishList);
+}
+
 
     }
 

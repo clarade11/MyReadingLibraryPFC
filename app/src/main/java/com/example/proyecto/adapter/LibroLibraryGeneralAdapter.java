@@ -43,7 +43,7 @@ public class LibroLibraryGeneralAdapter extends RecyclerView.Adapter<LibroLibrar
     public void onBindViewHolder(@NonNull LibroGeneralViewHolder holder, int position) {
 
         //poner imagen si existe
-        if(listaMemories.get(position).getImagen()==null){
+        if(listaMemories.get(position).getImagen()==null  || listaMemories.get(position).getImagen().equals("")  ){
             holder.imagenMemoriesVisualizarLibro.setVisibility(View.GONE);
         } else {
             Glide.with(holder.itemView.getContext())
@@ -65,7 +65,7 @@ public class LibroLibraryGeneralAdapter extends RecyclerView.Adapter<LibroLibrar
 
         //poner descripcion si existe
 
-        if(listaMemories.get(position).getDescripcion()==null){
+        if(listaMemories.get(position).getDescripcion()==null || listaMemories.get(position).getDescripcion().equals("")){
             holder.descripcionMemoriesVisualizarLibro.setVisibility(View.GONE);
         }else {
             holder.descripcionMemoriesVisualizarLibro.setVisibility(View.VISIBLE);
@@ -74,16 +74,16 @@ public class LibroLibraryGeneralAdapter extends RecyclerView.Adapter<LibroLibrar
 
         //poner frase si existe
 
-        if(listaMemories.get(position).getFrase()==null){
+        if(listaMemories.get(position).getFrase()==null ){
             holder.fraseMemoriesVisualizarLibro.setVisibility(View.GONE);
-        }else {
+        } else {
             holder.fraseMemoriesVisualizarLibro.setVisibility(View.VISIBLE);
             holder.fraseMemoriesVisualizarLibro.setText(listaMemories.get(position).getFrase().trim());
         }
 
         //poner positivo si existe
 
-        if(listaMemories.get(position).getPositivo()==null){
+        if(listaMemories.get(position).getPositivo()==null || listaMemories.get(position).getDescripcion().equals("")){
             holder.positivoMemoriesVisualizarLibro.setVisibility(View.GONE);
         }else {
             holder.positivoMemoriesVisualizarLibro.setVisibility(View.VISIBLE);
@@ -92,7 +92,7 @@ public class LibroLibraryGeneralAdapter extends RecyclerView.Adapter<LibroLibrar
 
         //poner negativo si existe
 
-        if(listaMemories.get(position).getNegativo()==null){
+        if(listaMemories.get(position).getNegativo()==null || listaMemories.get(position).getDescripcion().equals("")){
             holder.negativoMemoriesVisualizarLibro.setVisibility(View.GONE);
         }else {
             holder.negativoMemoriesVisualizarLibro.setVisibility(View.VISIBLE);
@@ -113,10 +113,6 @@ public class LibroLibraryGeneralAdapter extends RecyclerView.Adapter<LibroLibrar
         public LibroGeneralViewHolder(@NonNull View itemView) {
             super(itemView);
             asociar();
-
-
-
-
 
         }
 

@@ -100,7 +100,7 @@ public class Registrar extends AppCompatActivity {
 
             vaciar();
         } else {
-            System.out.println("error en registrar()");
+            Toast.makeText(this, "Error en el registro", Toast.LENGTH_SHORT).show();
 
         }
     }

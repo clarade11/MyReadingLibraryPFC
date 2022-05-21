@@ -22,6 +22,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
+import com.example.proyecto.adapter.Seguridad;
 import com.example.proyecto.adapter.Validacion;
 import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
@@ -78,6 +79,7 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 String positivo = null;
                 String negativo = null;
 
+
                 //recogemos los datos de la pantalla
 
                 if (tipoRecuerdo.equals("Frase")) {
@@ -85,8 +87,10 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 } else if (tipoRecuerdo.equals("Texto")) {
                     descripcion = textRecuerdo.getText().toString().trim();
                 } else if (tipoRecuerdo.equals("Url de imagen")) {
+
+                    imagenBBDD = Seguridad.introduccionURL(textRecuerdo.getText().toString().trim(),CreacionRecuerdo.this);
                         Glide.with(CreacionRecuerdo.this)
-                                .load(textRecuerdo.getText().toString().trim())
+                                .load(imagenBBDD)
                                 .listener(new RequestListener<Drawable>() {
                                     @Override
                                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -100,8 +104,7 @@ public class CreacionRecuerdo extends AppCompatActivity {
 
                                 })
                                 .into(imageview);
-                        imagenBBDD=textRecuerdo.getText().toString().trim();
-//                    }
+
 
                 } else if(tipoRecuerdo.equals("Comentario positivo")){
                     positivo=textRecuerdo.getText().toString().trim();
@@ -113,7 +116,7 @@ public class CreacionRecuerdo extends AppCompatActivity {
 
 
                 //creamos recuerdo
-                System.out.println("ID LIBRO DEL RECUERDO CREADO IBSERTADO EN BBDD------>"+idLibro);
+
                 Memories memo =
                         new Memories(frase,null,null,null, imagenBBDD,null
                                 , descripcion,null, positivo,null, negativo,null,null,
@@ -132,7 +135,6 @@ public class CreacionRecuerdo extends AppCompatActivity {
         });
 
         }
-
 
     private void listener() {
 
@@ -186,9 +188,8 @@ public class CreacionRecuerdo extends AppCompatActivity {
         int z=0;
 
         for (int i = 0; i < listaLibros.size(); i++) {
-            //System.out.println(listaLibros.get(i).getTitulo());
-            if(listaLibros.get(i).getComprado()==1 && listaLibros.get(i).getTitulo()!=null){
 
+            if(listaLibros.get(i).getComprado()==1 && listaLibros.get(i).getTitulo()!=null){
                     z++;
             }
 
@@ -196,21 +197,15 @@ public class CreacionRecuerdo extends AppCompatActivity {
         String[] array = new String[z];
         z=0;
         for (int i = 0; i < listaLibros.size(); i++) {
-            //System.out.println(listaLibros.get(i).getTitulo());
             if(listaLibros.get(i).getComprado()==1 && listaLibros.get(i).getTitulo()!=null){
-                System.out.println(listaLibros.get(i).getTitulo());
-
                 array[z] = listaLibros.get(i).getTitulo();
                 z++;
-
-
             }
 
         }
         return array;
 
     }
-
 
     private void asociacion() {
         spinnerLibro = (Spinner) findViewById(R.id.spinnerLibro);

@@ -26,6 +26,7 @@ import com.bumptech.glide.request.target.Target;
 import com.example.proyecto.R;
 import com.example.proyecto.adapter.LibroLibraryAdapter;
 import com.example.proyecto.adapter.LibroLibraryGeneralAdapter;
+import com.example.proyecto.adapter.Seguridad;
 import com.example.proyecto.basedatos.DBHelper;
 import com.example.proyecto.clasesObjeto.Libro;
 import com.example.proyecto.clasesObjeto.Memories;
@@ -156,10 +157,11 @@ public class VisualizarLibro extends AppCompatActivity {
                 dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        foto = fotoNueva.getText().toString().trim();
+                        foto = Seguridad.introduccionURL(fotoNueva.getText().toString().trim(),VisualizarLibro.this) ;
+
                         libro.setFotoID(foto);
                         DB.actualizarLibro(libro);
-                        if(libro.getFotoID()!=null && (!libro.getFotoID().equals(""))){
+                        if(!libro.getFotoID().equals("")){
                             Glide.with(VisualizarLibro.this)
                                     .load(libro.getFotoID())
                                     .listener(new RequestListener<Drawable>() {
