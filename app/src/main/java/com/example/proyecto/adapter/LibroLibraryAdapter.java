@@ -62,7 +62,7 @@ public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapte
     public void onBindViewHolder(@NonNull LibroLibraryAdapter.LibroViewHolder holder, int position) {
         holder.tituloLibrary.setText(listaLibros.get(position).getTitulo());
 
-        if (listaLibros.get(position).getFotoID() == null) {
+        if (listaLibros.get(position).getFotoID().equals("")) {
             holder.imageLibrary.setImageResource(R.drawable.negro);
         } else{
             //si tiene url de la imagen

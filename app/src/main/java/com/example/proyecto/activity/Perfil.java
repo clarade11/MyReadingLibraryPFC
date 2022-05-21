@@ -249,21 +249,17 @@ public class Perfil extends AppCompatActivity {
         AlertDialog.Builder dialogo = new AlertDialog.Builder(Perfil.this);
         dialogo.setTitle("Próximas novedades");
 
-        String textoNovedad="My Reading Diary tiene el placer de informar que ¡Hay más contenido en camino!." +
+        String textoNovedad="My Reading Diary tiene el placer de informar que ¡Hay más contenido en camino!.";
+        String t1=
                 "En las próximas actualizaciones tendremos disponible que puedas seguir a otros usuarios, ver sus recuerdos, " +
                 "podrás ponerte una foto de perfil, podrás subir tus propias fotos como recuerdo o como post ;), y mucho más. " +
                 "¡My Reading Diary no va a parar de crecer!";
 
-        final TextView tv = new TextView(Perfil.this);
-        tv.setText(textoNovedad);
-        tv.setPadding(15, 15,
-                15, 15);
 
 
+        dialogo.setMessage(textoNovedad+"\n"+t1);
 
-        dialogo.setView(tv);
-
-        dialogo.setPositiveButton(R.string.actualizar, new DialogInterface.OnClickListener() {
+        dialogo.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 dialog.cancel();
@@ -274,8 +270,6 @@ public class Perfil extends AppCompatActivity {
 
 
     }
-
-
 
     //alert del cambio de contraseña del perfil
     private void alertCambioContrasena() {

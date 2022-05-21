@@ -71,28 +71,42 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             holder.cv2.setVisibility(View.GONE);
         }
         if (listamemories.get(position).getImagen() != null) {
-            //System.out.println(listamemories.get(position).getImagen() + "------------IMAGEN");
-
             holder.idImagen.setText(String.valueOf(id).trim());
             urlID.add(listamemories.get(position).getImagen().trim());
             id++;
+            if(listamemories.get(position).getImagen().trim().equals("")){
+                Glide.with(holder.itemView.getContext())
+                        .load(R.drawable.no_photo)
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
 
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                return false;
+                            }
 
-            Glide.with(holder.itemView.getContext())
-                    .load(listamemories.get(position).getImagen().trim())
-                    .listener(new RequestListener<Drawable>() {
-                        @Override
-                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                            return false;
-                        }
+                        })
+                        .into(holder.imagenMemories);
+            } else {
+                Glide.with(holder.itemView.getContext())
+                        .load(listamemories.get(position).getImagen().trim())
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
 
-                        @Override
-                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                            return false;
-                        }
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                return false;
+                            }
 
-                    })
-                    .into(holder.imagenMemories);
+                        })
+                        .into(holder.imagenMemories);
+            }
             holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
 
         } else if (listamemories.get(position).getImagen() == null) {
@@ -158,7 +172,6 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                     dialogo.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
-                            //Toast.makeText(itemView.getContext(), "Pulsado", Toast.LENGTH_SHORT).show();
                             String frase = fraseMemories.getText().toString().trim();
                             String tituloLibroFrase = fraseMemoriesLibro.getText().toString().trim();
                             String foto = idImagen.getText().toString().trim();
@@ -168,8 +181,6 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
 
                             List<Libro> lista = DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
 
-                            //creamos objeto con los campos pulsados
-                            //System.out.println(frase+" "+tituloLibroFrase+" "+tituloImagen+" "+descripcion+" "+tituloDescripcion);
                             Integer idLibro = 0;
                             for (int x = 0; x < lista.size(); x++) {
                                 if (tituloDescripcion != null && (!tituloDescripcion.equals("")) && tituloDescripcion.equals(lista.get(x).getTitulo())) {
@@ -182,7 +193,6 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                     System.out.println("ID LIBRO INSERTADO " + lista.get(x).getIdLibro());
                                 }
                             }
-                            //System.out.println("IDLIBRO PULSADO"+idLibro);
 
                             //url de la foto seleccionada SEGURIDAD
                             String imagenURL=null;
@@ -326,15 +336,14 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             @Override
                             public void onClick(DialogInterface dialog, int i) {
                                 if (fraseParaEditar != null && (!fraseParaEditar.equals("")) ) {
-                                    System.out.println("FRASE ANTGUA --" + fraseParaEditar);
                                     String frase = edTextoModificado.getText().toString().trim();
+
                                     Integer id = DB.getIDMemorieFrase(usuario.getIdUsuario(), fraseParaEditar);
                                     Memories moment = DB.getMemories(id);
                                     moment.setFrase(frase);
                                     DB.actualizarMemorie(moment);
                                     fraseMemories.setText(frase);
                                 } else if (descripcionParaEditar != null && (!descripcionParaEditar.equals(""))) {
-                                    System.out.println("DESCRIPCION ANTGUA --" + descripcionParaEditar);
                                     String descripcion = edTextoModificado.getText().toString().trim();
                                     Integer id = DB.getIDMemorieDescripcion(usuario.getIdUsuario(), descripcionParaEditar);
                                     Memories moment2 = DB.getMemories(id);
@@ -342,11 +351,12 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                     DB.actualizarMemorie(moment2);
                                     descripcionMemories.setText(descripcion);
                                 } else if (imagenParaEditar != null && (!imagenParaEditar.equals("")) ) {
-                                    System.out.println("IMAGEN ANTGUA --" + imagenParaEditar);
                                     String imagen = edTextoModificado.getText().toString().trim();
+                                    String url = Seguridad.introduccionURL(imagen, itemView.getContext());
+                                    System.out.println(url +"--Zurl");
                                     Integer id = DB.getIDMemorieImagen(usuario.getIdUsuario(), imagenParaEditar);
                                     Memories moment3 = DB.getMemories(id);
-                                    moment3.setImagen(imagen);
+                                    moment3.setImagen(url);
                                     DB.actualizarMemorie(moment3);
                                     Toast.makeText(itemView.getContext(), "Actualizado con éxito, entre y salga de los recuerdos", Toast.LENGTH_SHORT).show();
 

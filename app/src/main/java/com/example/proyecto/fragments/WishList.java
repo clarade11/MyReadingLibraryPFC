@@ -109,30 +109,40 @@ public class WishList extends Fragment {
 
 
         btAleatorio.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder dialogo = new AlertDialog.Builder(getContext());
                 dialogo.setTitle("¡Libro aleatorio que debes comprar!");
 
-                Random random = new Random();
-                int n = random.nextInt(lista.size()+0) ;
+                if(lista.size()!=0) {
+                    Random random = new Random();
+                    int n = random.nextInt(lista.size() + 0);
 
-                int idlibroaleatorio=lista.get(n).getIdLibro();
-                Libro aleatorio = DB.getLibro(idlibroaleatorio);
+                    int idlibroaleatorio = lista.get(n).getIdLibro();
+                    Libro aleatorio = DB.getLibro(idlibroaleatorio);
 
-                String tienda = aleatorio.getTienda();
+                    String tienda = aleatorio.getTienda();
 
-                if(tienda.equals("Tienda donde está disponible no indicado") || tienda.equals("")){
-                    tienda="No indicado";
+                    if (tienda.equals("Tienda donde está disponible no indicado") || tienda.equals("")) {
+                        tienda = "No indicado";
+                    }
+
+
+                    final TextView tv = new TextView(getContext());
+                    tv.setText("El libro aleatorio escogido es: " + aleatorio.getTitulo() + " disponible en: " + tienda);
+                    tv.setPadding(15, 15,
+                            15, 15);
+                    dialogo.setView(tv);
+                }
+                else{
+                    final TextView tv = new TextView(getContext());
+                    tv.setText("No hay libros en tu lista de deseo");
+                    tv.setPadding(15, 15,
+                            15, 15);
+                    dialogo.setView(tv);
                 }
 
-
-                final TextView tv = new TextView(getContext());
-                tv.setText("El libro aleatorio escogido es: "+aleatorio.getTitulo()+" disponible en: "+tienda);
-                tv.setPadding(15, 15,
-                        15, 15);
-
-                dialogo.setView(tv);
 
                 dialogo.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
                     @Override

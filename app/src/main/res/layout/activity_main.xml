@@ -49,6 +49,19 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="273dp" />
 
+    <TextView
+        android:id="@+id/errorInicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario o contraseña incorrecta"
+        android:textSize="15dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        />
+
     <Button
         android:id="@+id/btEntrar"
         android:layout_width="wrap_content"
@@ -69,17 +82,7 @@
         android:layout_marginTop="70dp"
         android:textColor="@color/ColorPrincipal"
         />
-    <TextView
-        android:id="@+id/enlaceRecuperarContrasena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recuperar contraseña"
-        android:textStyle="italic|bold"
-        android:textSize="15dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/ColorPrincipal"
-        />
+
 
 
 </LinearLayout>
