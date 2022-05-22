@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.WishList"
     android:orientation="vertical"
+    android:background="@color/fonfolibro"
     >
 
     <Button
