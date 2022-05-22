@@ -32,11 +32,17 @@ import com.example.proyecto.clasesObjeto.Usuario;
 
 import java.util.List;
 
+import yuku.ambilwarna.AmbilWarnaDialog;
+
 public class CreacionRecuerdo extends AppCompatActivity {
     Spinner spinnerLibro, spinnerTipo;
     ImageView imageview;
     EditText textRecuerdo;
     Button btCrear;
+
+    Button pickColor;
+    View vistacolor;
+    Integer colordefecto=0;
 
 
     DBHelper DB;
@@ -78,14 +84,25 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 String imagenBBDD = null;
                 String positivo = null;
                 String negativo = null;
+                Integer colorFrase=null;
+                Integer colorDescripcion=null;
+                Integer colorImagen=null;
+                Integer colorPositivo=null;
+                Integer colorNegativo=null;
 
 
                 //recogemos los datos de la pantalla
 
                 if (tipoRecuerdo.equals("Frase")) {
                     frase = textRecuerdo.getText().toString().trim();
+                    if(colordefecto!=0){
+                        colorFrase=colordefecto;
+                    }
                 } else if (tipoRecuerdo.equals("Texto")) {
                     descripcion = textRecuerdo.getText().toString().trim();
+                    if(colordefecto!=0){
+                        colorDescripcion=colordefecto;
+                    }
                 } else if (tipoRecuerdo.equals("Url de imagen")) {
 
                     imagenBBDD = Seguridad.introduccionURL(textRecuerdo.getText().toString().trim(),CreacionRecuerdo.this);
@@ -104,12 +121,20 @@ public class CreacionRecuerdo extends AppCompatActivity {
 
                                 })
                                 .into(imageview);
-
+                        if(colordefecto!=0){
+                        colorImagen=colordefecto;
+                    }
 
                 } else if(tipoRecuerdo.equals("Comentario positivo")){
                     positivo=textRecuerdo.getText().toString().trim();
+                    if(colordefecto!=0){
+                        colorPositivo=colordefecto;
+                    }
                 }else if(tipoRecuerdo.equals("Comentario negativo")){
                     negativo=textRecuerdo.getText().toString().trim();
+                    if(colordefecto!=0){
+                        colorNegativo=colordefecto;
+                    }
                 }
 
                 Integer idLibro = DB.getIDLibro(tituloLibro, usuario.getIdUsuario());
@@ -118,10 +143,12 @@ public class CreacionRecuerdo extends AppCompatActivity {
                 //creamos recuerdo
 
                 Memories memo =
-                        new Memories(frase,null,null,null, imagenBBDD,null
-                                , descripcion,null, positivo,null, negativo,null,null,
+                        new Memories(frase,String.valueOf(colorFrase),null,null, imagenBBDD,String.valueOf(colorImagen)
+                                , descripcion,String.valueOf(colorDescripcion), positivo,String.valueOf(colorPositivo), negativo,String.valueOf(colorNegativo),null,
                                  usuario.getIdUsuario(),idLibro);
                 DB.insertMemorie(memo);
+
+                System.out.println("color elegido ->"+colordefecto);
 
                 //mensaje correcto
                 Toast.makeText(CreacionRecuerdo.this, "Recuerdo creado", Toast.LENGTH_SHORT).show();
@@ -134,7 +161,44 @@ public class CreacionRecuerdo extends AppCompatActivity {
             }
         });
 
+        pickColor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                colorpickerDialogo();
+
+            }
+
+
+        });
         }
+
+    private void colorpickerDialogo() {
+        final AmbilWarnaDialog colorPickerDialogue = new AmbilWarnaDialog(this, colordefecto,
+                new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                    @Override
+                    public void onCancel(AmbilWarnaDialog dialog) {
+                        // leave this function body as
+                        // blank, as the dialog
+                        // automatically closes when
+                        // clicked on cancel button
+                    }
+
+                    @Override
+                    public void onOk(AmbilWarnaDialog dialog, int color) {
+                        // change the mDefaultColor to
+                        // change the GFG text color as
+                        // it is returned when the OK
+                        // button is clicked from the
+                        // color picker dialog
+                        colordefecto = color;
+
+                        // now change the picked color
+                        // preview box to mDefaultColor
+                        vistacolor.setBackgroundColor(colordefecto);
+                    }
+                });
+        colorPickerDialogue.show();
+    }
 
     private void listener() {
 
@@ -214,5 +278,8 @@ public class CreacionRecuerdo extends AppCompatActivity {
         textRecuerdo = (EditText) findViewById(R.id.textRecuerdo);
         btCrear = (Button) findViewById(R.id.buttonCrearRecuerdo);
         imageview= (ImageView) findViewById(R.id.imageViewRecuerdo);
+
+        pickColor = (Button) findViewById(R.id.pickColor);
+        vistacolor=(View) findViewById(R.id.preview_selected_color);
     }
 }

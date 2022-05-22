@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="@color/Destacar"
+            android:id="@+id/limagen"
             >
 
 
@@ -29,9 +29,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/lfrase"
             android:orientation="vertical"
-            android:layout_gravity="center"
-            android:background="@color/ColorPrincipal">
+            android:layout_gravity="center">
 
 
             <TextView
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:background="@color/purple_200">
+            android:id="@+id/ldescripcion">
 
             <TextView
                 android:id="@+id/descripcionMemoriesVisualizarLibro"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:background="@color/recuerdoFrase">
+        android:id="@+id/lpositivo">
 
 
         <TextView
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:background="@color/red">
+        android:id="@+id/lnegativo">
 
 
         <TextView

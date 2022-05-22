@@ -57,6 +57,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
         if (listamemories.get(position).getDescripcion() != null) {
             holder.descripcionMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
             holder.descripcionMemories.setText(listamemories.get(position).getDescripcion());
+            if(listamemories.get(position).getDescripcionColor()!=null){
+            holder.cv3.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getDescripcionColor()));}
         } else if (listamemories.get(position).getDescripcion() == null) {
             holder.descripcionMemories.setVisibility(View.GONE);
             holder.descripcionMemoriesLibro.setVisibility(View.GONE);
@@ -65,6 +67,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
         if (listamemories.get(position).getFrase() != null) {
             holder.fraseMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
             holder.fraseMemories.setText(listamemories.get(position).getFrase());
+            if(listamemories.get(position).getFraseColor()!=null){
+                holder.cv2.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getFraseColor()));}
         } else if (listamemories.get(position).getFrase() == null) {
             holder.fraseMemories.setVisibility(View.GONE);
             holder.fraseMemoriesLibro.setVisibility(View.GONE);
@@ -108,6 +112,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                         .into(holder.imagenMemories);
             }
             holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+            if(listamemories.get(position).getImagenColor()!=null){
+                holder.cv1.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getImagenColor()));}
 
         } else if (listamemories.get(position).getImagen() == null) {
             holder.imagenMemories.setVisibility(View.GONE);
@@ -142,9 +148,9 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             descripcionMemories = (TextView) itemView.findViewById(R.id.descripcionMemories);
             idImagen = (TextView) itemView.findViewById(R.id.imagenID);
             imagenMemories = (ImageView) itemView.findViewById(R.id.imagenMemories);
-            cv1=(CardView) itemView.findViewById(R.id.card_view);
-            cv2=(CardView) itemView.findViewById(R.id.card_view2);
-            cv3=(CardView) itemView.findViewById(R.id.card_view3);
+            cv1=(CardView) itemView.findViewById(R.id.card_view); //imagen
+            cv2=(CardView) itemView.findViewById(R.id.card_view2); //frase
+            cv3=(CardView) itemView.findViewById(R.id.card_view3); //descripcion
 
 
             pulsarItem(itemView);
