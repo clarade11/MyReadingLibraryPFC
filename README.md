@@ -60,3 +60,6 @@ https://www.youtube.com/watch?v=PUTs7-pNDJg
 //GLIDE
 https://guides.codepath.com/android/Displaying-Images-with-the-Glide-Library
 https://bumptech.github.io/glide/
+
+//SELECTOR DE COLOR
+https://es.acervolima.com/como-crear-una-herramienta-de-seleccion-de-color-basica-en-android/
