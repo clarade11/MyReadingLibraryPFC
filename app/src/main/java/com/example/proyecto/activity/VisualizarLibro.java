@@ -41,7 +41,7 @@ public class VisualizarLibro extends AppCompatActivity {
     ImageView imageVisualizarLibro;
     TextView tvTituloLibro;
     EditText tvSipnopsis,tvISBN,tvPrecio, tvPaginasLeidas;
-    RecyclerView recyclerVisualizarLibroID;
+    //RecyclerView recyclerVisualizarLibroID;
     RatingBar ratingBar;
     ImageButton btGuardarCambios;
     DBHelper DB;
@@ -69,13 +69,13 @@ public class VisualizarLibro extends AppCompatActivity {
     private void vista() {
 
         listaMemories = new ArrayList<com.example.proyecto.clasesObjeto.Memories>();
-        recyclerVisualizarLibroID.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerVisualizarLibroID.setLayoutManager(new LinearLayoutManager(this));
 
         llenarCampos();
         llenarLista();
 
         LibroLibraryGeneralAdapter adapter = new LibroLibraryGeneralAdapter(listaMemories,VisualizarLibro.this);//llenamos el adapter con la lista llena
-        recyclerVisualizarLibroID.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
+        //recyclerVisualizarLibroID.setAdapter(adapter); //metemos el adaptador que acabamos de llenar
 
 
     }
@@ -234,7 +234,7 @@ public class VisualizarLibro extends AppCompatActivity {
         tvISBN = (EditText) findViewById(R.id.tvISBN);
         tvPrecio = (EditText) findViewById(R.id.tvPrecio);
         tvPaginasLeidas = (EditText) findViewById(R.id.tvPaginasLeidas);
-        recyclerVisualizarLibroID = (RecyclerView) findViewById(R.id.recyclerVisualizarLibroID);
+//        recyclerVisualizarLibroID = (RecyclerView) findViewById(R.id.recyclerVisualizarLibroID);
         ratingBar=(RatingBar) findViewById(R.id.ratingBar);
         btGuardarCambios = (ImageButton) findViewById(R.id.btGuardarCambiosLibro);
 

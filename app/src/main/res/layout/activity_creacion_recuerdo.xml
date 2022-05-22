@@ -10,6 +10,18 @@
     >
 
     <TextView
+        android:id="@+id/tvColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="El color elegido es: "
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCrearRecuerdo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pickColor"
+        app:layout_constraintVertical_bias="0.181" />
+
+    <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +39,7 @@
         android:layout_width="208dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
-
+        android:textColor="@color/white"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -72,17 +84,16 @@
 
     <EditText
         android:id="@+id/textRecuerdo"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="371dp"
+        android:layout_height="59dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/formabackground"
         android:backgroundTint="@color/white"
         android:textColor="@color/ColorPrincipal"
-        android:layout_marginTop="81dp"
-        android:background="@drawable/formabackground"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner2">
 
@@ -101,9 +112,31 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/pickColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:backgroundTint="@color/white"
+        android:text="Elegir color"
+        android:textColor="@color/ColorPrincipal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textRecuerdo" />
 
-
-
+    <View
+        android:id="@+id/preview_selected_color"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCrearRecuerdo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvColor"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
