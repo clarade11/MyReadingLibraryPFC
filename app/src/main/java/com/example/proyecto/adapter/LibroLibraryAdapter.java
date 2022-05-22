@@ -63,7 +63,7 @@ public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapte
         holder.tituloLibrary.setText(listaLibros.get(position).getTitulo());
 
         if (listaLibros.get(position).getFotoID().equals("")) {
-            holder.imageLibrary.setImageResource(R.drawable.negro);
+            holder.imageLibrary.setImageResource(R.drawable.no_photo);
         } else{
             //si tiene url de la imagen
             Glide.with(holder.itemView.getContext())
