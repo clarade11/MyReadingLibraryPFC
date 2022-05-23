@@ -113,6 +113,5 @@ public class Memories extends Fragment {
 //            nombreLibros.add(titulo);
 
         }
-        lista.clear();
     }
 }

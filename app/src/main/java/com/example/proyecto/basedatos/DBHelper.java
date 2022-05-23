@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
 
     // Database Name
     private static final String DATABASE_NAME = "MyReadingDiary.db";
@@ -38,6 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_NOMBRE = "nombre";
     private static final String COLUMN_APELLIDOS = "apellidos";
     private static final String COLUMN_TELEFONO = "telefono";
+    private static final String COLUMN_FOTO_PERFIL_USUARIO = "foto";
 
     //recuerdos
     private static final String COLUMN_IDMEMORIES = "idmemories";
@@ -728,7 +729,7 @@ public class DBHelper extends SQLiteOpenHelper {
      */
     @SuppressLint("Range")
     public String getTituloLibro (Integer idLibro){
-
+    System.out.println(idLibro+" IDLIBRO EN BBDD");
         // array of columns to fetch
         String[] columns = {
                 COLUMN_ID_LIBRO,
@@ -1060,7 +1061,100 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return lista.get(0).getIdMemories();
     }
+    /**
+     * Este método es para buscarel id memories por su descripcion.
+     *
+     * @return Integer
+     */
+    @SuppressLint("Range")
+    public Integer getIDMemoriePositivo(Integer idUsuario, String positivo) {
 
+        String[] columnas = {
+                COLUMN_IDMEMORIES,
+                COLUMN_POSITIVO,
+                COLUMN_ID_USUARIO,
+        };
+
+        String orden =
+                COLUMN_IDMEMORIES + " ASC";
+        List<Memories> lista = new ArrayList<Memories>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COLUMN_ID_USUARIO + " = ?" +" AND "+ COLUMN_POSITIVO+ " = ?" ;
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario), positivo};
+
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columnas,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+
+            Memories momentClase = new Memories();
+            momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+            momentClase.setPositivo(cursor.getString(cursor.getColumnIndex(COLUMN_POSITIVO)));
+            momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+
+            lista.add(momentClase);
+        }
+        cursor.close();
+        db.close();
+
+        return lista.get(0).getIdMemories();
+    }
+    /**
+     * Este método es para buscarel id memories por su descripcion.
+     *
+     * @return int
+     */
+    @SuppressLint("Range")
+    public Integer getIDMemorieNegativo(Integer idUsuario, String negativo) {
+
+        String[] columnas = {
+                COLUMN_IDMEMORIES,
+                COLUMN_NEGATIVO,
+                COLUMN_ID_USUARIO,
+        };
+
+        String orden =
+                COLUMN_IDMEMORIES + " ASC";
+        List<Memories> lista = new ArrayList<Memories>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // selection criteria
+        String selection = COLUMN_ID_USUARIO + " = ?" +" AND "+ COLUMN_NEGATIVO+ " = ?" ;
+        // selection arguments
+        String[] selectionArgs = {String.valueOf(idUsuario), negativo};
+
+
+        Cursor cursor = db.query(TABLE_MEMORIES, //Table to query
+                columnas,    //columns to return
+                selection,        //columns for the WHERE clause
+                selectionArgs,        //The values for the WHERE clause
+                null,       //group the rows
+                null,       //filter by row groups
+                orden); //The sort order
+        // cogemos todos los datos y los metemos en la lista
+        if (cursor.moveToFirst()) {
+
+            Memories momentClase = new Memories();
+            momentClase.setIdMemories(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_IDMEMORIES))));
+            momentClase.setNegativo(cursor.getString(cursor.getColumnIndex(COLUMN_NEGATIVO)));
+            momentClase.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_ID_USUARIO))));
+
+            lista.add(momentClase);
+        }
+        cursor.close();
+        db.close();
+
+        return lista.get(0).getIdMemories();
+    }
     /**
      * Este método es para buscarel id memories por su imagen.
      *
@@ -1181,7 +1275,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_NEGATIVO_COLOR, moment.getNegativoColor());
         values.put(COLUMN_PAGINAS_LEIDAS, moment.getPaginasLeidas());
         values.put(COLUMN_ID_USUARIO, moment.getIdUsuario());
-        values.put(COLUMN_ID_LIBRO, moment.getIdMemories());
+        values.put(COLUMN_ID_LIBRO, moment.getIdLibro());
 
         db.update(TABLE_MEMORIES, values, COLUMN_IDMEMORIES + " = ?",
                 new String[]{String.valueOf(moment.getIdMemories())});
