@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.example.proyecto.R;
+import com.example.proyecto.adapter.MemoriesAdapter;
 import com.example.proyecto.adapter.Seguridad;
 import com.example.proyecto.adapter.Validacion;
 import com.example.proyecto.basedatos.DBHelper;
@@ -25,6 +26,9 @@ import com.example.proyecto.clasesObjeto.Usuario;
 import java.util.List;
 
 public class CreacionLibro extends AppCompatActivity {
+
+
+
 
     Button btCrearLibro;
     ImageButton ayuda;

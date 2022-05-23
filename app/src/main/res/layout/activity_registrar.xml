@@ -64,6 +64,21 @@
         android:textSize="20dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="273dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="La contraseña debe tener letras y números."
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No debe ser menor a 10 carácteres."
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:gravity="center"/>
+
     <EditText
         android:id="@+id/edRegistrarTelefono"
         android:layout_width="match_parent"

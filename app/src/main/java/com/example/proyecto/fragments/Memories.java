@@ -34,7 +34,7 @@ public class Memories extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     //ARRAYLIST DE OTRAS CLASES
-    public static ArrayList<String> nombreLibros = new ArrayList<String>();
+    //public static ArrayList<String> nombreLibros = new ArrayList<String>();
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -102,20 +102,15 @@ public class Memories extends Fragment {
         List<com.example.proyecto.clasesObjeto.Memories> lista = DB.getAllMemoriesDeUsuario(usuario.getIdUsuario());
 
         for (int i = 0; i < lista.size(); i++) {
-            System.out.println("IDLIBRO DE LA LISTA DE PANTALLA MEMORIES --- " + lista.get(i).getIdLibro());
-            System.out.println("IMAGENNNNNN DE LA LISTA DE PANTALLA MEMORIES --- " + lista.get(i).getImagen());
-
             listaMemories.add(lista.get(i));
-
-
-            //RECUPERAMOS EL TITULO A PARTIR DEL ID DEL LIBRO
-            Integer id = lista.get(i).getIdLibro();
-            System.out.println(id);
-            Libro libro = DB.getLibro(id);
-            System.out.println("Titulo libro del recuerdo : " + libro.getTitulo());
-            String titulo = libro.getTitulo();
-            System.out.println("VARIABLE TITULO: " + titulo);
-            nombreLibros.add(titulo);
+//            //RECUPERAMOS EL TITULO A PARTIR DEL ID DEL LIBRO
+//            Integer id = lista.get(i).getIdLibro();
+//            System.out.println(id);
+//            Libro libro = DB.getLibro(id);
+//            System.out.println("Titulo libro del recuerdo : " + libro.getTitulo());
+//            String titulo = libro.getTitulo();
+//            System.out.println("VARIABLE TITULO: " + titulo);
+//            nombreLibros.add(titulo);
 
         }
     }

@@ -51,22 +51,37 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
     @Override
     public void onBindViewHolder(@NonNull MemoriesViewHolder holder, int position) {
         //el id libro tiene que ser cambiado por el nombre del libro
-        ArrayList<String> nombresLibros = com.example.proyecto.fragments.Memories.nombreLibros;
+        //ArrayList<String> nombresLibros = com.example.proyecto.fragments.Memories.nombreLibros;
+        DBHelper DB = new DBHelper(holder.itemView.getContext());
 
 
         if (listamemories.get(position).getDescripcion() != null) {
-            holder.descripcionMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getIdLibro());
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getDescripcion());
+
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.descripcionMemoriesLibro.setText(titulo);
+
             holder.descripcionMemories.setText(listamemories.get(position).getDescripcion());
             if(listamemories.get(position).getDescripcionColor()!=null){
+
             holder.cv3.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getDescripcionColor()));}
+
         } else if (listamemories.get(position).getDescripcion() == null) {
             holder.descripcionMemories.setVisibility(View.GONE);
             holder.descripcionMemoriesLibro.setVisibility(View.GONE);
             holder.cv3.setVisibility(View.GONE);
         }
         if (listamemories.get(position).getFrase() != null) {
-            holder.fraseMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getIdLibro());
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getFrase());
+
+
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.fraseMemoriesLibro.setText(titulo);
             holder.fraseMemories.setText(listamemories.get(position).getFrase());
+
             if(listamemories.get(position).getFraseColor()!=null){
                 holder.cv2.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getFraseColor()));}
         } else if (listamemories.get(position).getFrase() == null) {
@@ -75,6 +90,9 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             holder.cv2.setVisibility(View.GONE);
         }
         if (listamemories.get(position).getImagen() != null) {
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getIdLibro());
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getImagen());
+
             holder.idImagen.setText(String.valueOf(id).trim());
             urlID.add(listamemories.get(position).getImagen().trim());
             id++;
@@ -111,7 +129,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                         })
                         .into(holder.imagenMemories);
             }
-            holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.imagenMemoriesLibro.setText(titulo);
             if(listamemories.get(position).getImagenColor()!=null){
                 holder.cv1.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getImagenColor()));}
 
@@ -120,6 +139,39 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             holder.imagenMemoriesLibro.setVisibility(View.GONE);
             holder.idImagen.setVisibility(View.GONE);
             holder.cv1.setVisibility(View.GONE);
+        } if (listamemories.get(position).getPositivo() != null) {
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getIdLibro());
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getPositivo());
+
+
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.positivoMemoriesLibro.setText(titulo);
+
+            holder.positivoMemories.setText(listamemories.get(position).getPositivo());
+            if(listamemories.get(position).getPositivoColor()!=null){
+
+                holder.cv4.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getPositivoColor()));}
+
+        } else if (listamemories.get(position).getPositivo() == null) {
+            holder.positivoMemories.setVisibility(View.GONE);
+            holder.positivoMemoriesLibro.setVisibility(View.GONE);
+            holder.cv4.setVisibility(View.GONE);
+        }if (listamemories.get(position).getNegativo() != null) {
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getIdLibro());
+            System.out.println("IDLIBRO A BBDD"+listamemories.get(position).getNegativo());
+
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.negativoMemoriesLibro.setText(titulo);
+
+            holder.negativoMemories.setText(listamemories.get(position).getNegativo());
+            if(listamemories.get(position).getNegativoColor()!=null){
+
+                holder.cv5.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getNegativoColor()));}
+
+        } else if (listamemories.get(position).getNegativo() == null) {
+            holder.negativoMemories.setVisibility(View.GONE);
+            holder.negativoMemoriesLibro.setVisibility(View.GONE);
+            holder.cv5.setVisibility(View.GONE);
         }
 
 
@@ -133,9 +185,9 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
 
     public static class MemoriesViewHolder extends RecyclerView.ViewHolder {
 
-        TextView imagenMemoriesLibro, fraseMemoriesLibro, fraseMemories, descripcionMemoriesLibro, descripcionMemories, idImagen;
+        TextView imagenMemoriesLibro, fraseMemoriesLibro, fraseMemories, descripcionMemoriesLibro, descripcionMemories, idImagen, negativoMemories, negativoMemoriesLibro, positivoMemories,positivoMemoriesLibro;
         ImageView imagenMemories;
-        CardView cv1, cv2, cv3;
+        CardView cv1, cv2, cv3, cv4, cv5;
         DBHelper DB;
         ArrayList<String> url = MemoriesAdapter.urlID;
 
@@ -148,10 +200,15 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
             descripcionMemories = (TextView) itemView.findViewById(R.id.descripcionMemories);
             idImagen = (TextView) itemView.findViewById(R.id.imagenID);
             imagenMemories = (ImageView) itemView.findViewById(R.id.imagenMemories);
+            positivoMemoriesLibro = (TextView) itemView.findViewById(R.id.positivoMemoriesLibro);
+            positivoMemories = (TextView) itemView.findViewById(R.id.positivoMemories);
+            negativoMemoriesLibro = (TextView) itemView.findViewById(R.id.negativoMemoriesLibro);
+            negativoMemories = (TextView) itemView.findViewById(R.id.negativoMemories);
             cv1=(CardView) itemView.findViewById(R.id.card_view); //imagen
             cv2=(CardView) itemView.findViewById(R.id.card_view2); //frase
             cv3=(CardView) itemView.findViewById(R.id.card_view3); //descripcion
-
+            cv4=(CardView) itemView.findViewById(R.id.card_view4); //positivo
+            cv5=(CardView) itemView.findViewById(R.id.card_view5); //negativo
 
             pulsarItem(itemView);
         }
@@ -184,6 +241,10 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             String tituloImagen = imagenMemoriesLibro.getText().toString().trim();
                             String descripcion = descripcionMemories.getText().toString().trim();
                             String tituloDescripcion = descripcionMemoriesLibro.getText().toString().trim();
+                            String positivo = positivoMemories.getText().toString().trim();
+                            String tituloPositivo = positivoMemoriesLibro.getText().toString().trim();
+                            String negativo = negativoMemories.getText().toString().trim();
+                            String tituloNegativo = negativoMemoriesLibro.getText().toString().trim();
 
                             List<Libro> lista = DB.getAllLibrosDeUsuario(usuario.getIdUsuario());
 
@@ -197,8 +258,15 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                 } else if (tituloLibroFrase != null && (!tituloLibroFrase.equals("")) && tituloLibroFrase.equals(lista.get(x).getTitulo())) {
                                     idLibro = lista.get(x).getIdLibro();
                                     System.out.println("ID LIBRO INSERTADO " + lista.get(x).getIdLibro());
+                                }else if (tituloPositivo != null && (!tituloPositivo.equals("")) && tituloPositivo.equals(lista.get(x).getTitulo())) {
+                                    idLibro = lista.get(x).getIdLibro();
+                                }else if (tituloNegativo != null && (!tituloNegativo.equals("")) && tituloNegativo.equals(lista.get(x).getTitulo())) {
+                                    idLibro = lista.get(x).getIdLibro();
                                 }
+
                             }
+
+                            lista.clear(); //limpiamos
 
                             //url de la foto seleccionada SEGURIDAD
                             String imagenURL=null;
@@ -215,12 +283,15 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             //SEGURIDAD STRINGS
                             String fraseBBDD=null;
                             String descripcionBBDD=null;
+                            String positivoBBDD=null;
+                            String negativoBBDD=null;
 
                             fraseBBDD = seguridad(fraseBBDD, frase);
                             descripcionBBDD=seguridad(descripcionBBDD,descripcion);
+                            positivoBBDD = seguridad(positivoBBDD, positivo);
+                            negativoBBDD = seguridad(negativoBBDD, negativo);
 
-
-                            Memories memo = new Memories(fraseBBDD, descripcionBBDD, null, null, imagenURL, idLibro, usuario.getIdUsuario());
+                            Memories memo = new Memories(fraseBBDD, descripcionBBDD, positivoBBDD, negativoBBDD, imagenURL, idLibro, usuario.getIdUsuario());
 
 
                             //comparamos los recuerdos de la bbdd con el pulsado para borrarlo
@@ -232,9 +303,6 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                 System.out.println("DENTRO DEL FOR ID DEL MOMENTO RECORRIDO" + listamemoriesdeusuario.get(a).getIdMemories());
 
                                 if (memo.getIdLibro() == listamemoriesdeusuario.get(a).getIdLibro()) {
-                                    System.out.println("IDLIBRO COINCIDE");
-                                    //arreglar esto
-
                                     if (memo.getFrase() != null && listamemoriesdeusuario.get(a).getFrase() != null && (!memo.getFrase().equals(""))) {
                                         idRecuerdo = DB.getIDMemorieFrase(usuario.getIdUsuario(), memo.getFrase().trim());
 
@@ -244,10 +312,18 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                     } else if (memo.getImagen() != null && listamemoriesdeusuario.get(a).getImagen() != null && (!memo.getImagen().equals(""))) {
                                         idRecuerdo = DB.getIDMemorieImagen(usuario.getIdUsuario(), memo.getImagen().trim());
 
+                                    }else if (memo.getPositivo() != null && listamemoriesdeusuario.get(a).getPositivo() != null && (!memo.getPositivo().equals(""))) {
+                                        idRecuerdo = DB.getIDMemoriePositivo(usuario.getIdUsuario(), memo.getPositivo().trim());
+
+                                    }else if (memo.getNegativo() != null && listamemoriesdeusuario.get(a).getNegativo() != null && (!memo.getNegativo().equals(""))) {
+                                        idRecuerdo = DB.getIDMemorieNegativo(usuario.getIdUsuario(), memo.getNegativo().trim());
+
                                     }
                                 }
 
                             }
+
+                            listamemoriesdeusuario.clear();//limpiamos
                             System.out.println(idRecuerdo + "----> ID RECUERDO");
                             moment = DB.getMemories(idRecuerdo);
 
@@ -262,11 +338,17 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             fraseMemories.setVisibility(View.GONE);
                             descripcionMemoriesLibro.setVisibility(View.GONE);
                             descripcionMemories.setVisibility(View.GONE);
+                            positivoMemoriesLibro.setVisibility(View.GONE);
+                            positivoMemories.setVisibility(View.GONE);
+                            negativoMemoriesLibro.setVisibility(View.GONE);
+                            negativoMemories.setVisibility(View.GONE);
                             imagenMemories.setVisibility(View.GONE);
                             idImagen.setVisibility(View.GONE);
                             cv1.setVisibility(View.GONE);
                             cv2.setVisibility(View.GONE);
                             cv3.setVisibility(View.GONE);
+                            cv4.setVisibility(View.GONE);
+                            cv5.setVisibility(View.GONE);
 
                         }
 
@@ -310,6 +392,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                     //cogemos string del elemento pulsado
                     String fraseParaEditar = fraseMemories.getText().toString().trim();
                     String descripcionParaEditar = descripcionMemories.getText().toString().trim();
+                    String positivoParaEditar = positivoMemories.getText().toString().trim();
+                    String negativoParaEditar = negativoMemories.getText().toString().trim();
 
                     String id=idImagen.getText().toString().trim();
 
@@ -320,7 +404,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
 
 
 
-                    if (fraseParaEditar != null || descripcionParaEditar != null || imagenParaEditar!=null) {
+                    if (fraseParaEditar != null || descripcionParaEditar != null || imagenParaEditar!=null || positivoParaEditar != null || negativoParaEditar != null) {
 
                         //Creamos dialogo
                         AlertDialog.Builder dialogo = new AlertDialog.Builder(itemView.getContext());
@@ -334,6 +418,10 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                             edTextoModificado.setText(descripcionParaEditar);
                         } else if(imagenParaEditar != null && (!imagenParaEditar.equals(""))){
                             edTextoModificado.setText(imagenParaEditar);
+                        }else if(positivoParaEditar != null && (!positivoParaEditar.equals(""))){
+                            edTextoModificado.setText(positivoParaEditar);
+                        }else if(negativoParaEditar != null && (!negativoParaEditar.equals(""))){
+                            edTextoModificado.setText(negativoParaEditar);
                         }
                         dialogo.setView(edTextoModificado);
 
@@ -363,9 +451,24 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                     Integer id = DB.getIDMemorieImagen(usuario.getIdUsuario(), imagenParaEditar);
                                     Memories moment3 = DB.getMemories(id);
                                     moment3.setImagen(url);
+
                                     DB.actualizarMemorie(moment3);
                                     Toast.makeText(itemView.getContext(), "Actualizado con éxito, entre y salga de los recuerdos", Toast.LENGTH_SHORT).show();
 
+                                }else if (positivoParaEditar != null && (!positivoParaEditar.equals(""))) {
+                                    String positivo = edTextoModificado.getText().toString().trim();
+                                    Integer id = DB.getIDMemoriePositivo(usuario.getIdUsuario(), positivoParaEditar);
+                                    Memories moment4 = DB.getMemories(id);
+                                    moment4.setPositivo(positivo);
+                                    DB.actualizarMemorie(moment4);
+                                    positivoMemories.setText(positivo);
+                                }else if (negativoParaEditar != null && (!negativoParaEditar.equals(""))) {
+                                    String negativo = edTextoModificado.getText().toString().trim();
+                                    Integer id = DB.getIDMemorieNegativo(usuario.getIdUsuario(), negativoParaEditar);
+                                    Memories moment5 = DB.getMemories(id);
+                                    moment5.setNegativo(negativo);
+                                    DB.actualizarMemorie(moment5);
+                                    negativoMemories.setText(negativo);
                                 }
 
                             }
