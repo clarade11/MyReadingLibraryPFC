@@ -36,6 +36,8 @@ public class Registrar extends AppCompatActivity {
     DBHelper DB;
     Validacion validacion;
 
+    Boolean otrapantalla=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,17 +89,20 @@ public class Registrar extends AppCompatActivity {
         }
         if (!validacion.isEditTextContrasena(edRegistrarContrasena,edRegistrarContrasenaRepetida,  "ERROR")) {
             return ;
+        } if(edRegistrarContrasena.getText().toString().trim().length()<10){
+            Toast.makeText(this, "Debe contener 10 o más caracteres.", Toast.LENGTH_SHORT).show();
+            return;
         }
         if (!DB.existeUsuario(edRegistrarUsuario.getText().toString().trim())) {
             Usuario usuario = new Usuario();
             usuario.setUsuario(edRegistrarUsuario.getText().toString().trim());
             usuario.setContrasena(edRegistrarContrasena.getText().toString().trim());
             usuario.setTelefono(edRegistrarTelefono.getText().toString().trim());;
-            usuario.setNombre("Edite perfil para añadir el nombre");
-            usuario.setApellidos("Edite perfil para añadir el apellido");
+            usuario.setNombre("Pulsar aquí para añadir el nombre");
+            usuario.setApellidos("Pulsar aquí para añadir el apellido");
 
             DB.insertUsuario(usuario);
-
+            otrapantalla=true;
             vaciar();
         } else {
             Toast.makeText(this, "Error en el registro", Toast.LENGTH_SHORT).show();
@@ -110,9 +115,11 @@ public class Registrar extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 registrar();
-                //volvemos
-                Intent intent = new Intent(Registrar.this, MainActivity.class);
-                startActivity(intent);
+                if(otrapantalla) {
+                    //volvemos
+                    Intent intent = new Intent(Registrar.this, MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -120,6 +127,7 @@ public class Registrar extends AppCompatActivity {
      * Metodo para vaciar los campos de texto
      */
     private void vaciar() {
+
         edRegistrarTelefono.setText(null);
         edRegistrarContrasena.setText(null);
         edRegistrarContrasenaRepetida.setText(null);

@@ -64,8 +64,6 @@ public class Validacion {
         if (!value1.equals(value2)) {
             hideKeyboardFrom(editText2);
             return false;
-        } else {
-            //textInputLayout.setErrorEnabled(false);
         }
         return true;
     }
