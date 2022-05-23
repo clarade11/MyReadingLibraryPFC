@@ -97,11 +97,15 @@ public class CreacionRecuerdo extends AppCompatActivity {
                     frase = textRecuerdo.getText().toString().trim();
                     if(colordefecto!=0){
                         colorFrase=colordefecto;
+                    } else{
+                        colorFrase=-1;
                     }
                 } else if (tipoRecuerdo.equals("Texto")) {
                     descripcion = textRecuerdo.getText().toString().trim();
                     if(colordefecto!=0){
                         colorDescripcion=colordefecto;
+                    } else{
+                        colorDescripcion=-1;
                     }
                 } else if (tipoRecuerdo.equals("Url de imagen")) {
 
@@ -123,17 +127,23 @@ public class CreacionRecuerdo extends AppCompatActivity {
                                 .into(imageview);
                         if(colordefecto!=0){
                         colorImagen=colordefecto;
-                    }
+                    } else{
+                            colorImagen=-1;
+                        }
 
                 } else if(tipoRecuerdo.equals("Comentario positivo")){
                     positivo=textRecuerdo.getText().toString().trim();
                     if(colordefecto!=0){
                         colorPositivo=colordefecto;
+                    } else{
+                        colorPositivo=-1;
                     }
                 }else if(tipoRecuerdo.equals("Comentario negativo")){
                     negativo=textRecuerdo.getText().toString().trim();
                     if(colordefecto!=0){
                         colorNegativo=colordefecto;
+                    }else{
+                        colorNegativo=-1;
                     }
                 }
 

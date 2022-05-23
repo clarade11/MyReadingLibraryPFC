@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 9;
 
     // Database Name
     private static final String DATABASE_NAME = "MyReadingDiary.db";
@@ -717,6 +717,48 @@ public class DBHelper extends SQLiteOpenHelper {
             lista.add(libroClase);
         }
         return lista.get(0).getIdLibro();
+    }
+
+    /**
+     * Devuelve idLibro del pinchado o buscado
+     *
+     * @param idLibro
+     *
+     * @return true/false
+     */
+    @SuppressLint("Range")
+    public String getTituloLibro (Integer idLibro){
+
+        // array of columns to fetch
+        String[] columns = {
+                COLUMN_ID_LIBRO,
+                COLUMN_TITULO
+        };
+        List<Libro> lista = new ArrayList<Libro>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        // selection criteria
+        String selection = COLUMN_ID_LIBRO + " = ?";
+        // selection argument
+        String[] selectionArgs = {String.valueOf(idLibro)};
+        // query user table with condition
+
+        Cursor cursor = db.query(TABLE_LIBROS, //Table to query
+                columns,                    //columns to return
+                selection,                  //columns for the WHERE clause
+                selectionArgs,              //The values for the WHERE clause
+                null,                       //group the rows
+                null,                      //filter by row groups
+                null);                      //The sort order
+        Libro libroClase = new Libro();
+        if (cursor.moveToFirst()) {
+
+            libroClase.setTitulo(cursor.getString(cursor.getColumnIndex(COLUMN_TITULO)));
+            lista.add(libroClase);
+        }
+        db.close();
+        cursor.close();
+        System.out.println("Tamaño lista bbdd ->"+lista.size());
+        return lista.get(0).getTitulo();
     }
 
     //memories

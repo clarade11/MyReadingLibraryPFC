@@ -51,22 +51,29 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
     @Override
     public void onBindViewHolder(@NonNull MemoriesViewHolder holder, int position) {
         //el id libro tiene que ser cambiado por el nombre del libro
-        ArrayList<String> nombresLibros = com.example.proyecto.fragments.Memories.nombreLibros;
-
+        //ArrayList<String> nombresLibros = com.example.proyecto.fragments.Memories.nombreLibros;
+        DBHelper DB = new DBHelper(holder.itemView.getContext());
 
         if (listamemories.get(position).getDescripcion() != null) {
-            holder.descripcionMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.descripcionMemoriesLibro.setText(titulo);
+
             holder.descripcionMemories.setText(listamemories.get(position).getDescripcion());
             if(listamemories.get(position).getDescripcionColor()!=null){
+
             holder.cv3.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getDescripcionColor()));}
+
         } else if (listamemories.get(position).getDescripcion() == null) {
             holder.descripcionMemories.setVisibility(View.GONE);
             holder.descripcionMemoriesLibro.setVisibility(View.GONE);
             holder.cv3.setVisibility(View.GONE);
         }
         if (listamemories.get(position).getFrase() != null) {
-            holder.fraseMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+            System.out.println("ID->"+listamemories.get(position).getIdLibro());
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.fraseMemoriesLibro.setText(titulo);
             holder.fraseMemories.setText(listamemories.get(position).getFrase());
+
             if(listamemories.get(position).getFraseColor()!=null){
                 holder.cv2.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getFraseColor()));}
         } else if (listamemories.get(position).getFrase() == null) {
@@ -111,7 +118,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                         })
                         .into(holder.imagenMemories);
             }
-            holder.imagenMemoriesLibro.setText(String.valueOf(nombresLibros.get(position)));
+            String titulo = DB.getTituloLibro(listamemories.get(position).getIdLibro());
+            holder.imagenMemoriesLibro.setText(titulo);
             if(listamemories.get(position).getImagenColor()!=null){
                 holder.cv1.setCardBackgroundColor(Integer.parseInt(listamemories.get(position).getImagenColor()));}
 
@@ -200,6 +208,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                 }
                             }
 
+                            lista.clear(); //limpiamos
+
                             //url de la foto seleccionada SEGURIDAD
                             String imagenURL=null;
                             if(foto.equals("")){
@@ -248,6 +258,8 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                 }
 
                             }
+
+                            listamemoriesdeusuario.clear();//limpiamos
                             System.out.println(idRecuerdo + "----> ID RECUERDO");
                             moment = DB.getMemories(idRecuerdo);
 
@@ -363,6 +375,7 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
                                     Integer id = DB.getIDMemorieImagen(usuario.getIdUsuario(), imagenParaEditar);
                                     Memories moment3 = DB.getMemories(id);
                                     moment3.setImagen(url);
+
                                     DB.actualizarMemorie(moment3);
                                     Toast.makeText(itemView.getContext(), "Actualizado con éxito, entre y salga de los recuerdos", Toast.LENGTH_SHORT).show();
 
