@@ -5,7 +5,7 @@
     android:id="@+id/spLibros"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CreacionRecuerdo"
+    tools:context="paquete.activity.CreacionRecuerdo"
     android:background="@color/ColorPrincipal"
     >
 

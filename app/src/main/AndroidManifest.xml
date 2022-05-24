@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.proyecto">
+    package="com.example.builderConfig">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,29 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto">
         <activity
-            android:name=".activity.VerWishList"
+            android:name="paquete.activity.VerWishList"
             android:exported="false" />
         <activity
-            android:name=".activity.Registrar"
+            android:name="paquete.activity.Registrar"
             android:exported="false" />
         <activity
-            android:name=".activity.VisualizarLibro"
+            android:name="paquete.activity.VisualizarLibro"
             android:exported="false" />
         <activity
-            android:name=".activity.CreacionRecuerdo"
+            android:name="paquete.activity.CreacionRecuerdo"
             android:exported="false" />
         <activity
-            android:name=".activity.CreacionLibro"
+            android:name="paquete.activity.CreacionLibro"
             android:exported="false" />
         <activity
-            android:name=".activity.Perfil"
+            android:name="paquete.activity.Perfil"
             android:exported="false" />
         <activity
-            android:name=".activity.NavDrawer"
+            android:name="paquete.activity.NavDrawer"
             android:exported="false"
             android:theme="@style/Theme.Proyecto.NoActionBar" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="paquete.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

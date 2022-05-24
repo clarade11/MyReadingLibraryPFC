@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.VisualizarLibro"
+    tools:context="paquete.activity.VisualizarLibro"
     android:layout_gravity="center"
     android:layout_margin="10dp"
 
