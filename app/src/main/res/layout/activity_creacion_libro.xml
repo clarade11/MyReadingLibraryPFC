@@ -4,10 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CreacionLibro"
+    tools:context="com.paq.proyecto.activity.CreacionLibro"
     android:layout_margin="10dp"
     android:orientation="vertical">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <ImageButton
         android:id="@+id/ayuda"
         android:layout_width="wrap_content"
@@ -140,5 +146,6 @@
         android:layout_gravity="bottom|center"
         android:layout_marginTop="30dp"
         android:text="Crear libro" />
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -13,29 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto">
         <activity
-            android:name=".activity.VerWishList"
+            android:name="com.paq.proyecto.activity.VerWishList"
             android:exported="false" />
         <activity
-            android:name=".activity.Registrar"
+            android:name="com.paq.proyecto.activity.Registrar"
             android:exported="false" />
         <activity
-            android:name=".activity.VisualizarLibro"
+            android:name="com.paq.proyecto.activity.VisualizarLibro"
             android:exported="false" />
         <activity
-            android:name=".activity.CreacionRecuerdo"
+            android:name="com.paq.proyecto.activity.CreacionRecuerdo"
             android:exported="false" />
         <activity
-            android:name=".activity.CreacionLibro"
+            android:name="com.paq.proyecto.activity.CreacionLibro"
             android:exported="false" />
         <activity
-            android:name=".activity.Perfil"
+            android:name="com.paq.proyecto.activity.Perfil"
             android:exported="false" />
         <activity
-            android:name=".activity.NavDrawer"
+            android:name="com.paq.proyecto.activity.NavDrawer"
             android:exported="false"
             android:theme="@style/Theme.Proyecto.NoActionBar" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.paq.proyecto.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
