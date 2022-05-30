@@ -1,4 +1,4 @@
-package paquete.clasesObjeto;
+package com.paq.proyecto.clasesObjeto;
 
 import java.util.Objects;
 
@@ -15,6 +15,7 @@ public class Libro {
     Double puntuacion;
     String tienda;
     Integer idUsuario;
+    String numPaginas;
 
     public Libro(String fotoID,String titulo,String autor,String codigoBarras,String editorial,Double precio,String descripcion,Integer comprado,Double puntuacion,String tienda,Integer idUsuario ){
         this.fotoID=fotoID;
@@ -81,6 +82,11 @@ public class Libro {
         return precio;
     }
 
+    public String getNumPaginas(){return numPaginas;}
+
+    public void setNumPaginas(String numPaginas) {
+        this.numPaginas = numPaginas;
+    }
 
     public String getCodigoBarras() {
         return codigoBarras;

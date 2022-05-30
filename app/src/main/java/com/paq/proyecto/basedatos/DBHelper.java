@@ -1,4 +1,4 @@
-package paquete.basedatos;
+package com.paq.proyecto.basedatos;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -7,17 +7,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Memories;
-import paquete.clasesObjeto.RelacionUsuarioLibro;
-import paquete.clasesObjeto.Usuario;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Memories;
+import com.paq.proyecto.clasesObjeto.RelacionUsuarioLibro;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     // Database Version
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 13;
 
     // Database Name
     private static final String DATABASE_NAME = "MyReadingDiary.db";
@@ -67,7 +67,9 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String COLUMN_COMPRADO = "comprado";
     private static final String COLUMN_PUNTUACION_LIBRO = "puntuacion";
     private static final String COLUMN_TIENDA = "tienda";
+    private static final String COLUMN_PAGINAS = "numPaginas";
     private static final String COLUMN_USUARIO_FK2 = "idUsuario";
+
 
     //tabla relacion
     private static final String COLUMN_ID_LIBRO_USUARIO = "idLibroUsuario";
@@ -119,6 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
             + COLUMN_USUARIO_FK2 + " INTEGER,"
             + COLUMN_PUNTUACION_LIBRO + " REAL,"
             + COLUMN_TIENDA + " TEXT,"
+            + COLUMN_PAGINAS + " TEXT,"
             + " FOREIGN KEY ("+COLUMN_USUARIO_FK2+") REFERENCES "+TABLE_USUARIO+"("+COLUMN_IDUSUARIO+")"
             + ");";
 
@@ -563,6 +566,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_PUNTUACION_LIBRO, libro.getPuntuacion());
         values.put(COLUMN_TIENDA, libro.getTienda());
         values.put(COLUMN_USUARIO_FK2, libro.getIdUsuario());
+        values.put(COLUMN_PAGINAS,libro.getNumPaginas());
 
         db.update(TABLE_LIBROS, values, COLUMN_ID_LIBRO + " = ?",
                 new String[]{String.valueOf(libro.getIdLibro())});
@@ -638,7 +642,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 COLUMN_COMPRADO,
                 COLUMN_PUNTUACION_LIBRO,
                 COLUMN_TIENDA,
-                COLUMN_USUARIO_FK2
+                COLUMN_USUARIO_FK2,
+                COLUMN_PAGINAS
         };
         SQLiteDatabase db = this.getReadableDatabase();
         // selection criteria
@@ -670,7 +675,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 libroObjeto.setPuntuacion(cursor.getDouble(cursor.getColumnIndex(COLUMN_PUNTUACION)));
                 libroObjeto.setTienda(cursor.getString(cursor.getColumnIndex(COLUMN_TIENDA)));
                 libroObjeto.setIdUsuario(Integer.parseInt(cursor.getString(cursor.getColumnIndex(COLUMN_USUARIO_FK2))));
-
+                libroObjeto.setNumPaginas(cursor.getString(cursor.getColumnIndex(COLUMN_PAGINAS)));
             } while (cursor.moveToNext());
         }
         cursor.close();

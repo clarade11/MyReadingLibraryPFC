@@ -1,7 +1,4 @@
-package paquete.activity;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+package com.paq.proyecto.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,15 +8,17 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.builderConfig.R;
-
-import paquete.adapter.Seguridad;
-import paquete.adapter.Validacion;
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Usuario;
+import com.example.proyecto.R;
+import com.paq.proyecto.adapter.Seguridad;
+import com.paq.proyecto.adapter.Validacion;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.List;
 
@@ -80,7 +79,7 @@ public class CreacionLibro extends AppCompatActivity {
     private void creacion() {
 
         usuario = MainActivity.usuarioObjeto;
-        if(edTitulo.getText().toString().trim()!=null){
+        if(edTitulo.getText().toString().trim()!=null && edTitulo.getText().toString().trim().length()>=1 && !(edTitulo.getText().toString().trim().equals(""))){
             if(!DB.existeLibro(edTitulo.getText().toString().trim(),usuario.getIdUsuario())){
                 //si lo tiene comprado o no, checbox
                 Integer comprado=1;
@@ -93,6 +92,8 @@ public class CreacionLibro extends AppCompatActivity {
                     precio=0.0;
                 } else if(edPrecio.getText().toString().trim().contains(",")){ //asegurarnos que el valor introducido es correcto
                     precio = Double.parseDouble(edPrecio.getText().toString().trim().replace(",","."));
+                } else {
+                    precio = Double.parseDouble(edPrecio.getText().toString().trim());
                 }
 
                 String seguridadImagen = Seguridad.introduccionURL(imagenLibro.getText().toString().trim(),CreacionLibro.this);
@@ -111,12 +112,10 @@ public class CreacionLibro extends AppCompatActivity {
                         usuario.getIdUsuario());
                 DB.insertLibro(libro);
             }
+        } else {
+            Toast.makeText(this, "Es obligatorio poner un título al libro", Toast.LENGTH_SHORT).show();
         }
 
-        List<Libro> libros = DB.getAllLibros();
-        for(int i =0;i<libros.size();i++){
-            System.out.println(libros.get(i).getTitulo());
-            ;            }
 
         Intent i = new Intent(CreacionLibro.this, NavDrawer.class); //clase nuestra,clase a la que viajar
         startActivity(i);

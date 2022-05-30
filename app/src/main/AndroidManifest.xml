@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.builderConfig">
+    package="com.example.proyecto">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,29 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyecto">
         <activity
-            android:name="paquete.activity.VerWishList"
+            android:name="com.paq.proyecto.activity.VerWishList"
             android:exported="false" />
         <activity
-            android:name="paquete.activity.Registrar"
+            android:name="com.paq.proyecto.activity.Registrar"
             android:exported="false" />
         <activity
-            android:name="paquete.activity.VisualizarLibro"
+            android:name="com.paq.proyecto.activity.VisualizarLibro"
             android:exported="false" />
         <activity
-            android:name="paquete.activity.CreacionRecuerdo"
+            android:name="com.paq.proyecto.activity.CreacionRecuerdo"
             android:exported="false" />
         <activity
-            android:name="paquete.activity.CreacionLibro"
+            android:name="com.paq.proyecto.activity.CreacionLibro"
             android:exported="false" />
         <activity
-            android:name="paquete.activity.Perfil"
+            android:name="com.paq.proyecto.activity.Perfil"
             android:exported="false" />
         <activity
-            android:name="paquete.activity.NavDrawer"
+            android:name="com.paq.proyecto.activity.NavDrawer"
             android:exported="false"
             android:theme="@style/Theme.Proyecto.NoActionBar" />
         <activity
-            android:name="paquete.activity.MainActivity"
+            android:name="com.paq.proyecto.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

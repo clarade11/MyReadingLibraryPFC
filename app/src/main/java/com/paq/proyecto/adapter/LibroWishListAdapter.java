@@ -1,4 +1,4 @@
-package paquete.adapter;
+package com.paq.proyecto.adapter;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,13 +21,12 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.builderConfig.R;
-
-import paquete.activity.MainActivity;
-import paquete.activity.VerWishList;
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Usuario;
+import com.example.proyecto.R;
+import com.paq.proyecto.activity.MainActivity;
+import com.paq.proyecto.activity.VerWishList;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
 
@@ -49,7 +48,7 @@ public class LibroWishListAdapter extends RecyclerView.Adapter<LibroWishListAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LibroWishListAdapter.LibroViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LibroViewHolder holder, int position) {
         holder.tituloWishList.setText(listaLibros.get(position).getTitulo());
         holder.precioWishList.setText(Double.toString(listaLibros.get(position).getPrecio()));
         holder.descripcionWishList.setText(listaLibros.get(position).getDescripcion());

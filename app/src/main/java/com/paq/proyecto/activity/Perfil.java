@@ -1,7 +1,4 @@
-package paquete.activity;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+package com.paq.proyecto.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,13 +7,16 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.builderConfig.R;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Memories;
-import paquete.clasesObjeto.Usuario;
+import com.example.proyecto.R;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Memories;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.List;
 
@@ -280,10 +280,12 @@ public class Perfil extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int i) {
                 ps1 = password1.getText().toString().trim();
-
-                usuario.setContrasena(ps1);
-                DB.actualizarUsuario(usuario);
-
+                if(ps1.length()>=10) {
+                    usuario.setContrasena(ps1);
+                    DB.actualizarUsuario(usuario);
+                } else {
+                    Toast.makeText(Perfil.this, "Error", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

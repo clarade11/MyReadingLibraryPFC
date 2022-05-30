@@ -1,8 +1,6 @@
-package paquete.fragments;
+package com.paq.proyecto.fragments;
 
 import android.os.Bundle;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.builderConfig.R;
-import paquete.activity.MainActivity;
-import paquete.adapter.MemoriesAdapter;
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Usuario;
+import com.example.proyecto.R;
+import com.paq.proyecto.activity.MainActivity;
+import com.paq.proyecto.adapter.MemoriesAdapter;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +38,7 @@ public class Memories extends Fragment {
     private String mParam2;
 
     RecyclerView recyclerMemoriesId;
-    ArrayList<paquete.clasesObjeto.Memories> listaMemories;
+    ArrayList<com.paq.proyecto.clasesObjeto.Memories> listaMemories;
 
     DBHelper DB;
     Usuario usuario;
@@ -81,7 +79,7 @@ public class Memories extends Fragment {
         DB = new DBHelper(getContext());
         usuario = MainActivity.usuarioObjeto;
 
-        listaMemories = new ArrayList<paquete.clasesObjeto.Memories>();
+        listaMemories = new ArrayList<com.paq.proyecto.clasesObjeto.Memories>();
         recyclerMemoriesId = view.findViewById(R.id.recyclerMemoriesId);
         recyclerMemoriesId.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -98,7 +96,7 @@ public class Memories extends Fragment {
     private void llenarLista() {
 
 
-        List<paquete.clasesObjeto.Memories> lista = DB.getAllMemoriesDeUsuario(usuario.getIdUsuario());
+        List<com.paq.proyecto.clasesObjeto.Memories> lista = DB.getAllMemoriesDeUsuario(usuario.getIdUsuario());
 
         for (int i = 0; i < lista.size(); i++) {
             listaMemories.add(lista.get(i));

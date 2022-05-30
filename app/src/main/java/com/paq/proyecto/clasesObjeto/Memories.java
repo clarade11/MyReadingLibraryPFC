@@ -1,4 +1,4 @@
-package paquete.clasesObjeto;
+package com.paq.proyecto.clasesObjeto;
 
 public class Memories {
     private int idMemories;

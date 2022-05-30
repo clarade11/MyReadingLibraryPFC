@@ -1,25 +1,24 @@
-package paquete.fragments;
+package com.paq.proyecto.fragments;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.builderConfig.R;
-import paquete.activity.MainActivity;
-import paquete.adapter.LibroWishListAdapter;
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Usuario;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proyecto.R;
+import com.paq.proyecto.activity.MainActivity;
+import com.paq.proyecto.adapter.LibroWishListAdapter;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,4 @@
-package paquete.activity;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+package com.paq.proyecto.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -15,19 +12,21 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.builderConfig.R;
-import paquete.adapter.Seguridad;
-import paquete.adapter.Validacion;
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Memories;
-import paquete.clasesObjeto.Usuario;
-
+import com.example.proyecto.R;
+import com.paq.proyecto.adapter.Seguridad;
+import com.paq.proyecto.adapter.Validacion;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Memories;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package paquete.adapter;
+package com.paq.proyecto.adapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -18,9 +18,9 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.builderConfig.R;
-import paquete.activity.VisualizarLibro;
-import paquete.clasesObjeto.Memories;
+import com.example.proyecto.R;
+import com.paq.proyecto.activity.VisualizarLibro;
+import com.paq.proyecto.clasesObjeto.Memories;
 
 import java.util.ArrayList;
 
@@ -37,7 +37,7 @@ public class LibroLibraryGeneralAdapter extends RecyclerView.Adapter<LibroLibrar
     @Override
     public LibroGeneralViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listmemorieslibrogeneral,null,false);
-        return new LibroLibraryGeneralAdapter.LibroGeneralViewHolder(view);
+        return new LibroGeneralViewHolder(view);
     }
 
     @Override

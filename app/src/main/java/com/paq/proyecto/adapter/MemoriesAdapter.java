@@ -1,4 +1,4 @@
-package paquete.adapter;
+package com.paq.proyecto.adapter;
 
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
@@ -22,12 +22,13 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.builderConfig.R;
-import paquete.activity.MainActivity;
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Memories;
-import paquete.clasesObjeto.Usuario;
+import com.example.proyecto.R;
+import com.paq.proyecto.activity.MainActivity;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Memories;
+import com.paq.proyecto.clasesObjeto.Usuario;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,15 +44,15 @@ public class MemoriesAdapter extends RecyclerView.Adapter<MemoriesAdapter.Memori
     }
 
     @Override
-    public MemoriesAdapter.MemoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MemoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.listmemories, null, false);
-        return new MemoriesAdapter.MemoriesViewHolder(view);
+        return new MemoriesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MemoriesViewHolder holder, int position) {
         //el id libro tiene que ser cambiado por el nombre del libro
-        //ArrayList<String> nombresLibros = paquete.fragments.Memories.nombreLibros;
+        //ArrayList<String> nombresLibros = Memories.nombreLibros;
         DBHelper DB = new DBHelper(holder.itemView.getContext());
 
 

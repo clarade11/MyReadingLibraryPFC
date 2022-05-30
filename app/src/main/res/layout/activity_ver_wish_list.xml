@@ -5,9 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="paquete.activity.VerWishList"
+    tools:context="com.paq.proyecto.activity.VerWishList"
     android:gravity="top|center"
     >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="top|center">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -186,5 +194,6 @@
         android:layout_marginLeft="20dp"
         android:text="Guardar cambios" />
 
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

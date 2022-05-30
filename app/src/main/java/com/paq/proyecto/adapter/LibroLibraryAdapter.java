@@ -1,4 +1,4 @@
-package paquete.adapter;
+package com.paq.proyecto.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,19 +15,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-//import com.bumptech.glide.Glide;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.example.builderConfig.R;
-import paquete.activity.MainActivity;
-import paquete.activity.VisualizarLibro;
-import paquete.basedatos.DBHelper;
-import paquete.clasesObjeto.Libro;
-import paquete.clasesObjeto.Memories;
-import paquete.clasesObjeto.Usuario;
+import com.example.proyecto.R;
+import com.paq.proyecto.activity.MainActivity;
+import com.paq.proyecto.activity.VisualizarLibro;
+import com.paq.proyecto.basedatos.DBHelper;
+import com.paq.proyecto.clasesObjeto.Libro;
+import com.paq.proyecto.clasesObjeto.Memories;
+import com.paq.proyecto.clasesObjeto.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +50,7 @@ public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull LibroLibraryAdapter.LibroViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull LibroViewHolder holder, int position) {
         holder.tituloLibrary.setText(listaLibros.get(position).getTitulo());
 
         if (listaLibros.get(position).getFotoID().equals("")) {
@@ -159,12 +158,13 @@ public class LibroLibraryAdapter extends RecyclerView.Adapter<LibroLibraryAdapte
                 Usuario usuario = MainActivity.usuarioObjeto;
                 @Override
                 public void onClick(View v) {
-                    itemView.getContext().startActivity(new Intent(itemView.getContext(),VisualizarLibro.class));
+                    itemView.getContext().startActivity(new Intent(itemView.getContext(), VisualizarLibro.class));
 
                     //hacer objeto libro para recogerlo en pantalla visualizar libro
                     Integer idLibro = DB.getIDLibro(tituloLibrary.getText().toString().trim(), usuario.getIdUsuario());
-
+                    System.out.println(idLibro+"id");
                     libro = DB.getLibro(idLibro);
+
 
                 }
             });

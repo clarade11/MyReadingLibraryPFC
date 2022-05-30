@@ -1,4 +1,4 @@
-package paquete.adapter;
+package com.paq.proyecto.adapter;
 
 import android.content.Context;
 import android.widget.Toast;
